@@ -1,0 +1,26 @@
+
+var isPalindrome = function (s) {
+  s = s.toLowerCase().replace(/[^A-Za-z0-9]/g, "");
+
+  var lp = 0;
+  var rp = s.length - 1;
+
+  while ( lp <= rp ) {
+    console.log(lp, rp);
+    if( s[lp] !== s[rp] ) {
+      return false; 
+    }
+    lp++;
+    rp--; 
+    
+  }
+  return true; 
+}
+
+console.log( isPalindrome('abcccba') ); // true 
+
+console.log( isPalindrome('abccfa') ); // false
+
+console.log( isPalindrome('Madam, Im adam.') ) ; // true 
+
+
