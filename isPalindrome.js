@@ -1,3 +1,11 @@
+/*
+
+Given a string s, determine if it is a palindrome, considering 
+only alphanumeric characters and ignoring cases.
+
+*/
+
+
 
 var isPalindrome = function (s) {
   s = s.toLowerCase().replace(/[^A-Za-z0-9]/g, "");
