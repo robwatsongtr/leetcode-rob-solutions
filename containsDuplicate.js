@@ -7,7 +7,10 @@
  * @return {boolean}
  */
 
- var containsDuplicate = function(nums) {
+// simple solution is to use a JS object as a hash map to keep track of the 
+// frequency of values 
+
+var containsDuplicate = function(nums) {
   let counter = {}
   
   // for of is used to iterate over arrays typically
