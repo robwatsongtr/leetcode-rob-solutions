@@ -55,4 +55,4 @@ console.log( singleNumber2([4,1,2,1,2]) ) ; // 4
 var singleNumberConst = function(nums) {
   return nums.reduce( (result, val) => result ^ val );
 }
-console.log( singleNumberConst([4,1,2,1,2]) ) ; // 4 
+console.log( singleNumberConst( [4,1,2,1,2]) ) ; // 4 
