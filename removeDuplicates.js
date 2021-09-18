@@ -12,8 +12,8 @@
     let j = 1;
 
     // i and j start on [0] and [1]
-    // increment j as long as duplicate
-    // dupliate run ends, increment i, copy j to i+1
+    // Increment j as long as there is a duplicate.
+    // When dupliate run ends, increment i, copy j to i+1
     // when j reaches end of the array, return i 
     for( j ; j < nums.length ; j++) {
       if (nums[j] != nums[i] ) i++;
