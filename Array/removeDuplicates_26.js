@@ -1,11 +1,16 @@
 
 /**
+ * LC 26
+ * 
  * Given a sorted array nums, remove the duplicates in-place 
  * such that each element appears only once and returns the new length.
  * 
  * @param {number[]} nums
  * @return {number}
  */
+
+// uses the "two pointer method" to solve problem 
+
  var removeDuplicates = function(nums) {
     if (nums.length === 0) return 0;
     let i = 0;
@@ -19,7 +24,7 @@
       if (nums[j] != nums[i] ) i++;
       nums[i] = nums[j]
     }
-    return i + 1;  
+    return i + 1;  // returns the length of the array without duplicates
 
 };
 
