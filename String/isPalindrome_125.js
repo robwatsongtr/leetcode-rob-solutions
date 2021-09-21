@@ -1,4 +1,4 @@
-/*
+/* Valid Palindrome LC 125
 
 Given a string s, determine if it is a palindrome, considering 
 only alphanumeric characters and ignoring cases.
@@ -9,7 +9,7 @@ only alphanumeric characters and ignoring cases.
 
 var isPalindrome = function (s) {
   
-  // important regex 
+  // convert string to lower case and just alphanumeric characters 
   s = s.toLowerCase().replace(/[^A-Za-z0-9]/g, "");
 
   // two pointer technique. move from both ends towards the middle 
