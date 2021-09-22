@@ -12,34 +12,70 @@
 // Trival answers to warm up---------------------------------------- 
 
 var sortedSquaresFor = function(nums) {
+
   let result = []
 
   for( i = 0; i < nums.length; i++) {
     result.push( nums[i] * nums[i] );
   }
 
-  result.sort()
-
+  result.sort( (a, b) => a - b ) 
   return result; 
 
 };
 
 var sortedSquaresMap = function(nums) { 
   
-  let result = nums.map( x => x * x ).sort(); 
-
+  const result = nums.map( x => x * x ).sort( (a, b) => a - b ); 
   return result; 
+
 };
 
 
-// True O(n) Answer -------------------------------------------------
+// O(n) Answer -------------------------------------------------
 
 var sortedSquaresLinearTime = function(nums) {
 
-  
+  let result = []
+
+  // 'two pointers' for comparison 
+  let begin = 0
+  let end = nums.length - 1; 
+
+  // make a current pointer, to start at end of array 
+  let currentPtr = nums.length - 1; 
+
+  // current poiner will run backwards from the end of array 
+  // the beginnig and ending pointer will work towards 0 from opposite directions.
+  while( currentPtr >= 0 ) {
+
+    // if beginning squared result is greater than ending squared result 
+    if( (nums[begin] * nums[begin]) > (nums[end] * nums[end]) ) {
+      
+      // assign beginning pointer to current pointer 
+      result[currentPtr] = nums[begin] * nums[begin];
+
+      currentPtr-- // decrement current
+      begin++ // INCREMENT end
+      
+    } else { 
+
+      // if beginning squared result is less than ending squared result
+      // assign ending pointer to current pointer 
+      result[currentPtr] = nums[end] * nums[end];
+
+      currentPtr--; // decrement current
+      end--; // DECREMENT end 
+      
+    }
+    // console.log(result)
+  }
+
+  return result; 
     
 };
 
 
-console.log( sortedSquaresFor( [-4,-1,0,3,10] ) ); 
-console.log( sortedSquaresMap( [-4,-1,0,3,10] ) ); 
+// console.log( sortedSquaresFor( [-4,-1,0,3,10] ) ); 
+// console.log( sortedSquaresMap( [-4,-1,0,3,10] ) ); 
+console.log( sortedSquaresLinearTime( [-4,-1,0,3,10] ) );
