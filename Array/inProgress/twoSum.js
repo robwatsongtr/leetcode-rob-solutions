@@ -11,20 +11,20 @@
  * @return {number[]}
  */
  var twoSum = function(arr, target) {
-  const map = {}
-  const solution = []
-  arr.forEach((obj, idx) => {
-      map[obj] = idx
-  })
-  for (var i=0; i < arr.length; i++) {
-      var find = target - arr[i];
-      if (map[find] && map[find] != i) {
-          solution.push([i,map[find]])
-          map[find] = null
-          map[arr[i]] = null
-      }
-  }
-  return solution
+//   const map = {}
+//   const solution = []
+//   arr.forEach((obj, idx) => {
+//       map[obj] = idx
+//   })
+//   for (var i=0; i < arr.length; i++) {
+//       var find = target - arr[i];
+//       if (map[find] && map[find] != i) {
+//           solution.push([i,map[find]])
+//           map[find] = null
+//           map[arr[i]] = null
+//       }
+//   }
+//   return solution
   
 };
 
