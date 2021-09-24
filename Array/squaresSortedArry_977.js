@@ -45,6 +45,7 @@ var sortedSquaresLinearTime = function(nums) {
   // make a current pointer, to start at end of array 
   let currentPtr = nums.length - 1; 
 
+
   // current poiner will run backwards from the end of array 
   // the beginnig and ending pointer will work towards 0 from opposite directions.
   while( currentPtr >= 0 ) {
