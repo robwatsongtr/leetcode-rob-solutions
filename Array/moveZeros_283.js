@@ -87,7 +87,7 @@ function moveZeroesRobert2(arr) {
   }
 
   return arr
-  
+
 }
 
 
@@ -100,15 +100,17 @@ function moveZeroesRobert2(arr) {
 // of lastZeroNotFound at.
 //
 // If the newly found element is not a 0, we record it just after the 
-// last found non-0 element. The position of last found non-0 element 
-// is denoted by the slow pointer "lastNonZeroFoundAt" variable. 
+// last found non-0 element. 
+
+// The position of last found non-0 element is denoted by
+// the slow pointer "lastNonZeroFoundAt" variable. 
 // As we keep finding new non-0 elements, we just overwrite them at 
 // the "lastNonZeroFoundAt + 1" 'th index. 
 // 
 // This overwrite will not result in any loss of data because we 
-// already processed what was 
-// there(if it were non-0,it already is now written at it's corresponding 
-// index,or if it were 0 it will be handled later in time).
+// already processed what was there(if it were non-0,it
+// already is now written at it's correspondingindex,or if it were 0 
+// it will be handled later in time).
 //
 // After the "cur" index reaches the end of array, we now know that 
 // all the non-0 elements have been moved to beginning of array in 
