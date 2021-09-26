@@ -35,12 +35,12 @@ var moveZeroesRob = function(nums) {
 
   // remove zeros
   for( i = 0; i < nums.length; i++ ) {
-    console.log(nums)
+    console.log('before ', nums)
     if( nums[i] === 0) {
       nums.splice(i, 1);
     }
 
-    console.log(nums) ;
+    console.log('after ', nums) ;
   }
 
   console.log(numZeros);
@@ -50,15 +50,52 @@ var moveZeroesRob = function(nums) {
     nums.push(0);
   }
 
-  return nums;
+  return "result " + nums;
   
 };
+
+//--Robert's answers--------------------------------------------------
+
+function moveZeroesRobert1(arr) {
+
+  let numZeroes = 0;
+
+  for (let i=0; i < arr.length; i++) {
+      while (arr[i] === 0) {
+          arr.splice(i, 1);
+          numZeroes++;
+      }
+  }
+
+  // spread operator to concatenate arrays
+  arr.push(...new Array(numZeroes).fill(0)); 
+  return arr;
+
+}
+
+function moveZeroesRobert2(arr) {
+
+  let i = arr.length - 1
+
+  while (i >= 0 && arr[i] === 0) i--
+  while (i >= 0) {
+      if (arr[i] === 0) {
+          arr.splice(i,1)
+          arr.push(0)
+      }
+      i--
+  }
+
+  return arr
+  
+}
+
 
 // LC answer. 
 
 // If the current element is not 0, then we need to
 // append it just in front of last non 0 element we found. 
-
+//
 // Current is the 'fast pointer' that processes new elements one ahead
 // of lastZeroNotFound at.
 //
@@ -109,8 +146,8 @@ var moveZeroes = function(nums) {
 
 
 
-console.log( moveZeroes( [ 0,1,0,3,12 ] ) );
+// console.log( moveZeroes( [ 0,1,0,3,12 ] ) );
 // console.log( moveZeroes( [ 0,1,0 ] ) );
-// console.log( moveZeroes( [ 0,0,1 ] ) ); // returns [ 0,1,0,0 ]
+console.log( moveZeroesRob( [ 0,0,1 ] ) ); // returns [ 0,1,0,0 ]
 // console.log( moveZeroes( [ 0 ] ) ); 
 // console.log( moveZeroesRob( [ 0,0 ] ) ); // returns [ 0, 0, 0 ]
