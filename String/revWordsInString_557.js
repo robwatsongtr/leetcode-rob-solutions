@@ -16,14 +16,12 @@ sentence while still preserving whitespace and initial word order.
 
 My approach:
 
-1. separate words in to a proper array
+1. separate words in to an array of words 
 2. dequeue word from array 
 3. reverse word
 4. Push into result array 
 
 */
-
-
 
 
 var reverseWords = function(s) {
@@ -46,6 +44,7 @@ var reverseWords = function(s) {
   
     }
   
+    // rejoin array of characters into string
     return s.join(""); 
   
   }
@@ -57,9 +56,7 @@ var reverseWords = function(s) {
 
   while( wordArray.length > 0 ) {
 
-    // dequeue word and split into letters
-
-    // reverse word 
+    // dequeue word, split into array of letters, then reverse 
     let revWord = reverseString( wordArray.shift().split('') );
 
     // push into result array 
@@ -67,10 +64,9 @@ var reverseWords = function(s) {
 
   }
 
+  // converts array of words into a proper  string with spaces between words.
+  return result.join(' '); 
   
-  return result.join(' ');
-  
-
 };
 
-console.log( reverseWords("Hello to You") )
+console.log( reverseWords("Hello to You") ) // olleH ot uoY
