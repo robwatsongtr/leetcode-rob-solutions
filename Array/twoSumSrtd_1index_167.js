@@ -28,9 +28,10 @@ var twoSum = function(numbers, target) {
 
       let sum = numbers[leftPtr] + numbers[rightPtr];
 
-      // if the current sum is greater than target decrement right
+      // if the current sum is greater than target decrement right (get smaller)
       // becuase we're looking for a smaller number. conversely,
-      // if the current sum is less than target increment right because
+      // 
+      // if the current sum is less than target increment left (get bigger) because
       // we're looking for a bigger number. 
       if( sum === target ) {
         return [ leftPtr + 1, rightPtr + 1 ] ;

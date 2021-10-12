@@ -40,12 +40,7 @@ function ListNode(val, next) {
 // hits the middle. Clever. 
 
 var middleNode = function(head) {
-
-  function ListNode(val, next) {
-    this.val = (val===undefined ? 0 : val)
-    this.next = (next===undefined ? null : next) 
-  }
-
+  
   let left = head;
   let right = head;
 

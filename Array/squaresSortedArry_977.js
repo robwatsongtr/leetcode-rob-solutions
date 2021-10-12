@@ -3,6 +3,11 @@
 // Given an integer array nums sorted in non-decreasing order, return 
 // an array of the squares of each number sorted in non-decreasing order.
 
+// THE PROBLEM IS NEGATIVE NUMBERS. that's why either some sort of
+// separate sorting at the end is required, OR, for true linear time, you
+// can do the squaring and use two pointers for comparison sorting 
+// simultateously.
+
 
 /**
 * @param {number[]} nums
