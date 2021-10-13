@@ -5,6 +5,14 @@ Given the head of a singly linked list, return the middle node of the
 linked list.
 */
 
+
+// Definition fo Singly Linked List --------------
+
+function ListNode(val, next) {
+  this.val = (val===undefined ? 0 : val)
+  this.next = (next===undefined ? null : next) 
+}
+
 // function ListNode(val, next) {
 //   if( val === undefined ) {
 //     val = 0; 
@@ -18,21 +26,17 @@ linked list.
 //     next === next; 
 //   }
 // }
+//----------------------------------------------
+
+// Appoarch: Two pointers, fast and slow: 
+// By doing next.next each iteration is 2x then for right, 
+// it hits the end of the list at the same time the left pointer 
+// hits the middle. Clever. 
 
 /**
  * @param {ListNode} head
  * @return {ListNode}
 */
-
-function ListNode(val, next) {
-  this.val = (val===undefined ? 0 : val)
-  this.next = (next===undefined ? null : next) 
-}
-
-// Two pointers, fast and slow: 
-// By doing next.next each iteration is 2x then for right, 
-// it hits the end of the list at the same time the left pointer 
-// hits the middle. Clever. 
 
 var middleNode = function(head) {
   
