@@ -51,6 +51,12 @@ function ListNode(val, next) {
 
 const removeNthFromEnd = (head, n) => {
 
+  let slowPtr = head;
+  let fastPtr = head; 
+
+  let fastCount = 0;
+  let slowCount = fastcount - n; 
+  
 
     
 };
