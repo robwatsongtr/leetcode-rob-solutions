@@ -1,19 +1,9 @@
 // LC 876 Middle of Linked List
 
 /*
-
 Given the head of a singly linked list, return the middle node of the 
 linked list.
-
-If there are two middle nodes, return the second middle node.
-
-1. count total nodes
-2. calculate the middle node position
-3. iterate until middle node 
-
 */
-
-
 
 // function ListNode(val, next) {
 //   if( val === undefined ) {
@@ -29,12 +19,17 @@ If there are two middle nodes, return the second middle node.
 //   }
 // }
 
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+*/
+
 function ListNode(val, next) {
   this.val = (val===undefined ? 0 : val)
   this.next = (next===undefined ? null : next) 
 }
 
-// Two pointers: 
+// Two pointers, fast and slow: 
 // By doing next.next each iteration is 2x then for right, 
 // it hits the end of the list at the same time the left pointer 
 // hits the middle. Clever. 
@@ -51,3 +46,14 @@ var middleNode = function(head) {
   return left;
 
 };
+
+list = new ListNode(5);
+list = new ListNode(4, list );
+list = new ListNode(3, list );
+list = new ListNode(2, list );
+list = new ListNode(1, list );
+
+console.log('list = ', list );
+console.log('middle node = ', middleNode(list) );
+
+
