@@ -48,12 +48,13 @@ function ListNode(val, next) {
 * @return {ListNode}
 */
 
-
+const util = require('util')
 
 const removeNthFromEnd = (head, n) => {
 
-  let slowPtr = head;
+  
   let fastPtr = head; 
+  let slowPtr = head;
   let count = 1; 
 
   while( fastPtr.next !== null ) {
@@ -68,10 +69,12 @@ const removeNthFromEnd = (head, n) => {
 
   }
 
+  // edge case 
   if( count === n) {
     return head.next; 
   }
 
+  // remove the node by rewire to next.next
   slowPtr.next = slowPtr.next.next; 
 
   return head; 
@@ -86,7 +89,9 @@ list = new ListNode(3, list );
 list = new ListNode(2, list );
 list = new ListNode(1, list );
 
-console.log(list);
+// console.log(list);
 
-console.log( removeNthFromEnd(list, 2) );
+let result = removeNthFromEnd(list, 2);
 
+
+console.log(util.inspect(result, {showHidden: false, depth: null, colors: true}))
