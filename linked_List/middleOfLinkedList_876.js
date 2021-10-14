@@ -40,14 +40,18 @@ function ListNode(val, next) {
 
 var middleNode = function(head) {
   
-  let left = head;
-  let right = head;
+  let slowPtr = head;
+  let fastPtr = head;
 
-  while( right !== null && right.next !== null ) {
-    left = left.next;
-    right = right.next.next
+  // need both stopping cases. If the list is odd length the 
+  // fast pointer will end on the last node, if its even
+  // it will end on the next.null (The null ), in order to 
+  // get the rightmost middle node 
+  while( fastPtr !== null && fastPtr.next !== null ) {
+    slowPtr = slowPtr.next;
+    fastPtr = fastPtr.next.next
   }
-  return left;
+  return slowPtr;
 
 };
 

@@ -49,18 +49,36 @@ function ListNode(val, next) {
 */
 
 
+
 const removeNthFromEnd = (head, n) => {
 
   let slowPtr = head;
   let fastPtr = head; 
+  let count = 1; 
 
-  let fastCount = 0;
-  let slowCount = fastcount - n; 
-  
+  while( fastPtr.next !== null ) {
+    count++;
+    fastPtr = fastPtr.next; 
+    
+    // we're going for count n + 1 for the slow pointer to land on the node
+    // before the one we want to remove
+    if( count > n + 1 ) {
+      slowPtr = slowPtr.next; 
+    }
 
+  }
+
+  if( count === n) {
+    return head.next; 
+  }
+
+  slowPtr.next = slowPtr.next.next; 
+
+  return head; 
     
 };
 
+// make list:   1 -> 2 -> 3 -> 4 -> 5
 
 list = new ListNode(5);
 list = new ListNode(4, list );
@@ -69,3 +87,6 @@ list = new ListNode(2, list );
 list = new ListNode(1, list );
 
 console.log(list);
+
+console.log( removeNthFromEnd(list, 2) );
+
