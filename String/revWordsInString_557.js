@@ -23,9 +23,12 @@ My approach:
 
 */
 
+// Approach: basically Two Pointer, plus also a queue  
+
 
 var reverseWords = function(s) {
 
+  // Helper func--------------------------
   function reverseString(s) {
 
     let leftPtr = 0;
@@ -48,6 +51,7 @@ var reverseWords = function(s) {
     return s.join(""); 
   
   }
+  //----------------------------------------
  
   let result = []
 

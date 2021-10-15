@@ -15,6 +15,8 @@ another pointer that just works on the non-zero elements of the array.""
 
 */
 
+// Most favored pattern: Two Pointers
+
 /**
 * @param {number[]} nums
 * @return {void} Do not return anything, modify nums in-place instead.

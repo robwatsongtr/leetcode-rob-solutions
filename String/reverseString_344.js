@@ -10,7 +10,7 @@
 * @return {void} Do not return anything, modify s in-place instead.
 */
 
-// Technique: two pointers from opposite end that meet in the middle, 
+// Technique: Two Pointers from opposite end that meet in the middle, 
 // swapping as they iterate. 
 
 var reverseString = function(s) {

@@ -16,7 +16,7 @@ Output: [1]
 
 Hint: 
 
-Maintain two pointers and update one with a delay of n steps.
+Maintain *two pointers* and update one with a delay of n steps.
 
 */
 

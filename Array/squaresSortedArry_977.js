@@ -8,6 +8,7 @@
 // can do the squaring and use two pointers for comparison sorting 
 // simultateously.
 
+// Pattern used: Two Pointers
 
 /**
 * @param {number[]} nums

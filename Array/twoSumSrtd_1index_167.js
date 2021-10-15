@@ -11,6 +11,7 @@ and numbers[index2] where 1 <= first < second <= numbers.length.
 The catch here is the 1 indexing, seems like 
 */ 
 
+// Pattern used: Two Pointers 
 
 /**
  * @param {number[]} numbers

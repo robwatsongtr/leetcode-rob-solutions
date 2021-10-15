@@ -8,6 +8,8 @@ if it were inserted in order.
 
 You must write an algorithm with O(log n) runtime complexity.
 
+Pattern used: Binary Search 
+
 */
 
 

@@ -1,5 +1,7 @@
 // First Bad Version LC 278
 
+// Pattern used: Binary Search
+
 
 var solution = function(isBadVersion) {
   /**

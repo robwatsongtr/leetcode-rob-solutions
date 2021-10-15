@@ -6,6 +6,8 @@
  * @return {void} Do not return anything, modify nums in-place instead.
 */
 
+// Pattern used: either two pointers or modulo 
+
 // my correct but not to spec solution  
 
 var rotate = function(nums, k) {
