@@ -8,10 +8,8 @@ repeating characters.
 
 longest substring = sliding window
 repeating characters = hash map to keep count of things 
-
 */
 
-const { constants } = require("buffer");
 
 /**
  * @param {string} s
@@ -48,10 +46,12 @@ const lengthOfLongestSubstring = (s) => {
     // if both cases are true, NO REPEATING CHARACTER!
     if( map.has(s[rightIdx]) && map.get(s[rightIdx]) >= leftIdx) {
       leftIdx = map.get(s[rightIdx]) + 1;
+      console.log("A leftIdx",leftIdx, "rightIdx",rightIdx)
     } 
 
     // add right pointer to the map
     map.set( s[rightIdx], rightIdx );
+    console.log("B leftIdx",leftIdx, "rightIdx",rightIdx)
 
     // calculate size of the window, plus 1 because of zero indexing
     let windowLength = ( rightIdx - leftIdx ) + 1;
