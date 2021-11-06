@@ -52,7 +52,6 @@ const util = require('util')
 
 const removeNthFromEnd = (head, n) => {
 
-  
   let fastPtr = head; 
   let slowPtr = head;
   let count = 1; 
