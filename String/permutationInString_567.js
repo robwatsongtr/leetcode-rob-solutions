@@ -5,9 +5,7 @@ or false otherwise.
 
 In other words, return true if one of s1's permutations is the substring of s2
 
-Approach - use both a hash map and a sliding window.
-
-Calculate the frequency of charactares for substring sliding window. 
+Approach - use an array to count char frequencies and a sliding window.
 
 */
 
@@ -15,8 +13,27 @@ Calculate the frequency of charactares for substring sliding window.
  * @param {string} s1
  * @param {string} s2
  * @return {boolean}
- */
-var checkInclusion = function(s1, s2) {
+*/
+
+var checkInclusion = (s1, s2) => {
+
+  // edge case, s1 cant contain a permutation of s2 if its longer than s2. 
+  if( s1.length > s2.length ) return false; 
+
+  let freqCharArr1 = []
+  let freqCharArr2 = []
+
+  // 1. loop through s1 and get an array of frequency of chars of alphabet
+  for( let i = 0; i < s1.length; i++) {
+
+  }
+
+  // 2. loop through s2 and get an array of frequencies of chars of alphabet
+  for( let i = 0; i < s2.length; i++) {
+
+  }
+
+  // 3. sliding window compare the arrays against each other 
 
 
 
