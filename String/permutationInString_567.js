@@ -20,16 +20,16 @@ var checkInclusion = (s1, s2) => {
   // edge case, s1 cant contain a permutation of s2 if its longer than s2. 
   if( s1.length > s2.length ) return false; 
 
-  let freqCharArr1 = []
-  let freqCharArr2 = []
+  let freqCharArr1 = new Array(26);
+  let freqCharArr2 = new Array(26);
 
   // 1. loop through s1 and get an array of frequency of chars of alphabet
-  for( let i = 0; i < s1.length; i++) {
+  for( char of s1 ) {
 
   }
 
   // 2. loop through s2 and get an array of frequencies of chars of alphabet
-  for( let i = 0; i < s2.length; i++) {
+  for( char of s2 ) {
 
   }
 
