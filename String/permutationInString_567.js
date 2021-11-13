@@ -5,7 +5,7 @@ or false otherwise.
 
 In other words, return true if one of s1's permutations is the substring of s2
 
-Approach - use an array to count char frequencies and a sliding window.
+SLIDING HASH MAP WINDOW 
 
 */
 
@@ -15,6 +15,20 @@ Approach - use an array to count char frequencies and a sliding window.
  * @return {boolean}
 */
 
+const matches = (map1, map2) => {
+
+  for( let i = 0; i < 26; i++) {
+
+    if( map1[i] != map2[i] ) {
+      return false;
+    }
+
+  }
+
+  return true; 
+}
+
+
 var checkInclusion = (s1, s2) => {
 
   // edge case, s1 cant contain a permutation of s2 if its longer than s2. 
@@ -23,19 +37,23 @@ var checkInclusion = (s1, s2) => {
   let freqCharArr1 = new Array(26);
   let freqCharArr2 = new Array(26);
 
-  // 1. loop through s1 and get an array of frequency of chars of alphabet
-  for( char of s1 ) {
+
+  for( let i = 0; i < s1.length; i++ ) { 
+
+    freqCharArr1[s1.charCodeAt(0) - 97]++;
+    freqCharArr2[s2.charCodeAt(0) - 97]++;  
 
   }
 
-  // 2. loop through s2 and get an array of frequencies of chars of alphabet
-  for( char of s2 ) {
+  
 
-  }
+  
 
-  // 3. sliding window compare the arrays against each other 
-
-
-
+  
+  
+   
     
 };
+
+
+console.log( checkInclusion( 'ab', 'eidbaooo') );
