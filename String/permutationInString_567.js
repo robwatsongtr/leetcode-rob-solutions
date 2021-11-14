@@ -31,28 +31,30 @@ const matches = (map1, map2) => {
 
 var checkInclusion = (s1, s2) => {
 
-  // edge case, s1 cant contain a permutation of s2 if its longer than s2. 
-  if( s1.length > s2.length ) return false; 
+  // edge cases
+  if( s1.length > s2.length || s2.length === 0 ) return false; 
+  if( s1.length === 0 ) return true; 
 
-  let freqCharArr1 = new Array(26);
-  let freqCharArr2 = new Array(26);
+  let s1map = new Array(26);
+  let s2map = new Array(26);
 
+  let s1len = s1.length; 
+  let s2len = s2.length; 
 
-  for( let i = 0; i < s1.length; i++ ) { 
-
-    freqCharArr1[s1.charCodeAt(0) - 97]++;
-    freqCharArr2[s2.charCodeAt(0) - 97]++;  
-
+  // generate the hash map for the first window in s2
+  for( let i = 0; i < s1len; i++ ) { 
+    s1map[s1.charCodeAt(i) - 97]++;
+    s2map[s2.charCodeAt(i) - 97]++;  
   }
 
-  
+  for( let i = s1len; i < s2len; i++ ) {
+    if( matches(s1map, s2map) ) return true;
+    s2map[s2.charCodeAt(i - s1len) - 97]--; // subtract left side of window
+    s2map[s2.charCodeAt(i) - 97]++; // add one to right side of window 
+  }
 
-  
-
-  
-  
+  return matches(s1map, s2map)
    
-    
 };
 
 
