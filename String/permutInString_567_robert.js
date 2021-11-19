@@ -30,23 +30,29 @@ var checkInclusion = (s1, s2) => {
 
   // generate the hash map for the first window in s2
   for( let i = 0; i < s1len; i++ ) {
-    s1code = s1.charCodeAt(i) - a;
+
+    s1code = s1.charCodeAt(i) - a;     console.log(s1code);
     s1map += Math.pow(s1len, s1code)
-    s2code = s2.charCodeAt(i) - a
+
+    s2code = s2.charCodeAt(i) - a;     console.log(s2code);
     s2map += Math.pow(s1len, s2code)
+
   }
-  //console.log(s1map, s2map)
+  // console.log(s1map, s2map)
 
   for( let i = s1len; i < s2len; i++ ) {
     if( s1map ===  s2map ) return true;
-    s2map -= Math.pow(s1len, s2.charCodeAt(i - s1len) - a); // subtract left side of window
-    s2map += Math.pow(s1len, s2.charCodeAt(i) - a); // add one to right side of window 
-    //console.log(s2map)
+
+    s2map -= Math.pow(s1len, s2.charCodeAt(i - s1len) - a); 
+    s2map += Math.pow(s1len, s2.charCodeAt(i) - a); 
+    // console.log(s2map)
+
   }
 
+  // final check for equality 
   return s1map === s2map
    
 };
 
 
-console.log( checkInclusion( 'ab', 'eidbjaooo') );
+console.log( checkInclusion( 'ab', 'eidbaoo') );
