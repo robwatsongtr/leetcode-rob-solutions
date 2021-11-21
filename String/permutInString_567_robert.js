@@ -5,7 +5,7 @@ or false otherwise.
 
 In other words, return true if one of s1's permutations is the substring of s2
 
-SLIDING HASH MAP WINDOW 
+Robert's clever solution: encode the letters of the albphabet as exponents. 
 
 */
 
@@ -21,38 +21,33 @@ var checkInclusion = (s1, s2) => {
   if( s1.length > s2.length || s2.length === 0 ) return false; 
   if( s1.length === 0 ) return true; 
 
-  let s1map = Number(0);
-  let s2map = Number(0);
+  let s1map = BigInt(0);
+  let s2map = BigInt(0);
   let a = 'a'.charCodeAt(0)
 
   let s1len = s1.length; 
-  let s2len = s2.length; 
+  let s2len = s2.length;
+  
+  let s1Power = BigInt(s1len + 1)
 
   // generate the hash map for the first window in s2
   for( let i = 0; i < s1len; i++ ) {
-
-    s1code = s1.charCodeAt(i) - a;     console.log(s1code);
-    s1map += Math.pow(s1len, s1code)
-
-    s2code = s2.charCodeAt(i) - a;     console.log(s2code);
-    s2map += Math.pow(s1len, s2code)
-
+    s1code = s1.charCodeAt(i) - a;
+    s1map += s1Power ** BigInt(s1code)
+    s2code = s2.charCodeAt(i) - a
+    s2map += s1Power ** BigInt(s2code)
   }
-  // console.log(s1map, s2map)
+  console.log(s1map, s2map)
 
   for( let i = s1len; i < s2len; i++ ) {
     if( s1map ===  s2map ) return true;
-
-    s2map -= Math.pow(s1len, s2.charCodeAt(i - s1len) - a); 
-    s2map += Math.pow(s1len, s2.charCodeAt(i) - a); 
-    // console.log(s2map)
-
+    s2map -= s1Power ** BigInt(s2.charCodeAt(i - s1len) - a); // subtract left side of window
+    s2map += s1Power ** BigInt(s2.charCodeAt(i) - a); // add one to right side of window 
+    //console.log(s2map)
   }
 
-  // final check for equality 
   return s1map === s2map
    
 };
-
 
 console.log( checkInclusion( 'ab', 'eidbaoo') );
