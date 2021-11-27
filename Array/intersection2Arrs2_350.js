@@ -32,7 +32,7 @@ var intersect = function(nums1, nums2) {
 
   // now we have the hash maps, loop through second array 
   // and push into result array any values that exist in both arrays,
-  // *as many times as the minimum that exists in both arrays
+  // *as many times as the minimum that exists in both arrays 
 
   for( let key in nums1map ) {
     if( key in nums2map ) {
