@@ -35,8 +35,10 @@ var intersect = function(nums1, nums2) {
   // and add that value as many times as the minimum that exists in both arrays
 
   for( let key in nums1map ) {
-
-  }
+    if( key in nums2map ) {
+      let x = Math.min()
+    }
+  } 
 
 };
 
