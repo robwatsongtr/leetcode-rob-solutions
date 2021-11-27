@@ -27,8 +27,8 @@ var intersect = function(nums1, nums2) {
     nums2map[val] = (nums2map[val] || 0) + 1; 
   }
 
-  console.log(nums1map);
-  console.log(nums2map);
+  // console.log(nums1map);
+  // console.log(nums2map);
 
   // now we have the hash maps, loop through second array 
   // and push into result array any values that exist in both arrays
@@ -36,11 +36,16 @@ var intersect = function(nums1, nums2) {
 
   for( let key in nums1map ) {
     if( key in nums2map ) {
-      let x = Math.min()
+      let x = Math.min( nums1map[key], nums2map[key] )
+      for( let i = 0; i < x; i++ ) {
+        result.push(key)
+      }
     }
   } 
+
+  return result; 
 
 };
 
 console.log( intersect( [4,9,5], [9,4,9,8,4]) );
-// console.log( intersect( [1,2,2,1], [2,2] ) );
+console.log( intersect( [1,2,2,1,3,5,2,2], [2,4,6] ) );
