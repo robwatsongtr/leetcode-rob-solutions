@@ -5,7 +5,7 @@ or false otherwise.
 
 In other words, return true if one of s1's permutations is the substring of s2
 
-Robert's clever solution: encode the letters of the albphabet as exponents. 
+Robert's clever solution: encode the letters of the albphabet as
 
 */
 

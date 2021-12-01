@@ -11,14 +11,34 @@
  * @return {number[]}
 */
 
-var twoSum = function(arr, target) {
+var twoSum = function(nums, target) {
 
   // iterate over array and build a hash table:
   // KEY is the complement!
   // VALUE is the index!
   // each iteration, you check back against what has already been placed in the hash map
   
-  
+  let result = [];
+
+  let hashMap = {};
+
+  for( let i = 0; i < nums.length; i++ ) {
+
+    let complement = target - nums[i];
+
+    if( complement in hashMap ) {
+      result[0] = complement;
+      result[1] = i; 
+    }
+
+    hashMap[ nums[i] ] = i; 
+
+  }
+
+  console.log(hashMap)
+
+  return result; 
+
 };
 
 console.log( twoSum( [2,7,11,15], 9 ) );
