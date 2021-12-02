@@ -27,15 +27,13 @@ var twoSum = function(nums, target) {
     let complement = target - nums[i];
 
     if( complement in hashMap ) {
-      result[0] = complement;
+      result[0] = hashMap[complement];
       result[1] = i; 
     }
 
-    hashMap[ nums[i] ] = i; 
+    hashMap[nums[i]] = i; 
 
   }
-
-  console.log(hashMap)
 
   return result; 
 
