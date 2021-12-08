@@ -33,8 +33,9 @@ var plusOne = function(digits) {
       return digits; 
     } 
     
-    // if 9, change current tens place to 0, loop will then increment
-    // the next tens place above since its iterated on to the next tens place.  
+    // if  digits[i] = 9, change current tens place to 0, loop will then increment
+    // the next tens place above, since its iterated on to the next tens place. 
+    // in the revese for loop.  
     digits[i] = 0;   
     
   }
