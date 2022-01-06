@@ -35,8 +35,8 @@ const strStr = (haystack, needle) => {
     needleMap[letter] = (needleMap[letter] || 0) + 1; 
   }
 
-  // console.log('haystack map', haystackMap);
-  // console.log('needle map ', needleMap);
+  console.log('haystack map', haystackMap);
+  console.log('needle map ', needleMap);
 
   // lets do some window sliding 
   let i = 0;
