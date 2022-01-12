@@ -35,17 +35,22 @@ var firstUniqueChar = function(s) {
 };
 
 
-// more concise JS solution using actual map from LC
+// more concise JS solution using actual map, from LC 
 
 const firstUniqueCharLC = (inputStr) => {
 
   let str = new Map();
 
-  for (let i = 0; i < inputStr.length; i++)
-    str.set(inputStr[i], (str.get(inputStr[i]) || 0) + 1 );
-
   for (let i = 0; i < inputStr.length; i++) {
-    if (str.get(inputStr[i]) === 1)
+    // key is character, value is this computation for how many of those chars 
+    str.set( inputStr[i], (str.get(inputStr[i]) || 0) + 1 );
+  }
+
+  console.log(str);
+
+  // actually iterates over input string to find the index of the one that has one instance
+  for (let i = 0; i < inputStr.length; i++) {
+    if( str.get(inputStr[i]) === 1 )
       return i;
   }
 
