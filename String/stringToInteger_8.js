@@ -8,6 +8,8 @@ to a 32-bit signed integer (similar to C/C++'s atoi function).
 
 */
 
+const { type } = require("os");
+
 const myAtoi = (s) => {
 
   let inNumber = false; 
@@ -22,6 +24,8 @@ const myAtoi = (s) => {
   
   let curr = '';
   let digitArr = []
+
+  let result = 0
 
   for( let i = 0; i < s.length; i++) {
     
@@ -39,14 +43,17 @@ const myAtoi = (s) => {
       negative = true; 
     }
 
-    console.log(curr)
+    // console.log(curr)
 
-    digitArr.push( ((curr - 48) * 10) + curr )  
+    digitArr.push( curr - 48  ) 
 
   }
   
+  result = +digitArr.join(''); // why does this work? 
 
-  return digitArr;  
+  console.log( typeof(result) ) 
+
+  return result;  
 
 
 }
