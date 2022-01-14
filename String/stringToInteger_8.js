@@ -8,22 +8,21 @@ to a 32-bit signed integer (similar to C/C++'s atoi function).
 
 */
 
-const { type } = require("os");
+
 
 const myAtoi = (s) => {
 
-  let inNumber = false; 
+  let max = 0xffffffff; 
+  let min = -max-1; 
 
-  let max = 2e31-1; 
-  let min = -2e31; 
+  let sawNum = false; 
+  let skipSpace = true; 
 
   let space = 32
   let negSign = 45; 
 
-  let negative = false;
-  
+  let mul = 1; 
   let curr = '';
-  let digitArr = []
 
   let result = 0
 
@@ -33,29 +32,35 @@ const myAtoi = (s) => {
     curr = s.charCodeAt(i);
     
     // restart loop on a whitespace 
-    if( curr === space ) continue; 
+    if( curr === space && skipSpace ) continue; 
+
+    skipSpace = false; 
+
+    if( !sawNum && curr == negSign ) {
+      mul = -1 * mul;
+      continue; 
+    }
 
     // break out of loop if a non-number character is encountered
     if( curr < 48 || curr > 57 ) break; 
 
-    // note if negative sign is present 
-    if( curr === negSign ) {
-      negative = true; 
-    }
+    // if( mul === -1 ) {
+    //   if( result >= -(min/10)) break;
+    // } else {
+    //   if ( result >= (max/10) || max - val < place ) break; 
+    // }
 
-    // console.log(curr)
+    result = ( (result * 10) + curr) - 48
 
-    digitArr.push( curr - 48  ) 
-
+    console.log(result);
+     
   }
   
-  result = +digitArr.join(''); // why does this work? 
+  
 
-  console.log( typeof(result) ) 
-
-  return result;  
+  return result * mul;  
 
 
 }
 
-console.log( myAtoi(' 438') )
+console.log( myAtoi(' -438455') )
