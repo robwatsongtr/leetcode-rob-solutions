@@ -54,7 +54,6 @@ const myAtoi = (s) => {
     // remember -48 because char codes 
     result = ( (result * 10) + curr ) - 48
 
-  
     console.log(result);
      
   }
