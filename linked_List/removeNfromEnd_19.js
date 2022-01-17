@@ -57,9 +57,14 @@ const removeNthFromEnd = (head, n) => {
   let count = 1; 
 
   while( fastPtr.next !== null ) {
+
     count++;
+
     fastPtr = fastPtr.next; 
     
+    // slow pointer moves with a delay of n steps from fast pointer
+    // because slow pointer starts moving after a delay of n steps
+    // 
     // we're going for count n + 1 for the slow pointer to land on the node
     // before the one we want to remove
     if( count > n + 1 ) {
