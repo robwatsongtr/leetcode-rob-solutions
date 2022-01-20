@@ -15,12 +15,47 @@ create a hashmap to map each character in the pattern to an individual word
 
 const wordPattern = (pattern, s) => {
 
+  let hashmap = new Map(); 
   let words = s.split(' ');
 
   if( words.length !== pattern.length  ) return false; 
 
-  return true 
+  console.log(words)
+  console.log(pattern)
+  console.log(words.length);
 
+  for ( let i = 0; i < words.length; i++ ) {
+    
+    let c = pattern.charAt(i);
+    
+    if( hashmap.has(c) ) {
+
+      if( !(hashmap.get(c) === words(i)) ) {
+        return false; 
+      }
+
+    } else {
+
+      if( hashmap )
+
+    }
+
+
+
+    hashmap.set(c, words[i]);
+    
+  }
+  
+  
+
+  console.log( hashmap );
+  
 }
 
-console.log( wordPattern('aba', 'dog cat cat dog') )
+console.log( wordPattern('abcd', 'dog cat cat dog') )
+
+
+
+
+// // create a hashmap to map each character in the pattern to an individual word
+  
