@@ -36,7 +36,7 @@ const wordPattern = (pattern, s) => {
 
     } else {
 
-      if( hashmap )
+      // if( hashmap )
 
     }
 
