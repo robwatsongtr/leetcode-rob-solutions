@@ -5,10 +5,15 @@ Lc 8 String to Integer
 Implement the myAtoi(string s) function, which converts a string 
 to a 32-bit signed integer (similar to C/C++'s atoi function).
 
+Cannot overflow 32 bits posititve or negative. 
+
+Overflow logic:
+  an example:
+  check to see if 11 * 10 is greater than 100 without going over 100
+  do 100 / 10 = 10 (res), check if res is less than 11, true. 
+  Which means too big
 
 */
-
-
 
 const myAtoi = (s) => {
 
@@ -23,6 +28,7 @@ const myAtoi = (s) => {
 
   let result = 0
 
+  // MAIN LOOP
   for( let i = 0; i < s.length; i++) {
     
     // read in each character as an ascii code 
@@ -41,11 +47,6 @@ const myAtoi = (s) => {
     // break out of loop if a non-number character is encountered
     if( curr < 48 || curr > 57 ) break; 
 
-    // an example:
-    // check to see if 11 * 10 is greater than 100 without going over 100
-    // do 100 / 10 = 10 (res), check if res is less than 11, true. 
-    // Which means too big
-
     // OVERFLOW logic. first if is positive, else is negative 
     if (mul === 1) {
 
@@ -58,12 +59,16 @@ const myAtoi = (s) => {
 
     } else {
 
+      if( (minValue / 10) > result ) break; 
+      let tempResult2 = result * 10;
+      if( (curr - 48) <= (minValue + tempResult2) ) break; 
+
     }
  
     // remember -48 because char codes 
     result = ( (result * 10) + curr ) - 48
 
-    console.log(result);
+    // console.log(result);
      
   }
 
@@ -73,4 +78,4 @@ const myAtoi = (s) => {
 
 }
 
-console.log( myAtoi('  -91283 472332343434  ere') )
+console.log( myAtoi('429496729776786 ') )
