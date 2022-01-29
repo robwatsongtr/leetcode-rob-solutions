@@ -6,6 +6,8 @@ Given three integer arrays nums1, nums2, and nums3, return a
 distinct array containing all the values that are present in at l
 east two out of the three arrays. You may return the values in any order.
 
+So values need to be present in arrays: 1 & 2, 1 & 3, and 2 & 3
+
 */
 
 const twoOutOfThree = (nums1, nums2, nums3) => {
@@ -18,7 +20,7 @@ const twoOutOfThree = (nums1, nums2, nums3) => {
 
   for( let val of nums1 ) {
     // console.log(val)
-    nums1map[val] = (nums1map[val] || 0) + 1 ;
+    nums1map[val] = (nums1map[val] || 0) + 1 ; // ask how this works 
     // console.log(nums1map)
   }
   for( let val of nums2 ) {
@@ -32,7 +34,11 @@ const twoOutOfThree = (nums1, nums2, nums3) => {
     // console.log(nums1map)
   }
 
-  // we got the maps. Now check the first array against the second and third
+  //
+  // So values need to be present in arrays: 1 & 2, or 1 & 3, or 2 & 3
+  //
+
+  // we got the maps. Now check 1 & 2, and 1 & 3
   for( let key in nums1map) {
     if( key in nums2map || key in nums3map) {
       result.push(key)
@@ -41,9 +47,9 @@ const twoOutOfThree = (nums1, nums2, nums3) => {
 
   // now check the second array against the third 
   for( let key in nums2map) {
-      if( (key in nums2map || key in nums3map) && (!result.includes(key) ) ) {
-        result.push(key)
-      }
+    if( (key in nums3map ) && (!result.includes(key) ) ) {
+      result.push(key)
+    }
   }
 
 
@@ -53,4 +59,8 @@ const twoOutOfThree = (nums1, nums2, nums3) => {
 }
 
 
-console.log( twoOutOfThree( [1,1,3,2], [2,3], [3] ) ) 
+console.log( twoOutOfThree( [1,2,2], [4,3,3], [5] ) ) 
+
+
+// 
+  
