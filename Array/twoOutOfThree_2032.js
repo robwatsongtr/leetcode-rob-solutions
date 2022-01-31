@@ -23,7 +23,7 @@ const twoOutOfThree = (nums1, nums2, nums3) => {
     nums1map[val] = (nums1map[val] || 0) + 1 ; // ask how this works 
     // console.log(nums1map)
   }
-  for( let val of nums2 ) {
+  for( let val of nums2 ) { 
     nums2map[val] = (nums2map[val] || 0) + 1 ;
   }
   for( let val of nums3 ) {
