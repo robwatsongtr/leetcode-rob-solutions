@@ -31,6 +31,3 @@ var inorderTraversal = function(root) {
 };
 
 
-binarySearchTree = new TreeNode( 1, null, 2 );
-binarySearchTree = new TreeNode();
-binarySearchTree = new TreeNode(1);

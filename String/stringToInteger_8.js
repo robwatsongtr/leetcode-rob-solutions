@@ -59,9 +59,7 @@ const myAtoi = (s) => {
 
     } else {
 
-      if( (minValue / 10) > result ) break; 
-      let tempResult2 = result * 10;
-      if( (curr - 48) <= (minValue + tempResult2) ) break; 
+      
 
     }
  
