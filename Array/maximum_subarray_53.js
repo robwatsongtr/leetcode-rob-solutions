@@ -6,7 +6,11 @@ Given an integer array nums, find the contiguous subarray (
 
 A subarray is a contiguous part of an array.
 
+The method to solve is called Kadane's Algorithm, a dynamic algo. 
+
 */
+
+const { Z_NO_COMPRESSION } = require("zlib");
 
 /**
  * @param {number[]} nums
@@ -15,9 +19,12 @@ A subarray is a contiguous part of an array.
 
 
 const maxSubArray = (nums) => {
-  let maxSum = 0;
-  let tempSum = 0;
-  
+  let max_sum = nums[0]; // starting max sum is the first element in array
+  let current_sum = max_sum; // set current to first element;
+
+  for( let i = 1; i < nums.length; i++ ) {
+    
+  }
 
 
 
