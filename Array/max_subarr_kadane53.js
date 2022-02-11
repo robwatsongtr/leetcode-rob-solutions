@@ -29,12 +29,13 @@ const maxSubArray = (nums) => {
   for( let i = 1; i < nums.length; i++ ) {
 
     // add on to subarray, or start a new sum? 
+    // (pick the greater of:the current index, or current index plus what came beore it)
     current_sum = Math.max( nums[i] + current_sum, nums[i] )
 
     // if current sum is greater than max sum, we update max sum
     max_sum = Math.max( current_sum, max_sum)
 
-    console.log(max_sum);
+    // console.log(max_sum);
 
   }
 
