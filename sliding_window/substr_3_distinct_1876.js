@@ -6,8 +6,8 @@ A string is good if there are no repeated characters.
 
 Given a string s​​​​​, return the number of good substrings of length three in s​​​​​​.
 
-Note that if there are multiple occurrences of the same substring, every o
-ccurrence should be counted.
+Note that if there are multiple occurrences of the same substring, every 
+occurrence should be counted.
 
 A substring is a contiguous sequence of characters in a string.
 
@@ -29,19 +29,25 @@ const checkForDuplicate = str => {
   for( let key in map ) {
     if( map[key] > 1 ) return true; // duplicate!
   }
-  return false; // nope no duplicate 
+  return false; // no duplicate 
 }
 
 const countGoodSubstrLen3 = s => {
 
+  if( s.length < 3 ) return 0; 
+
   let count = 0;
   let tempArr = []
 
-  // beginning boundaries of window
-  let leftIdx = 0;
-  let rightIdx = 2; 
+  // load up the first length 3 substring 
+  for( let i = 0; i < 3; i++ ){
+    tempArr.push( s[i] );
+  }
 
+  // sliding window loop
+ 
 
+  console.log(tempArr)
     
 };
 
