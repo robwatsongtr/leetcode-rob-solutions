@@ -38,16 +38,20 @@ const countGoodSubstrLen3 = s => {
 
   let count = 0;
   let tempArr = []
+  let leftPtr = 1; // second window starts at s[1]
+  let rightPtr = 3; // second winow ends at [3]
 
-  // load up the first length 3 substring 
+  // load up the first length 3 substring, s[0] to s[2]
   for( let i = 0; i < 3; i++ ){
     tempArr.push( s[i] );
   }
 
-  // sliding window loop
- 
+  if( checkForDuplicate(tempArr) ) count++; 
 
-  console.log(tempArr)
+  // sliding window loop
+  
+
+  console.log(tempArr, count)
     
 };
 
