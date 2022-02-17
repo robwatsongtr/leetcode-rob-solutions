@@ -21,39 +21,33 @@ increment a unique counter. Return the counter.
 
 */
 
-const checkForDuplicate = str => {
-  let map = {};
-  for( let key of str ) {
-    map[key] = ( map[key] || 0 ) + 1; 
-  }
-  for( let key in map ) {
-    if( map[key] > 1 ) return true; // duplicate!
-  }
-  return false; // no duplicate 
-}
+
 
 const countGoodSubstrLen3 = s => {
 
-  if( s.length < 3 ) return 0; 
-
+  let idx = 0;
   let count = 0;
-  let tempArr = []
-  let leftPtr = 1; // second window starts at s[1]
-  let rightPtr = 3; // second winow ends at [3]
 
-  // load up the first length 3 substring, s[0] to s[2]
-  for( let i = 0; i < 3; i++ ){
-    tempArr.push( s[i] );
+  while( idx < s.length ) {
+    
+    // make a size 3 slice of the input array from current index to current index + 3
+    let subString = s.slice( idx, idx+3) 
+
+    //console.log(subString) 
+
+    let set = new Set(subString);
+    
+    // check substring for uniqueness by seeing if it's both size 3
+    // and a proper set
+    if( set.size === 3) count++;
+
+    idx++; 
+
   }
-
-  if( checkForDuplicate(tempArr) ) count++; 
-
-  // sliding window loop
   
-
-  console.log(tempArr, count)
+  return count; 
     
 };
 
 
-console.log( countGoodSubstrLen3('xyzzaz'))
+console.log( countGoodSubstrLen3('aababcabc'))
