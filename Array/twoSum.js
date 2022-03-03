@@ -31,6 +31,8 @@ var twoSum = function(nums, target) {
       result[1] = i; 
     }
 
+    // build the hash map iteratively:
+    // The key is the complement, the value is the index
     hashMap[nums[i]] = i; 
 
   }

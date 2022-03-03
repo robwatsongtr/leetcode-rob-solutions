@@ -68,6 +68,6 @@ const robsBuzzHigherOrder = (arr, n) => {
 
 
 
-console.log( robsBuzzFor( [9,13,4,8,23,16,11,124,33,32], 3) )
+// console.log( robsBuzzFor( [9,13,4,8,23,16,11,124,33,32], 3) )
 
 console.log( robsBuzzHigherOrder( [9,13,4,8,23,16,11,124,33,32], 3) )
