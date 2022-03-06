@@ -22,8 +22,6 @@ Pseudocode:
 
   If it is empty, the all brackets are closed which means it is valid.
 
-
-
 */
 
 /**
@@ -40,18 +38,17 @@ var isValid = function(s) {
   parensMap.set('{','}')
   parensMap.set('[',']')
 
-  
   for( let i = 0; i < s.length; i++) {
 
-    let nextOne = stack.length - 1;
     let currentBracket = s[i];
+    let topOfStack = stack[stack.length - 1]
 
     // if you have an opening bracket, stack it.
     if( parensMap.get(currentBracket) ) {
       stack.push( currentBracket ) 
     } 
     // if you have a matching closing bracket to what's in the stack, pop it 
-    else if( parensMap.get[nextOne] === parensMap.get(currentBracket) ) {
+    else if( parensMap.get(topOfStack) === currentBracket  ) {
       stack.pop()
     }
     // no matching, so invalid
@@ -69,4 +66,4 @@ var isValid = function(s) {
     
 };
 
-console.log( isValid( "{}{" ) )
+console.log( isValid( "([()])" ) )
