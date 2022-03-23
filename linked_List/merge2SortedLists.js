@@ -49,8 +49,29 @@ var mergeTwoLists = function(list1, list2) {
   // will stay -1, at the end return head.next 
   let head = dummyHead;  
 
+  while( list1 !== null && list2 != null ) {
 
+    if( list1.val <= list2.val) {
+      dummyHead.next = list1; 
+      l1 = l1.next; 
+    } else {
+      dummyHead.next = list2;
+      l2 = l2.next;
+    }
+    // change the reference of dummy to whatever the next node is
+    dummyHead = dummyHead.next;
 
+  }
+
+  // attach the remaining link  wist to the list that is left 
+  if( list1 !== null ) {
+    dummyHead.next = l1;
+  } else {
+    dummyHead.next = l2;
+  }
+
+  // head is -1 so return head.next
+  return head.next; 
     
 };
 
