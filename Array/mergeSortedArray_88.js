@@ -18,6 +18,7 @@ Nums2 has a length of n.
 
 */
 
+// maybe use splice?
 
 
 var merge = function(nums1, m, nums2, n) {
