@@ -11,24 +11,33 @@ You must write an algorithm with O(log n) runtime complexity.
 */
 
 
-var search = function(nums, target) {
-  let start = 0;
-  let end = nums.length - 1;
-  let middle = Math.floor( ( start + end) / 2); // avg and round    
+var binSearch = function(nums, target) {
 
-  while( nums[middle] !== target && start <= end)  {
+  let lptr = 0;
+  let rptr = nums.length - 1;
+  let middle = Math.floor( ( lptr + rptr) / 2); // avg and round    
 
+  while( nums[middle] !== target && lptr <= rptr)  {
+    console.log(`start index: ${lptr} end index: ${rptr}  middle index: ${middle}`)
     if ( target < nums[middle] ) { 
-      end = middle - 1; // shift right pointer to where middle was before
+      rptr = middle - 1; // shift right pointer to where middle was before
     }
     else { 
-      start = middle + 1; // shift left pointer to where middle was before 
+      lptr = middle + 1; // shift left pointer to where middle was before 
     }
 
-    middle = Math.floor( ( start + end) / 2); // recalculate middle 
+    middle = Math.floor( ( lptr + rptr) / 2); // recalculate middle 
 
   }
   
-  // "Return the result of whole statement, either the element or -1 "
-  return nums[middle] === target ? middle : -1;  
+  // return nums[middle] === target ? middle : -1;  
+
+  if( nums[middle] === target ) {
+    return (`found index: ${middle}` )
+  } else {
+    return 'not found'
+  }
+
 };
+
+console.log( binSearch( [1,3,5,6,7,11,23,33,35,42], 11) )
