@@ -18,7 +18,7 @@ var binSearch = function(nums, target) {
   let middle = Math.floor( ( lptr + rptr) / 2); // avg and round    
 
   while( nums[middle] !== target && lptr <= rptr)  {
-    console.log(`start index: ${lptr} end index: ${rptr}  middle index: ${middle}`)
+    console.log(`left index: ${lptr} right index: ${rptr}  middle index: ${middle}`)
     if ( target < nums[middle] ) { 
       rptr = middle - 1; // shift right pointer to where middle was before
     }
@@ -40,4 +40,4 @@ var binSearch = function(nums, target) {
 
 };
 
-console.log( binSearch( [1,3,5,6,7,11,23,33,35,42], 11) )
+console.log( binSearch( [1,3,4,5,6,9,23], 6) )
