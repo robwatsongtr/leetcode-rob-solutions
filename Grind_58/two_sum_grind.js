@@ -11,21 +11,34 @@
  * @return {number[]}
  * 
  
- // iterate over array and build a hash table:
-  // KEY is the complement!
-  // VALUE is the index!
+  iterate over array and build a hash table:
+
+     build the hash map iteratively:
+      **The KEY is the complement, the value is the index
+  
   // each iteration, you check back against what has already been placed in the hash map
-  // build the hash map iteratively:
-    // The key is the complement, the value is the index
+  
 */
 
 var twoSum = (nums, target) => {
   let result = []
   let hashMap = {}
+  console.log(`Target is ${target}`)
+
   for (let i = 0; i < nums.length; i++) {
 
-    
+    hashMap[nums[i]] = i;                   
+
+    let complement = target - nums[i];      console.log(hashMap, `complement is ${complement}`)
+
+    if( complement in hashMap ) {
+      result[0] = hashMap[complement];
+      result[1] = i; 
+    }
+
   }
 
   return result
 }
+
+console.log( twoSum([2,7,11,15,], 9))
