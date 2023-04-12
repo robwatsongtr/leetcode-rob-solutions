@@ -27,9 +27,11 @@ var twoSum = (nums, target) => {
 
   for (let i = 0; i < nums.length; i++) {
 
-    hashMap[nums[i]] = i;                   
+    hashMap[nums[i]] = i;     // hashmap stores the number in array and its index as its built             
 
-    let complement = target - nums[i];      console.log(hashMap, `complement is ${complement}`)
+    let complement = target - nums[i]; 
+
+    console.log(hashMap, `complement is ${complement}`)
 
     if( complement in hashMap ) {
       result[0] = hashMap[complement];
@@ -38,7 +40,7 @@ var twoSum = (nums, target) => {
 
   }
 
-  return result
+  return !result.length ? 'not found' : result 
 }
 
-console.log( twoSum([2,7,11,15,], 9))
+console.log( twoSum([2,7,11,15,], 26))
