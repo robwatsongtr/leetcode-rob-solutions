@@ -12,36 +12,30 @@ but a reference
 Input: list1 = [1,2,4], list2 = [1,3,4]
 Output: [1,1,2,3,4,4]
 
-Approach:
-
-Itearate through both lists simultaneously. 
-
 
 */
 
-class ListNode {
-  constructor( val = null, next = null) {
-    this.val = val;
-    this.next = next; 
-  }
-}
+function ListNode( val, next ) {
+  this.val = ( val === undefined ? 0 : val )
+  this.next = ( next === undefined ? null : next )
+} 
 
 const mergeTwoLists = (l1, l2) => {
-  const dummy = new ListNode(-1)
-  let prev = dummy
+  const dummy = new ListNode(-Infinity)
+  let prev = dummy // reference to dummy to return 
 
-  while ( l1 && l2 )  {
+  while( l1 && l2 ) {
     if( l1.val <= l2.val ) {
-      prev.next = l1
-      prev = l1;
+      prev.next = l1;
+      prev = l1
       l1 = l1.next
     } else {
-      prev.next = l2
+      prev.next = l2;
       prev = l2
       l2 = l2.next
     }
   }
-  
+
   if(!l1) prev.next = l2
   if(!l2) prev.next = l1
 
