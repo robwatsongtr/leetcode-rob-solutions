@@ -20,22 +20,28 @@ Best time complexity Approach:
 
 Greedy (DP) find the best solution at any given time, in a one pass for loop
 
+Track the LOWEST PRICE and the MAX PROFIT at any given time. 
+
 */
 
 
 
 var maxProfit = function(prices) {
-  let maxProfit = 0
   let minPrice = prices[0]
+  let maxProfit = 0
 
   for( let currentPrice of prices) {
-    // compare the high point and low points of prices only. start at first price
+    
+    // the minimum price is the lowest number we've seen or the current one 
+    minPrice = Math.min( currentPrice, minPrice)
+
+    // Max profit either the current max profit OR (current price - minimum price) we've seen before
     maxProfit = Math.max(maxProfit, currentPrice - minPrice)
-    minPrice = Math.min(currentPrice, minPrice) 
+    
   }
 
-  return maxProfit
+  return maxProfit 
   
 };
 
-console.log(maxProfit( [7,1,5,3,6,4] ))
+console.log(maxProfit( [7,1,5,3,7,4] ))
