@@ -20,6 +20,7 @@ Output: 1
 
 
 const findSpecialInteger = (arr)  => {
+  if( arr.length == 1) return arr[0]
   let freq = 1 // there's at least one of a value in the array 
   // start the loop on the second element, in order to compare with the first element
   for( let i = 1; i < arr.length; i++ ) {
