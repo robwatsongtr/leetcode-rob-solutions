@@ -1,4 +1,6 @@
 /*
+  BIT MANIPULATION
+
 Given an array nums containing n distinct numbers in the range [0, n], 
 return the only number in the range that is missing from the array.
 
@@ -20,10 +22,13 @@ Explanation: n = 9 since there are 9 numbers, so all numbers are in the range [0
 
 XOR:
 Algo: 
-take the range as if there was no missing number and Xor all the numbers
-then take the range that has a missing number and xor all the numbers
 
-the difference between the two is the missing number 
+xor all the numbers in the array by all the numbers that should be in the array,
+what's left is the missing number, because a number xor'ed by itself is zero.
+
+the numbers in the array are nums[i], the numbers that should be in the array (+1) is
+nums.length becauze zero indexing. CLEVER!
+
 */
 
 /**
@@ -31,5 +36,12 @@ the difference between the two is the missing number
  * @return {number}
  */
 var missingNumber = function(nums) {
-  
+  let missing = nums.length
+  console.log(missing)
+  for( let i = 0; i < nums.length; i++) {
+    missing ^= i ^nums[i]
+  }
+  return missing 
 };
+
+console.log( missingNumber([9,6,4,2,3,5,7,0,1]) )

@@ -28,7 +28,7 @@ Pattern: Hash Table lookup
 var countPrefixes = function(words, s) {
   let count = 0
   for( let i of words ) {
-    if(s.startsWith(i)) count ++
+    if(s.startsWith(i)) count++
   }
   return count 
 };
