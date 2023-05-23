@@ -12,15 +12,15 @@ var countWords = function(words1, words2) {
   const words2map = {}
   let count = 0
 
-  for( let words of words1 ) {
-    words1map[words] = ( words1map[words] || 0) + 1
+  for (let words of words1) {
+    words1map[words] = (words1map[words] || 0) + 1
   }
 
-  for( let words of words2 ) {
-    words2map[words] = ( words2map[words] || 0) + 1
+  for (let words of words2) {
+    words2map[words] = (words2map[words] || 0) + 1
   }
 
-  for( let key in words1map) {
+  for (let key in words1map) {
     if( key in words2map && words1map[key] === 1 && words2map[key] === 1) {
       count++
     }
