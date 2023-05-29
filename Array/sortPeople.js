@@ -14,34 +14,31 @@ Input: names = ["Mary","John","Emma"], heights = [180,165,170]
 Output: ["Mary","Emma","John"]
 Explanation: Mary is the tallest, followed by Emma and John.
 
-Approach:
-
-Create a hash table that associates the name with the height
-Sort the hash table by height in descending order 
-
-Return the keys (names) in descending order
-
-BELOW DOES NOT WORK IF YOU HAVE DUPLICATE NAMES
-
-actual probable answer: use two dimensional array (matrix)
 
 */
 
 var sortPeople = function(names, heights) {
+
+  // Make a map with the key as the height (since height is guaranteed 
+  // to be distinct) and a value of name, (not guaranteed to be distinct)
   let peopleMap = {}
-  for( let i = 0; i < names.length; i++ ) {
-    peopleMap[names[i]] = heights[i] 
+  for( let i = 0; i < heights.length; i++ ) {
+    peopleMap[heights[i]] = names[i] 
   }
 
-  console.log(peopleMap)
+  // convert object to array of key value pairs 
+  const arrayOfKeyValuePairs = Object.entries(peopleMap)
 
-  // return the just the keys, sorted 
-  const sorted = Object.keys(peopleMap).sort( (a, b) => {
-    return peopleMap[b] - peopleMap[a]
-  })
+  // sort by key, coercing the keys to ints for sorting 
+  const sortedArrayKeyValuePairs = arrayOfKeyValuePairs.sort(
+    ([keyA], [keyB]) => parseInt(keyB) - parseInt(keyA)
+  )
+  
+  // return just the names in the array of key value pairs 
+  const returnedNames = sortedArrayKeyValuePairs.map(pair => pair[1])
 
-  return sorted
+  return returnedNames
 
 };
 
-console.log( sortPeople(["Mary","John","Emma"],[180,165,170] ) )
+console.log( sortPeople(['Alice', 'Bob', 'Bob'],[155,185,150] ) )
