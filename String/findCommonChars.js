@@ -11,6 +11,10 @@ Output: ["e","l","l"]
 Input: words = ["cool","lock","cook"]
 Output: ["c","o"]
 
+Approach:
+
+Iterate 
+
 
 */
 
