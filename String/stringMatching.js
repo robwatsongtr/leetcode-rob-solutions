@@ -12,14 +12,6 @@ Output: ["as","hero"]
 Explanation: "as" is substring of "mass" and "hero" is substring of "superhero".
 ["hero","as"] is also a valid answer.
 
-Algo: 
-
-1. Check the lengths of all the strings.
-
-2. If a string is the same length or shorter than aother string,
-   compare the two strings. 
-
-
 
 */
 
