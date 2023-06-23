@@ -44,6 +44,25 @@ var kthDistinct = function(arr, k) {
 
 };
 
+// GPT:
+var kthDistinct2 = function(arr, k) {
+  let map = {};
+  let distinctArr = [];
+   
+  // keeps track of the order in which distinct strings appear in the distinctArr
+  for (let val of arr) {
+    if (!map[val]) {
+      distinctArr.push(val);
+    }
+    map[val] = (map[val] || 0) + 1;
+  }
+  
+  if (distinctArr.length < k) return '';
+  
+  return distinctArr[k - 1] || '';
+};
+
+
 
 // console.log( kthDistinct( ["d","b","c","b","c","a"], 1) )
 

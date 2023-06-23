@@ -35,7 +35,8 @@ var maxProfit = function(prices) {
     // the minimum price is the lowest number we've seen or the current one 
     minPrice = Math.min( currentPrice, minPrice)
 
-    // Max profit either the current max profit OR (current price - minimum price) we've seen before
+    // Max profit EITHER the current max profit 
+    // OR (current price - minimum price) we've seen before
     maxProfit = Math.max(maxProfit, currentPrice - minPrice)
     
   }
