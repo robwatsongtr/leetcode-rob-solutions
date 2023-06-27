@@ -18,6 +18,7 @@ const revString = (str) => {
   let strArr = []
   let result = []
 
+  // store string as an array of ascii coces 
   for( let i = 0; i < str.length; i++) {
    let ltr = str.charCodeAt(i)
    strArr.push(ltr)
@@ -26,6 +27,7 @@ const revString = (str) => {
   let rightPtr = strArr.length - 1
   let leftPtr = 0
   
+  // reverse the ascii code array 
   while( leftPtr < rightPtr ) {
     const[ newLeft, newRight] = arithSwap( strArr[leftPtr], strArr[rightPtr] )
     strArr[leftPtr] = newLeft
@@ -34,11 +36,13 @@ const revString = (str) => {
     rightPtr--
   } 
 
+  // convert the ascii code array back into letters 
   for( let i = 0; i < strArr.length; i++ ) {
     let ltr = String.fromCharCode(strArr[i])
     result.push(ltr)
   }
 
+  // join the letters array back into a strig 
   return result.join('')
 
 }
