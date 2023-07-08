@@ -12,6 +12,7 @@ The richest customer is the customer that has the maximum wealth.
 
 var maximumWealth = function(accounts) {
   let maxWealth = 0
+
   function sumRow(row) {
     let total = 0
     for( let i = 0; i < row.length; i++) {
@@ -26,7 +27,23 @@ var maximumWealth = function(accounts) {
   }
 
   return maxWealth
-
 };
+
+
+// no extra function just nested for loops 
+var maximumWealth2 = function(accounts) {
+  let maxWealth = 0;
+
+  for (let i = 0; i < accounts.length; i++) {
+    let rowTotal = 0;
+    for (let j = 0; j < accounts[i].length; j++) {
+      rowTotal += accounts[i][j];
+    }
+    maxWealth = Math.max(maxWealth, rowTotal);
+  }
+
+  return maxWealth;
+};
+
 
 console.log( maximumWealth([ [7,1,3], [2,8,7], [1,9,5] ]))

@@ -24,6 +24,10 @@ var twoSum = function(nums, target) {
 
   for( let i = 0; i < nums.length; i++ ) {
 
+    // build the hash map iteratively:
+    // The key is the possible complement, the value is the index
+    hashMap[nums[i]] = i; 
+
     let complement = target - nums[i];
 
     if( complement in hashMap ) {
@@ -31,9 +35,6 @@ var twoSum = function(nums, target) {
       result[1] = i; 
     }
 
-    // build the hash map iteratively:
-    // The key is the complement, the value is the index
-    hashMap[nums[i]] = i; 
 
   }
 
