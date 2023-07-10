@@ -39,15 +39,18 @@ const isValid = (s) => {
     console.log(stack)
     let currBracket = s[i];
     let topOfStack = stack[stack.length - 1]
+    // if you have an opening bracket, push to stack
     if( map.get(currBracket) ) {
       stack.push(currBracket)
-      // 
+      // if you have a matching bracket to what's in the stack, pop it 
     } else if ( map.get(topOfStack) === currBracket) {
       stack.pop()
+      // otherwise no matching bracket so return false 
     } else {
       return false
     }
   }
+  // all the brackets are gone through, if the stack is empty we're good else return false 
   return !stack.length ? true : false 
 }
 
