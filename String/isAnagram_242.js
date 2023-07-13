@@ -24,11 +24,10 @@
     tCount[val] = ( tCount[val] || 0 ) + 1; 
   }
   
-  // compare the frequency and number of letters 
-  // if the lengths of strings are different or the same letters arent
-  // present in both strings, then its not a valid anagram. 
   for( let key in sCount) {
+      // checks for all same characters
       if( !(key in tCount) ) return false; 
+      // checks for frequency 
       if( tCount[key] !== sCount[key] ) return false; 
   }
 

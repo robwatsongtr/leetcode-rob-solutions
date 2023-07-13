@@ -1,7 +1,9 @@
 /*
+From Mohit: 
+
 Aritmetically Swap two numbers
 
-Use swap funciton to reverse a string.
+Use that arithmetic swap funciton to reverse a string.
 
 */
 
@@ -18,7 +20,7 @@ const revString = (str) => {
   let strArr = []
   let result = []
 
-  // store string as an array of ascii coces 
+  // store string as an array of ascii codes 
   for( let i = 0; i < str.length; i++) {
    let ltr = str.charCodeAt(i)
    strArr.push(ltr)
