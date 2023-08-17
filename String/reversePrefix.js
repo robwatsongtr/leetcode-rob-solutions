@@ -26,12 +26,6 @@ Output: "abcd"
 Explanation: "z" does not exist in word.
 You should not do any reverse operation, the resulting string is "abcd".
 
-General plan: (aka pseudo psuedo code)
-
-- iterate string to find character then split. if character not found
-- break and return string. Store in two parts, left and right 
-- take left part of string and reverse it
-- join reversed part back to right part and return 
 
 */
 
@@ -41,8 +35,14 @@ General plan: (aka pseudo psuedo code)
  * @return {string}
  */
 var reversePrefix = function(word, ch) {
+  let wordArr = [...word]
+  if ( !wordArr.includes(ch) ) return word
 
+  let idx = wordArr.indexOf(ch)
+  let endOfWord = wordArr.splice(idx + 1)
+  let revPrefix = wordArr.reverse()
   
-
-    
+  return revPrefix.join('') + endOfWord.join('')
 };
+
+console.log( reversePrefix("abcdefd", "d") )
