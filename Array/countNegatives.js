@@ -21,7 +21,10 @@ Output: 0
  * @param {number[][]} grid
  * @return {number}
  */
+
+// O(n)
 var countNegatives = function(grid) {
+  let total = 0
 
   function checkRow(row) {
     let total = 0
@@ -31,14 +34,31 @@ var countNegatives = function(grid) {
     return total
   }
 
-  let total = 0
+  
   for( let i = 0; i < grid.length; i++ ) {
     let rowTotal = checkRow(grid[i])
     total += rowTotal
   }
 
   return total 
-
 };
 
+// more concise, with nested for loops, still O(n)
+var countNegatives2 = (grid) => {
+  let total = 0
+
+  for( let i = 0; i < grid.length; i++) {
+    let rowTotal = 0
+    for( let j = 0; j < grid[i].length; j++) {
+      if( grid[i][j] < 0) rowTotal++
+    }
+    total += rowTotal
+  }
+
+  return total 
+}
+
+
 console.log( countNegatives( [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]] ))
+
+console.log( countNegatives2( [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]] ))
