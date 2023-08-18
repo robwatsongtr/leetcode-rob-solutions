@@ -16,11 +16,29 @@ Input: grid = [[3,2],[1,0]]
 Output: 0
 
 */
-s
+
 /**
  * @param {number[][]} grid
  * @return {number}
  */
 var countNegatives = function(grid) {
-    
+
+  function checkRow(row) {
+    let total = 0
+    for( let i = 0; i < row.length; i++ ) {
+      if( row[i] < 0 ) total++
+    }
+    return total
+  }
+
+  let total = 0
+  for( let i = 0; i < grid.length; i++ ) {
+    let rowTotal = checkRow(grid[i])
+    total += rowTotal
+  }
+
+  return total 
+
 };
+
+console.log( countNegatives( [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]] ))
