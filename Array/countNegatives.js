@@ -22,7 +22,6 @@ Output: 0
  * @return {number}
  */
 
-// O(n)
 var countNegatives = function(grid) {
   let total = 0
 
@@ -43,7 +42,7 @@ var countNegatives = function(grid) {
   return total 
 };
 
-// more concise, with nested for loops, still O(n)
+// more concise, with nested for loops
 var countNegatives2 = (grid) => {
   let total = 0
 
@@ -58,6 +57,37 @@ var countNegatives2 = (grid) => {
   return total 
 }
 
+
+// O(m + n) solution (from Leetcode): 
+var countNegatives3 = function(grid) {    
+  //initiate the grid with columnLen(height) = number of elements(4) in the arrays of array
+  //rowLen(width) is number of elements in the first array(4)
+  let columnLen = grid.length;
+  let rowLen = grid[0].length;
+  
+  //col is initialized at 0 so we get the first array
+  //row represents starting from the last element
+  //initialize count for number of negative numbers
+  let col = 0;
+  let row = rowLen-1;
+  let count = 0;
+  
+  
+  //while loop runs as long as columns and rows aren't out of bounds
+  //if a specific element in the array is negative, we add to count
+  //everything under the negative element is negative too since it's a sorted matrix
+  //after we add count, we move one to the left
+  //if element is not negative, we move to next column(next array)
+  while (col < columnLen && row >= 0) {
+      if (grid[col][row] < 0) {
+          count += columnLen - col;
+          row--;
+      } else {
+          col++;
+      }
+  }
+  return count;
+}
 
 console.log( countNegatives( [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]] ))
 
