@@ -27,4 +27,8 @@ function TreeNode(val, left, right) {
   this.right = (right===undefined ? null : right)
 }
 
-function bfs()
+function bfs(root) {
+
+  
+
+}
