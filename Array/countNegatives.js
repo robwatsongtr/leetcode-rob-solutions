@@ -62,8 +62,8 @@ var countNegatives2 = (grid) => {
 var countNegatives3 = function(grid) {    
   //initiate the grid with columnLen(height) = number of elements(4) in the arrays of array
   //rowLen(width) is number of elements in the first array(4)
-  let columnLen = grid.length;
-  let rowLen = grid[0].length;
+  let columnLen = grid.length; // 4
+  let rowLen = grid[0].length; // 4
   
   //col is initialized at 0 so we get the first array
   //row represents starting from the last element
@@ -80,7 +80,7 @@ var countNegatives3 = function(grid) {
   //if element is not negative, we move to next column(next array)
   while (col < columnLen && row >= 0) {
       if (grid[col][row] < 0) {
-          count += columnLen - col;
+          count += columnLen - col; // totals all negativew in a colum in one computation
           row--;
       } else {
           col++;

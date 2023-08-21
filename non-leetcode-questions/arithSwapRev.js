@@ -44,7 +44,7 @@ const revString = (str) => {
     result.push(ltr)
   }
 
-  // join the letters array back into a strig 
+  // join the letters array back into a string 
   return result.join('')
 
 }
