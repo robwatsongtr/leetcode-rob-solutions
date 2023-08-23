@@ -54,13 +54,7 @@ function bfs(root) {
    }
 }
                        
-
-
-
 // console.log( bfs(tree2) )
-
-
-
 
 
 var averageOfLevels = function(root) {
