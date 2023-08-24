@@ -30,12 +30,15 @@ The only letter that appears twice is 'd' so we return 'd'.
 
 */
 
-/**
- * @param {string} s
- * @return {character}
- */
+// Clever set solution: loop through the string
+// looks for the first repeated character by comparaing against what was just put in set
 var repeatedCharacter = function(s) {
-
-  
-    
+  let set = new Set()
+  for (let val of s) {
+    console.log(set)
+    if (set.has(val) ) return val
+    set.add(val)
+  } 
 };
+
+console.log( repeatedCharacter('abccbaacz') )
