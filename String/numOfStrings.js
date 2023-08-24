@@ -19,47 +19,45 @@ Explanation:
 
 Example 2:
 
-Input: patterns = ["a","b","c"], word = "aaaaabbbbb"
-Output: 2
-Explanation:
-- "a" appears as a substring in "aaaaabbbbb".
-- "b" appears as a substring in "aaaaabbbbb".
-- "c" does not appear as a substring in "aaaaabbbbb".
-2 of the strings in patterns appear as a substring in word.
-
-Example 3:
-
 Input: patterns = ["a","a","a"], word = "ab"
 Output: 3
 Explanation: Each of the patterns appears as a substring in word "ab".
 
-This is an implementation of the "Naive String Matching Algorithm"
+This is variation on the Naive String Matching Algorithm
 
 */
 
-const numOfStrings = (strs, word) => {
 
-  function naiveStringSearch(str, text) {
 
+const numOfStrings = (patterns, word) => {
+
+  function stringMatch(str, word) {
     const strLen = str.length
-    const textLen = text.length
+    const textLen = word.length
 
-    // main loop loops until string matches up to end of word
     for( let i = 0; i <= textLen - strLen; i++  ) {
-
       let strPtr = 0 // pointer to loop each character of str
-
-      // while not the length of str AND the text of str matches with the text of 'text
-      while( strPtr < strLen && text[i + strPtr] === str[strPtr] ) {
+      while( strPtr < strLen && word[i + strPtr] === str[strPtr] ) {
         strPtr++ 
       }
       if( strPtr === strLen ) {
-        return true  // we reached the end of str because the pointers match, substr found!
+        return true  
       }
     }
 
     return false
   }
 
+  let count = 0
+  for( let i = 0; i < patterns.length; i++) {
+    let result = stringMatch( patterns[i], word )
+    if(result) count++
+  }
 
+  return count 
 }
+
+
+
+
+console.log( numOfStrings( ["a","abc","bc","d"], "abc") )
