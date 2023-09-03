@@ -32,27 +32,32 @@ var removeDuplicates = function(s) {
   let stack = []
   for( let i = 0; i < s.length; i++) {
     console.log(stack)
-
+    if( s[i] === stack[stack.length - 1] ){
+      stack.pop(); 
+    } else {
+      stack.push(s[i]); 
+    }
   }
 
+  return stack.join('')
     
 };
 
 
-// console.log( removeDuplicates("abbaca"))
+console.log( removeDuplicates("abbaca"))
 
 
-// Create an empty array to represent the stack
-const stack = [];
+// // Create an empty array to represent the stack
+// const stack = [];
 
-// Push elements onto the stack
-stack.push(1);
-stack.push(2);
-stack.push(3);
+// // Push elements onto the stack
+// stack.push(1);
+// stack.push(2);
+// stack.push(3);
 
-console.log("Stack after pushing elements:", stack); // [1, 2, 3]
+// console.log("Stack after pushing elements:", stack); // [1, 2, 3]
 
-// Pop elements from the stack
-const poppedElement = stack.pop();
-console.log("Popped element:", poppedElement); // 3
-console.log("Stack after popping:", stack); // [1, 2]
+// // Pop elements from the stack
+// const poppedElement = stack.pop();
+// console.log("Popped element:", poppedElement); // 3
+// console.log("Stack after popping:", stack); // [1, 2]
