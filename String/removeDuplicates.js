@@ -26,6 +26,17 @@ Output: "ay"
 
 SOLUTION: USE STACK
 
+Here's an example with the input string "abbaca":
+
+In the first iteration, 'a' is pushed onto the stack.
+In the second iteration, 'b' is pushed onto the stack.
+In the third iteration, 'b' is popped from the stack since it's a duplicate.
+In the fourth iteration, 'a' is popped from the stack since it's a duplicate.
+In the fifth iteration, 'c' is pushed onto the stack.
+In the sixth iteration, 'a' is pushed onto the stack.
+After processing all characters, the stack contains ['c', 'a'], and they are joined to form the final result 'ca'.
+
+
 */
 
 var removeDuplicates = function(s) {
@@ -47,17 +58,3 @@ var removeDuplicates = function(s) {
 console.log( removeDuplicates("abbaca"))
 
 
-// // Create an empty array to represent the stack
-// const stack = [];
-
-// // Push elements onto the stack
-// stack.push(1);
-// stack.push(2);
-// stack.push(3);
-
-// console.log("Stack after pushing elements:", stack); // [1, 2, 3]
-
-// // Pop elements from the stack
-// const poppedElement = stack.pop();
-// console.log("Popped element:", poppedElement); // 3
-// console.log("Stack after popping:", stack); // [1, 2]
