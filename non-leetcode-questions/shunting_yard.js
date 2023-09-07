@@ -1,13 +1,4 @@
-/*
-Robert's Homework:
-
-Take an expression in standard algebraic notation (e.g. 1 + 2 * 3) and generate 
-a RPN string that corresponds. 
-
-The RPN string should, of course, evaluate properly.
-
-So looks like I would first need to tokenize the algebraic infix expression, 
-then run it through the 'shunting yard' algorithm to convert to postfix 
+/* 
 
 Shunting Yard Algorithm:
 
@@ -35,13 +26,6 @@ Shunting Yard Algorithm:
 //
 
 The output stack now contains the postfix expression.
-
-OR
-
-CREATE AN ABSTRACT SYNTAX TREE
-
-PERFORM A POSTFIX DFS ON THE TREE 
-
 
 */
 
@@ -73,16 +57,7 @@ function tokenizeStr(str) {
   return tokens
 }
 
+function infixToPostfix(tokens) {
 
-function postFixToInfix(str) {
-
-  let tokenizedStr = tokenizeStr(str)
-
-  return tokenizedStr
+  
 }
-
-
-
-
-
-console.log( postFixToInfix(`1 + 2 * 3`) )
