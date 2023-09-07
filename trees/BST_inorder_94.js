@@ -41,6 +41,7 @@ var inorderTraversal = function(root) {
   let data = []
 
   function traverse(node) {
+    if(!node) return []
     if(node.left) traverse(node.left) 
     data.push(node.val)
     if(node.right) traverse (node.right)
