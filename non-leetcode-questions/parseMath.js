@@ -6,12 +6,8 @@ a RPN string that corresponds.
 
 The RPN string should, of course, evaluate properly.
 
-https://en.wikipedia.org/wiki/Binary_expression_tree
-
 So looks like I would first need to tokenize the algebraic infix expression, 
 then run it through the 'shunting yard' algorithm to convert to postfix 
-
-Tokenize a string in JS:
 
 Shunting Yard Algorithm:
 
@@ -22,7 +18,8 @@ Shunting Yard Algorithm:
 3. For each token:
   If it is an operand (number or variable), add it to the output.
   If it is an operator:
-    While there are operators on the operator stack with greater or equal precedence and the operator is left-associative, pop them from the operator stack and add them to the output.
+    While there are operators on the operator stack with greater or equal precedence and the operator is left-associative, 
+      pop them from the operator stack and add them to the output.
     Push the current operator onto the operator stack.
 //
   
@@ -39,8 +36,14 @@ Shunting Yard Algorithm:
 
 The output stack now contains the postfix expression.
 
-*/
+OR
 
+CREATE AN ABSTRACT SYNTAX TREE
+
+PERFORM A POSTFIX DFS ON THE TREE 
+
+
+*/
 
 function tokenizeStr(str) {
   let tokens = []
@@ -71,4 +74,15 @@ function tokenizeStr(str) {
 }
 
 
-console.log( tokenizeStr(`1 + 2 * 3`) )
+function postFixToInfix(str) {
+
+  let tokenizedStr = tokenizeStr(str)
+
+  return tokenizedStr
+}
+
+
+
+
+
+console.log( postFixToInfix(`1 + 2 * 3`) )
