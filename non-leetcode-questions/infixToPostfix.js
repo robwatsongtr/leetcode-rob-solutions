@@ -118,17 +118,66 @@ function DFS_PostOrder(root) {
   return data
 }
 
+function evalPostfixExpr(expression) {
+
+  function doOperations(operator, operand2, operand1) {
+    switch(operator) {
+      case '+':
+        return operand1 + operand2
+      case '-':
+        return operand1 - operand2
+      case '/':
+        return operand1 / operand2
+      case '*':
+        return operand1 * operand2 
+    }
+  }
+
+  let operators = ['+', '-', '*', '/']
+  let operandStack = []
+  let tokens = tokenizeStr(expression)
+  console.log('Tokenized postfix expression: ', tokens)
+
+  for( const token of tokens ) {
+    // if operand 
+    if( !operators.includes(token) ) {
+      operandStack.push(parseFloat(token))
+    } else  {
+      // hit an operator, so pop last two operands and do the math 
+      const operand2 = operandStack.pop()
+      const operand1 = operandStack.pop()
+      const result = doOperations(token, operand2, operand1)
+      // push result back onto stack
+      operandStack.push(result)
+    }
+  }  
+
+  // last thing left on the stack is the final result 
+  const finalResult = operandStack.pop()
+
+  return finalResult
+}
+
+
 
 function infixToPostfix(str) {
-  let tokenizedStr = tokenizeStr(str)
-  let root = buildASTfromTokens(tokenizedStr)
-  let postFix = DFS_PostOrder(root)
+  console.log(`Original infix string:  ${str} \n`)
+
+  const tokenizedStr = tokenizeStr(str)
+  const root = buildASTfromTokens(tokenizedStr)
+  console.log('Syntax Tree:')
+  console.log(root)
+
+  const postFixStr = DFS_PostOrder(root).join(' ')
+  console.log(`\nPostfix string:  ${postFixStr} `)
+
+  const evalPostfix = evalPostfixExpr(postFixStr)
   
-  return postFix.join(' ')
+  return evalPostfix
 } 
 
 
-console.log( infixToPostfix('1 + 2 * 4') )
+console.log( infixToPostfix('2 * 4 + 1 * 2') )
 
 
 
