@@ -72,7 +72,7 @@ function createOperandNode(val) {
   return new TreeNode(val)
 }
 
-
+// Build AST --------------------------------------------------
 function buildASTfromTokens(tokens) {
   if(!tokens) return
   let min_precedence = Infinity
@@ -101,6 +101,8 @@ function buildASTfromTokens(tokens) {
 
   return node 
 }
+// -------------------------------------------------------------
+
 
 function DFS_PostOrder(root) {
   let data = []
@@ -163,14 +165,17 @@ function evalPostfixExpr(expression) {
 function infixToPostfix(str) {
   console.log(`Original infix string:  ${str} \n`)
 
+  // tokenize and build AST
   const tokenizedStr = tokenizeStr(str)
   const root = buildASTfromTokens(tokenizedStr)
   console.log('Syntax Tree:')
   console.log(root)
 
+  // PostOrder Traverse the tree 
   const postFixStr = DFS_PostOrder(root).join(' ')
   console.log(`\nPostfix string:  ${postFixStr} `)
 
+  // evaluate the postfix expression 
   const evalPostfix = evalPostfixExpr(postFixStr)
   
   return evalPostfix
