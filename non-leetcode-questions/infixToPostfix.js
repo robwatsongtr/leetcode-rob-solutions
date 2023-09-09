@@ -75,10 +75,10 @@ function createOperandNode(val) {
 // Build AST --------------------------------------------------
 function buildASTfromTokens(tokens) {
   if(!tokens) return
-  let min_precedence = Infinity
+  let min_precedence = Infinity // anything thqt comes will reset to new 
   let min_index = -1
 
-  // find the operator with the lowest precedence in tokens 
+  // find the operator with the hightest precedence in tokens 
   for( let i = 0; i < tokens.length - 1; i++) {
     let token = tokens[i]
     if( operators.includes(token) ) {
