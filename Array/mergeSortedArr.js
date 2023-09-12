@@ -36,23 +36,30 @@ Note that because m = 0, there are no elements in nums1. The 0 is only there to 
 
 */
 
-const { mergeRefs } = require("react-admin")
+
 
 const merge = (nums1, m, nums2, n) => {
+  let p1 = m - 1;  // Index for nums1
+  let p2 = n - 1;  // Index for nums2
+  let i = m + n - 1;  // Index for the merged array (nums1)
 
-  // initialize two pointers that start at the end of both arrays
-  // where p1 is where the numbers end before zeros in nums1:  m-1
-  // p2 is where the numbers end in nums2: n - 1
-  //
-  // initialize pointer i to write write to at (very end of nums 1), which is m + n - 1
-  let p1 = m - 1
-  let p2 = n - 1
-  let i = m + n -1 
+  while (p1 >= 0 && p2 >= 0) {
+      if (nums1[p1] > nums2[p2]) {
+          nums1[i] = nums1[p1];
+          p1--;
+      } else {
+          nums1[i] = nums2[p2];
+          p2--;
+      }
+      i--;
+  }
 
-  // while loop breaks out when p2 hits the end of nums2
-  while( p2 > 0 ) {
-    
+  // If there are remaining elements in nums2, copy them to nums1
+  while (p2 >= 0) {
+      nums1[i] = nums2[p2];
+      p2--;
+      i--;
   }
   
-
+  
 }
