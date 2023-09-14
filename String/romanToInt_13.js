@@ -57,4 +57,36 @@ iterate from the end of the string
   
 };
 
-console.log( romanToInt("MMXVII") );
+// console.log( romanToInt("MMXVII") );
+
+
+
+var romanToInt2 = (s) => {
+
+  const lookup = {
+    'I': 1,
+    'V': 5,
+    'X': 10,
+    'L': 50,
+    'C': 100,
+    'D': 500,
+    'M': 1000
+  }
+
+  let end = s.length - 1 
+  let result = lookup[ s[end] ]
+
+  for( let i = s.length - 2; i >= 0; i--) {
+    if( lookup[ s[i] ] < lookup[ s[i+1] ] ) {
+        result = result - lookup[ s[i] ]
+    } else {
+        result = result + lookup[ s[i] ]
+    }
+  }
+
+  return result 
+
+}
+
+
+console.log( romanToInt2("MCMXCIV") );
