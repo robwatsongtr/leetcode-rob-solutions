@@ -19,8 +19,8 @@ Approach:
 
 Hashmap / Frequency counter to get number of occurences of each element
 
-Find the one that has a frequency at or greater than 50 percent of the number 
-of elements in array
+loop through hashmap to find item at frequency at or greater than 50 percent of the number 
+of elements in array and return 
 
 */
 
@@ -30,12 +30,12 @@ const majorityElement = (nums) => {
   let freqHash = {}
   let majorityVal = nums.length / 2 
 
-  for( let val of nums) {
+  for( let val of nums ) {
     freqHash[val] = ( freqHash[val] || 0 ) + 1
   }
 
-  for( let key in freqHash) {
-    if( freqHash[key] >= majorityVal) 
+  for( let key in freqHash ) {
+    if( freqHash[key] >= majorityVal ) 
     return key
   }
 
