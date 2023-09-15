@@ -15,34 +15,28 @@ Each iteration shorten the prefix based on what's there in the other strings
 */
 
 
-const longestCommonPrefix = (strs) =>  {
 
+const longestCommonPrefix = (strs) =>  {
   if( strs.length === 0) return ''; 
 
-  // make the whole first string the 'prefix'
+  // make the whole first string the 'prefix' 
   let prefix = strs[0];
 
-  // loop through each string in the arry 
-  for( let i = 1; i < strs.length; ++i ) {
-    
-    // while we cannont find the full word we're comparing against the first
-    while( strs[i].indexOf(prefix) !== 0 ) {
+  // loop throug the rest of the strings in the array 
+  for( s of strs ) {  
 
-      // reduce the size of the prefix by 1
+    // as long as we haven't found the exact prefix yet..
+    while( !s.startsWith(prefix) ) {
+
+      // chop the prefix down by one character 
       prefix = prefix.substring(0, prefix.length - 1);
 
-      console.log(prefix);
-
-      // no match in word being compared;
+      // if the prefix is chopped down to nothing (isEmpty), then there is no common prefix 
       if ( prefix.isEmpty ) return ''; 
-
-
     }
-
   }
 
   return prefix; 
-
 }
 
-console.log( longestCommonPrefix( ["flower","flow","floght"] ) )
+console.log( longestCommonPrefix( ["flower","flaw","floght"] ) )
