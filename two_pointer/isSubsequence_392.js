@@ -1,27 +1,19 @@
 
-function isSubsequence (str1, str2) {
-
+function isSubsequence (s, t) {
   let i = 0; 
   let j = 0;
 
-  // If the character at i is equal to character at j, i++
-  // If i hits the end of str2 
+  // edge case if both strings are empty 
+  if( !s && !t ) return true;
 
-  while(j < str2.length) {
-
-    // edge case if both strings are empty 
-    if( !s && !t ) return true;
-
-    if (str2[j] === str1[i]) i++;
-
-    if (i === str1.length) return true;
-
+  while( j < t.length ) {
+    if (t[j] === s[i] ){ 
+      i++;
+    }
     j++
-    
-    
-    // console.log('i: ', i, ' j: ', j );
+
+    if (i === s.length) return true;
   }
 
   return false; 
-
 }
