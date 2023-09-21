@@ -56,7 +56,7 @@ const wordPattern = (pattern, s) => {
    
 }
 
-console.log( wordPattern('aaaa', 'dog cat cat dog') )
+console.log( wordPattern('abba', 'dog cat cat dog') )
 
 
 

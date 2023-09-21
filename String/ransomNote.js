@@ -58,4 +58,4 @@ var canConstruct = function(ransomNote, magazine) {
 };
 
 
-console.log( canConstruct('a', 'b') )
+console.log( canConstruct('a', 'b') ) // false 
