@@ -12,33 +12,25 @@
 */
 
 var twoSum = function(nums, target) {
+  let map = {}
 
-  // iterate over array and build a hash table:
-  // KEY is the complement!
-  // VALUE is the index!
-  // each iteration, you check back against what has already been placed in the hash map
-  
-  let result = [];
+  for( let i = 0; i < nums.length; i++) {
+    let currentNum = nums[i];
 
-  let hashMap = {};
+    // complement is what you need to add to target
+    let complement = target - currentNum
 
-  for( let i = 0; i < nums.length; i++ ) {
-
-    // build map iteratively
-    hashMap[nums[i]] = i
-
-    let complement = target - nums[i] // calculate complement
-
-    if( complement in hashMap) {
-      result[0] = hashMap[complement]
-      result[1] = i
+    // return indicies of the two numbers 
+    if( complement in map ) {
+      return [ map[complement], i ]
     }
 
+    // build map iteratively 
+    // key is current number, value is index
+    map[currentNum] = i
+  } 
 
-  }
-
-  return result; 
-
+  return result  
 };
 
 console.log( twoSum( [2,7,11,15], 9 ) );
