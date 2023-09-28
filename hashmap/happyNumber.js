@@ -40,7 +40,7 @@ Use a hashmap:
 
 const isHappy = (n) => {
   
-  function squareDigits(num) {
+  function squareAndAddDigigits(num) {
     let result = 0
     const numStr = num.toString()
     for( let i = 0; i < numStr.length; i++ ) {
@@ -55,9 +55,8 @@ const isHappy = (n) => {
     if( n in hashmap ) {
       return false
     }
-    hashmap[n] = true
-    n = squareDigits(n)
-    console.log(hashmap)
+    hashmap[n] = -1
+    n = squareAndAddDigits(n)
   }
 
   return true 
