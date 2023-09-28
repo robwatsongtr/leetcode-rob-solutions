@@ -28,7 +28,8 @@ var containsNearbyDuplicate = function(nums, k) {
     let currentNum = nums[i]
 
     if( currentNum in hashMap ) {
-      if( Math.abs( (i - hashMap[currentNum]) <= k ) ) {
+      let j = hashMap[currentNum]
+      if( Math.abs( (i - j) <= k ) ) {
         return true 
       }
     }
@@ -39,4 +40,4 @@ var containsNearbyDuplicate = function(nums, k) {
   return false 
 };
 
-console.log ( containsNearbyDuplicate( [1,2,3,1,2,3], 2 ) )
+console.log ( containsNearbyDuplicate( [1,2,3,1,2,3], 3 ) )

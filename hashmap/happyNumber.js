@@ -40,7 +40,7 @@ Use a hashmap:
 
 const isHappy = (n) => {
   
-  function squareAndAddDigigits(num) {
+  function squareAndAddDigits(num) {
     let result = 0
     const numStr = num.toString()
     for( let i = 0; i < numStr.length; i++ ) {
