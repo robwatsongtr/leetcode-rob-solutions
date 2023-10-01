@@ -53,6 +53,7 @@ const summaryRanges = (nums) => {
     while( j + 1 < nums.length && nums[j + 1] === (nums[j] + 1) )  {
       j++
     }
+    
 
     // takes care of no consecutive 
     if( i === j) {
