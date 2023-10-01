@@ -44,12 +44,32 @@ When range ends, copy start and end of range into intervals array in string form
 const summaryRanges = (nums) => {
   let intervals = []
 
-  let i = 0
+  let i = 0 
   let j = 0
 
-  while( j !== nums.length ) {
+  while( j < nums.length ) {
     
+    // find end of consecutive range 
+    while( j + 1 < nums.length && nums[j + 1] === (nums[j] + 1) )  {
+      j++
+    }
+
+    // takes care of no consecutive 
+    if( i === j) {
+      intervals.push(`${nums[i]}`)
+      // push in range 
+    } else {
+      intervals.push(`${nums[i]}->${nums[j]}`) 
+    }
+
+    j++ // move j over by 1
+    i = j // move i to where j is to mark beginning of next range 
+
+
   }
 
-    
+  return intervals
+ 
 };
+
+console.log( summaryRanges( [0,1,2,4,5,7]) )
