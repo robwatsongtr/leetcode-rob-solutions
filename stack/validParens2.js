@@ -41,7 +41,7 @@ const validParens2 = (s) => {
     let currentBracket = s[i]
     let topOfStack = stack[stack.length - 1]
 
-    // stack the current bracket if it's opening 
+    // 
     if( currentBracket in parensMap) {
       stack.push(currentBracket)
       // check if its closing bracket exists in map 
@@ -54,7 +54,7 @@ const validParens2 = (s) => {
     }
   }
 
-  if( stack.length === 0 ) return true // each opening has a closing 
+  return stack.length === 0 ? true : false 
 
 }
 

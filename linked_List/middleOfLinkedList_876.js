@@ -13,20 +13,7 @@ function ListNode(val, next) {
   this.next = (next===undefined ? null : next) 
 }
 
-// function ListNode(val, next) {
-//   if( val === undefined ) {
-//     val = 0; 
-//   } else {
-//     val = val; 
-//   }
 
-//   if( this.next === undefined ) {
-//     next === null;
-//   } else {
-//     next === next; 
-//   }
-// }
-//----------------------------------------------
 
 // Appoarch: Two pointers, fast and slow: 
 // By doing next.next each iteration is 2x then for right, 

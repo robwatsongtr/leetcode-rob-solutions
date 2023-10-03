@@ -15,6 +15,8 @@ CREATE AN ABSTRACT SYNTAX TREE FROM TOKENS
 
 PERFORM A POSTFIX DFS ON THE TREE 
 
+EXTRA: EVALUATE POSTFIX STRING 
+
 */
 
 function tokenizeStr(str) {
@@ -136,26 +138,27 @@ function evalPostfixExpr(expression) {
   }
 
   let operators = ['+', '-', '*', '/']
-  let operandStack = []
+  let stack = []
   let tokens = tokenizeStr(expression)
   console.log('Tokenized postfix expression: ', tokens)
 
   for( const token of tokens ) {
-    // if operand 
+    // if operand ( ie, if not an operator )
     if( !operators.includes(token) ) {
-      operandStack.push(parseFloat(token))
+      // push operand to stack 
+      stack.push(parseFloat(token))
     } else  {
       // hit an operator, so pop last two operands and do the math 
-      const operand2 = operandStack.pop()
-      const operand1 = operandStack.pop()
+      const operand2 = stack.pop()
+      const operand1 = stack.pop()
       const result = doOperations(token, operand2, operand1)
       // push result back onto stack
-      operandStack.push(result)
+      stack.push(result)
     }
   }  
 
   // last thing left on the stack is the final result 
-  const finalResult = operandStack.pop()
+  const finalResult = stack.pop()
 
   return finalResult
 }
