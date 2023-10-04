@@ -32,6 +32,8 @@ Also use a dummy head.
  * @return {ListNode}
 */
 
+const util = require('util')
+
 // because no built in linked list class in JS
 class ListNode {
   constructor( val = null, next = null) {
@@ -41,42 +43,55 @@ class ListNode {
 }
 
 
+list1 = new ListNode(4);
+list1 = new ListNode(2, list1 );
+list1 = new ListNode(1, list1 );
+
+list2 = new ListNode(4);
+list2 = new ListNode(3, list2 );
+list2 = new ListNode(1, list2 );
+
+
+
 var mergeTwoLists = function(list1, list2) {
+  // initialzie dummy node
+  let dummy = new ListNode(-1)
 
-  // this will traverse 
-  let dummyHead = new ListNode(-1);
+  // initialize two pointers to point to the heads of list1 and list2
+  let p1 = list1
+  let p2 = list2
 
-  // will stay -1, at the end return head.next 
-  let head = dummyHead;  
+  // initialize current pointer to point to the dummy node
+  let current = dummy 
 
-  while( list1 !== null && list2 != null ) {
+  while( p1 !== null && p2 !== null ) {
+    if( p1 <= p2 ) {
+      // If p1.val is less than or equal to p2.val, add the node from list1 to 
+      // the merged list, and move p1 to its next node.
+      current.next = p1
+      p1 = p1.next
 
-    if( list1.val <= list2.val) {
-      dummyHead.next = list1; 
-      l1 = l1.next; 
     } else {
-      dummyHead.next = list2;
-      l2 = l2.next;
+      // If p2.val is less than p1.val, add the node from list2 to the merged 
+      // ist, and move p2 to its next node.
+      current.next = p2
+      p2 = p2.next
+
     }
-    // change the reference of dummy to whatever the next node is
-    dummyHead = dummyHead.next;
-
+    // move current pointer over to the newly added node in the merged list.
+    current = current.next 
   }
 
-  // attach the remaining link  wist to the list that is left 
-  if( list1 !== null ) {
-    dummyHead.next = l1;
-  } else {
-    dummyHead.next = l2;
-  }
+  
 
-  // head is -1 so return head.next
-  return head.next; 
+
+  return dummy.next 
     
 };
 
 
-console.log( mergeTwoLists( [],[]) )
+
+console.log( mergeTwoLists(list1, list2) )
 
 
   
