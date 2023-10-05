@@ -65,7 +65,7 @@ var mergeTwoLists = function(list1, list2) {
   let current = dummy 
 
   while( p1 !== null && p2 !== null ) {
-    if( p1 <= p2 ) {
+    if( p1.val <= p2.val ) {
       // If p1.val is less than or equal to p2.val, add the node from list1 to 
       // the merged list, and move p1 to its next node.
       current.next = p1
@@ -82,7 +82,14 @@ var mergeTwoLists = function(list1, list2) {
     current = current.next 
   }
 
-  
+  // if there are any nodes left on either p1 or p2, append them to end of list 
+  if( p1 !== null ) {
+    current.next = p1
+  }
+
+  if( p2 !== null) {
+    current.next = p2
+  }
 
 
   return dummy.next 
@@ -91,7 +98,7 @@ var mergeTwoLists = function(list1, list2) {
 
 
 
-console.log( mergeTwoLists(list1, list2) )
+console.log(util.inspect( mergeTwoLists(list1, list2), { depth: null } ) )
 
 
   
