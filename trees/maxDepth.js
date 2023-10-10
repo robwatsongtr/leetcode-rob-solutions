@@ -39,6 +39,7 @@ const tree = new TreeNode( 3,
 var maxDepth = function(root) {
 
   function dfs( node , depth ) {
+    // base case 
     if(!node) return depth 
 
     let leftDepth = dfs(node.left, depth + 1)

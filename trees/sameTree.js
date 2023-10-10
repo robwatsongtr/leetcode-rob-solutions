@@ -44,13 +44,13 @@ const tree2 = new TreeNode( 1,
 
 var isSameTree = function(p, q) {
 
-  // Base case, if both trees are null, they are the same
+  // Base case 1: if both trees are null, they are the same
   if( !p && !q ) return true
 
-  // If one tree is null and the other is not, they are different
+  // Base case 2: If one tree is null and the other is not, they are different
   if( !p || !q ) return false 
 
-  // check if current nodes have the same value"
+  // Base case 3: if current nodes don't have thee same value return false 
   if( p.val !== q.val ) {
     return false
   }

@@ -37,11 +37,12 @@ class TreeNode {
 }
 
 const tree = new TreeNode(4,
-  new TreeNode( 2, new TreeNode( 1, 3 ) ),
-  new TreeNode( 7, new TreeNode( 6, 9 ) )
+  new TreeNode( 2, new TreeNode(1), new TreeNode(3) ),
+  new TreeNode( 7, new TreeNode(6), new TreeNode(9) ) 
 )
 
 const invertTree = (root) => {
+  // base case 
   if( root === null ) return null 
 
   let temp = root.left
