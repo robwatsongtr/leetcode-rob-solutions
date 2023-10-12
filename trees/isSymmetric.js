@@ -46,16 +46,11 @@ var isSymmetric = function(root) {
     if( left.val !== right.val) return false
 
     // return true if the possibly mirrored nodes pass the tests above 
-    if( isMirror(left.left, right.right) && isMirror( left.right, right.left ) ){
-      return true
-    } else {
-      return false 
-    }
-
+    return isMirror(left.left, right.right) && isMirror( left.right, right.left )
+   
   }
 
-  if (root === null ) return true
-
+  
   return isMirror( root.left, root.right ) 
 
 };
