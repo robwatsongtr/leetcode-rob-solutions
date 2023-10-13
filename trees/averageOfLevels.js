@@ -9,6 +9,8 @@ Strategy: use BFS:
 
 */
 
+const util = require('util')
+
 class TreeNode {
   constructor(val, left, right) {
     this.val = (  /* if */ val === undefined  ? /* t */  0 :  /* f */ val)
@@ -31,9 +33,10 @@ var averageOfLevels = function(root) {
   while( queue.length > 0) {
     const levelSize = queue.length
     let levelSum = 0
-
+    
     // add up all the values on a particular level of the tree 
     for( let i = 0; i < levelSize; i++ ) {
+      console.log(util.inspect(queue, {showHidden: false, depth: null, colors: true}))
       let atNode = queue.shift()
       levelSum += atNode.val
       if( atNode.left )  queue.push( atNode.left ) // put left side in queue (enqueue)
