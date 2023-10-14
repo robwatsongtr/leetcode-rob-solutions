@@ -34,8 +34,9 @@ const tree = new TreeNode( 4,
   new TreeNode(6)
 )
 
-// SIMPLIFIED / REFACTORED VERSION
 
+
+// SIMPLIFIED / REFACTORED VERSION
 const getMinimumDistance = (root) => {
   let minDiff = Infinity;
   let prevVal = undefined;
@@ -58,8 +59,8 @@ const getMinimumDistance = (root) => {
 
 
 
-// OLDER VERSION
 
+// OLDER VERSION
 const getMinimumDistanceOld = (root) => {
   let dataArr = []
   
