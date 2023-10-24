@@ -37,19 +37,19 @@ has a total of thirty one '1' bits.
 */
 
 
-const hammingWeight = n => {
 
-  let count = 0
-
-  for( let i = 0; i < 32; i++ ) {
-    let bit = parseInt(n[i], 2)
-    if( (bit & 1) === 1 ) {
-      count++
+// Passed LC 
+var hammingWeight = function(n) {
+  let res = 0;
+  let cur = 1;
+  for (let i = 0; i < 32; i++) {
+    if ((n & cur) !== 0) {
+      res++;
     }
+    cur = cur << 1;
   }
+  return res;
+};
 
-  return count 
 
-}
-
-console.log( hammingWeight('00000000000000000000000000001011'))
+console.log( hammingWeight(0b00000000000000000000000000001011))
