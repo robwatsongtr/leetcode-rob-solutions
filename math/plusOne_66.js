@@ -4,13 +4,10 @@ LC 66 Plus One
 
 You are given a large integer represented as an integer array digits, 
 where each digits[i] is the ith digit of the integer. 
-The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+The digits are ordered from most significant to least significant in left-to-right order. 
+The large integer does not contain any leading 0's.
 
 Increment the large integer by one and return the resulting array of digits.
-
-----Pseudocode: --
-
-
 
 */
 
@@ -21,8 +18,10 @@ var plusOne = digits => {
 
   for( let i = end; i >= 0; i-- ) {
     let sum = digits[i] + carry
-    carry = Math.floor(sum / 10) // dividing by 10 isolages the most significant digit
-    digits[i] = sum % 10 // modulo isolates the least sigificant digit
+    // dividing by 10 isolages the most significant digit
+    carry = Math.floor(sum / 10) 
+    // modulo isolates the least sigificant digit, which updates the current positon
+    digits[i] = sum % 10 
   }
 
   if( carry > 0 ) {
@@ -30,23 +29,7 @@ var plusOne = digits => {
   }
 
   return digits
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
