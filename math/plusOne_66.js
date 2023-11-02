@@ -10,20 +10,50 @@ Increment the large integer by one and return the resulting array of digits.
 
 ----Pseudocode: --
 
-3 cases to consider. 
 
-simplest: last digit of the array is not a 9. Just incremet the digit
-
-if last digit of array is a 9, then you change the 9 to a zero and the loop
-iterates to the next tens place and increments that. 
-
-finally, if the [0] digit is 9 make a new array that starts with a 1 and has an
-extra zero in it at the end. 
 
 */
 
 
-var plusOne = function(digits) {
+var plusOne = digits => {
+  let carry = 1 // start with 1 becasue that's what we're adding 
+  let end = digits.length -1
+
+  for( let i = end; i >= 0; i-- ) {
+    let sum = digits[i] + carry
+    carry = Math.floor(sum / 10) // dividing by 10 isolages the most significant digit
+    digits[i] = sum % 10 // modulo isolates the least sigificant digit
+  }
+
+  if( carry > 0 ) {
+    digits.unshift(carry)
+  }
+
+  return digits
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var plusOne2 = function(digits) {
 
   for( let i = (digits.length - 1); i >= 0; i-- ) {
 
@@ -49,9 +79,9 @@ var plusOne = function(digits) {
 };
 
 
-console.log( plusOne( [4,3,2,1] ) );
-console.log( plusOne( [4,3,2,8] ) ); 
-console.log( plusOne( [4,3,3,9] ) ); 
-console.log( plusOne( [9,9,9,9] ) ); 
+console.log( plusOne2( [4,3,2,1] ) );
+console.log( plusOne2( [4,3,2,8] ) ); 
+console.log( plusOne2( [4,3,3,9] ) ); 
+console.log( plusOne2( [9,9,9,9] ) ); 
 // console.log( plusOne( [4,3,2,8] ) ); 
 
