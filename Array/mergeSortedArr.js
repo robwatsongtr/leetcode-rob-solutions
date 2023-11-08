@@ -46,19 +46,14 @@ const merge = (nums1, m, nums2, n) => {
   let i = m + n - 1;  // Index for the merged array (nums1)
 
   while (p1 >= 0 && p2 >= 0) {
-    // if current pointer (p1) in nums1 is greater than current pointer in nums2
-    // copy that current pointer (p1) over to 'i' in nums1
-    // decrement current pointer in nums1 
-    if (nums1[p1] > nums2[p2]) {
-      nums1[i] = nums1[p1];
-      p1--;
+    if( nums2[p2] > nums1[p1] ) {
+      nums1[i] = nums2[p2]
+      p2--
     } else {
-      // otherwise nums2 pointer (p2) is bigger so copy that over to 'i' in nums1
-      // decrement pointer in nums2 (p2)
-      nums1[i] = nums2[p2];
-      p2--;
+      nums1[i] = nums1[p1]
+      p1--
     }
-    i--;
+    i--
   }
 
   // If there are remaining elements in nums2 and we haven't reached
