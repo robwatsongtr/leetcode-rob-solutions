@@ -36,7 +36,9 @@ var removeElement = (nums, val) => {
     left++
   } 
 
+  console.log(nums)
+
   return left 
 }
 
-console.log( removeElement([0,1,2,3,0,4,2], 2))
+console.log( removeElement([3,2,2,3], 3))
