@@ -26,6 +26,7 @@
       nums[i] = nums[j]
     }
   }
+  console.log(nums)
   return i + 1; 
 
 };
