@@ -18,6 +18,8 @@ class Solution(object):
         end = len(s) - 1
         result = roman_dict[s[end]]
 
+		# first -1 indicates that the loop should continue to beginning of string
+		# second -1 indicates the loop should go backwards 
         for i in range(len(s) - 2, -1, -1):
             if roman_dict[s[i + 1]] > roman_dict[s[i]]:
                 result -= roman_dict[s[i]]
