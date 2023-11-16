@@ -13,3 +13,8 @@ Each iteration shorten the prefix based on what's there in the other strings
 
 
 """
+
+
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        
