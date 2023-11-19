@@ -29,3 +29,4 @@ class Solution(object):
         for key in my_dict:
             if my_dict[key] > majority_val:
                 return key
+                
