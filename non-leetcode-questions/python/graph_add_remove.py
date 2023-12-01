@@ -1,12 +1,16 @@
-# Basic Graph class. Add / remove node or edge
+# Basic Graph class, for an undirected two way graph. 
+# Add / remove node or edge
 
 class Graph:
     def __init__(self):
-        self.adjacencyList = {}
+        self.adjacency_list = {}
 
-    def addNode(self, value):
-        if value not in self.adjacencyList:
-            self.adjacencyList[value] = []
+    def add_node(self, value):
+        if value not in self.adjacency_list:
+            self.adjacency_list[value] = []
+
+    def add_edge(self, node_1, node_2):
+        
 
 
         
