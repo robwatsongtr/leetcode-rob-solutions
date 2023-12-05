@@ -88,6 +88,12 @@ if __name__ == '__main__':
     g.add_node("Stockholm")
     g.add_node("Prague")
 
+    g.add_node("Phoenix")
+    g.add_node("Atlanta")
+    g.add_node("Chicago")
+    g.add_node("Sacramento")
+    
+    # group 1 
     g.add_edge("New York", "Madrid")
     g.add_edge("New York", "Berlin")
     g.add_edge("New York", "Dehli")
@@ -96,17 +102,29 @@ if __name__ == '__main__':
     g.add_edge("Berlin", "Stockholm")
     g.add_edge("Dehli", "Prague")
 
+    # group 2
+    g.add_edge("Sacramento", "Chicago")
+    g.add_edge("Sacramento", "Phoenix")
+    g.add_edge("Chicago", "Atlanta")
+
+    print("Adjacency List")
     print(g.adjacency_list)
 
-    # g.remove_node("Delhi")
+    # g.remove_node("Dehli")
 
     # print()
-    # print("Removed Delhi")
+    # print("Removed Dehli")
     # print(g.adjacency_list)
 
     print()
-    print("Depth first")
-    print(g.depth_first_search("Madrid"))
-
-    print("Breadth first")
-    print(g.breadth_first_search("Madrid"))
+    print("Depth first search group 1")
+    print(g.depth_first_search("Berlin"))
+    print()
+    print("Breadth first search group 1")
+    print(g.breadth_first_search("Berlin"))
+    print()
+    print("Depth first search group 2")
+    print(g.depth_first_search("Sacramento"))
+    print()
+    print("Breadth first search group 2")
+    print(g.breadth_first_search("Sacramento"))
