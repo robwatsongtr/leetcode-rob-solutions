@@ -21,8 +21,10 @@ Output: 2
 class Solution(object):
     def majorityElement(self, nums):
         my_dict = {}
+        # // divides and rounds down 
         majority_val = len(nums) // 2
 
+        # get frequency map
         for val in nums:
             my_dict[val] = my_dict.get(val, 0) + 1
 

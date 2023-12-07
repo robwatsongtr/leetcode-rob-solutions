@@ -22,9 +22,10 @@ class Solution(object):
         left = 0
 
         for right in range(0, len(nums)):
+            # if right is the value, skip it and loop to next element 
             if nums[right] == val:
                 continue
-
+            # it's not the val so copy left to right 
             nums[left] = nums[right]
 
             left += 1
