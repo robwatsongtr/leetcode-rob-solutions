@@ -26,9 +26,11 @@ class Solution(object):
     	j = 1
 
     	while j < len(nums):
+				# j runs the duplicate length
       		if nums[j] == nums[i]:
         		j += 1
 			else:
+				# when duplicate run ends increment i and copy j over 
 				i += 1
 				nums[i] = nums[j]
 
