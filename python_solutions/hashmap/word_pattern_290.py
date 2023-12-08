@@ -25,4 +25,28 @@ Output: false
 
 class Solution(object):
     def wordPattern(self, pattern, s):
-  
+        hashmap = {}
+        words = s.split()
+
+        if len(words) != len(pattern):
+            return False 
+
+        for i in range(len(words)):
+            letter = pattern[i]
+
+            # If letter is in hashmap, check if it's associated with the current word
+            if letter in hashmap:
+                if hashmap[letter] != words[i]:
+                    return False    
+            else:  
+                # If word is already associated with another letter, return False
+                if words[i] in hashmap.values():
+                    return False
+            
+            # Build the hashmap
+            hashmap[letter] = words[i]
+        
+        return True 
+
+
+
