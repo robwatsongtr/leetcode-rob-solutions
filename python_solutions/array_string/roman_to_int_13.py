@@ -20,6 +20,8 @@ class Solution(object):
 
 		# first -1 indicates that the loop should continue to beginning of string
 		# second -1 indicates the loop should go backwards 
+        # the core logic is: if the letter to the right of the current letter 
+        # is greater, then subtract from running result. Otherwise, add.
         for i in range(len(s) - 2, -1, -1):
             if roman_dict[s[i + 1]] > roman_dict[s[i]]:
                 result -= roman_dict[s[i]]
