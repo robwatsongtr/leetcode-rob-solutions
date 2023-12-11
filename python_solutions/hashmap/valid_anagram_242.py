@@ -34,7 +34,7 @@ class Solution(object):
             if key not in t_freq:
                 return False
             # check for same frequency
-            if  s_freq[key] != t_freq[key]:
+            if s_freq[key] != t_freq[key]:
                 return False 
 
         return True 
