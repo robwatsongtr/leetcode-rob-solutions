@@ -31,19 +31,21 @@ class Graph:
 
         del self.adjacency_list[node]
 
-    def depth_first_search(self, start_node):
-        result = []
-        visited = {}
+    def depth_first_search(self, start_node, visited=None):
+        # by definition dfs finds a group of connected nodes 
+        group = []
+
+        if visited is None:
+            visited = set()
 
         def dfs(node):
             # base case
             if not node:
                 return None
 
-            visited[node] = True  # mark vertex as visited
-            result.append(node)  # push node into the result array
+            visited.add(node)
+            group.append(node) 
 
-            # check to make sure the node exists in the adj list first as a guard clause
             if node in self.adjacency_list:
                 # loop through and visit neighbors recursively
                 for neighbor in self.adjacency_list[node]:
@@ -52,11 +54,24 @@ class Graph:
 
         dfs(start_node)  # kick off the recursion
 
-        return result
+        return group
+
+    def find_groups(self):
+        graph = self.adjacency_list
+        groups = []
+        visited = set()
+        
+        # perform a dfs on each individual node and gather it all up 
+        for node in graph:
+            if node not in visited:
+                group = self.depth_first_search(node, visited=visited)
+                groups.append(group)
+        
+        return groups 
 
     def breadth_first_search(self, start_node):
         queue = []
-        result = []
+        group = []
         visited = {}
 
         # push the starting node onto the queue and mark it as visited
@@ -64,9 +79,9 @@ class Graph:
         visited[start_node] = True
 
         while len(queue) > 0:
-            # dequeue the front and push it into the result array
+            # dequeue the front and push it into the group array
             current = queue.pop(0)
-            result.append(current)
+            group.append(current)
 
             # check neighbors of the current node
             if current in self.adjacency_list:  # check if the node has neighbors
@@ -75,7 +90,7 @@ class Graph:
                         visited[neighbor] = True
                         queue.append(neighbor)
 
-        return result
+        return group
 
 
 if __name__ == '__main__':
@@ -109,6 +124,9 @@ if __name__ == '__main__':
 
     print("Adjacency List")
     print(g.adjacency_list)
+    print()
+    print("All groups:")
+    print(g.find_groups())
 
     # g.remove_node("Dehli")
 
