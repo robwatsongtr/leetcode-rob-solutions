@@ -56,12 +56,16 @@ class Graph:
 
         return group
 
+    # to get all groups you need to perform DFS’s (or BFS’s) across the entire graph / 
+    # adjacency list. If you keep track of all visited, then you simply just keep searching 
+    # across anything that’s left unvisited because after a search those nodes are by 
+    # definition not connected to the last graph you just searched
     def find_groups(self):
         graph = self.adjacency_list
         groups = []
         visited = set()
         
-        # perform a dfs on each individual node and gather it all up 
+        # perform a dfs on each UNVISITED node and gather it all up into a group  
         for node in graph:
             if node not in visited:
                 group = self.depth_first_search(node, visited=visited)
