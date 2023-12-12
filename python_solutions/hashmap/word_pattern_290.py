@@ -35,6 +35,7 @@ class Solution(object):
             letter = pattern[i]
 
             # If letter is in hashmap, check if it's associated with the current word
+            # if not return False
             if letter in hashmap:
                 if hashmap[letter] != words[i]:
                     return False    
