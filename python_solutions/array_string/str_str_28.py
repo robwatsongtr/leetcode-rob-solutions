@@ -26,7 +26,7 @@ class Solution(object):
         # go all the way to the end of the haystack, which would be inefficient
         for i in range(len(haystack) - len(needle) + 1):
             j = 0
-            # inner loop will try and loop the length of needle within the haysta cj
+            # inner loop will try and loop the length of needle within the haystack
             while j < len(needle) and haystack[i + j] == needle[j]:
                 j += 1
             

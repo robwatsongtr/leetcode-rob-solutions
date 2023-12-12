@@ -23,9 +23,10 @@ class Solution(object):
         if not s:
             return True  # An empty string is always a subsequence
 
+        # while the long pointer hasnt reached the end of the long string: 
         while tPtr < len(t):
             # increment short pointer as long as there is a sequential match
-            # in long string 
+            # in long string / pointer
             if s[sPtr] == t[tPtr]: 
                 sPtr += 1
 
