@@ -3,7 +3,7 @@
 
 You are given a sorted unique integer array nums.
 
-A range [a,b] is the set of all integers from a to b (inclusive).
+A range [a,b] is the set of all integers from a to b (inclusive). CONSECUTIVE NUMBERS
 
 Return the smallest sorted list of ranges that cover all the numbers in the array exactly. 
 That is, each element of nums is covered by exactly one of the ranges, 
@@ -33,11 +33,6 @@ Explanation: The ranges are:
 [6,6] --> "6"
 [8,9] --> "8->9"
 
-
-Approach: 
-
-Outer loop, while loop inside that runs the consecutive range until consecutive range ends
-When range ends, copy start and end of range into intervals array in string format "a->b"
 
 */
 
