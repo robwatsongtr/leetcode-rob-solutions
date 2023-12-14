@@ -24,4 +24,30 @@ Explanation: The ranges are:
 
 """
 
+class Solution(object):
+    def summaryRanges(self, nums):
+        intervals = []
+        i = 0
+        j = 0
+        
+        while j < len(nums):
+            
+            # while there's a consecutive range, increment j
+            while j + 1 < len(nums) and nums[j + 1] == nums[j] + 1:
+                j += 1
 
+            # if range is a single number, just push that in. Else push in range
+            if i == j:
+                # intervals.append('{}'.format(nums[i])) # if < python 3.6
+                intervals.append(f'{nums[i]}')
+            else:
+                # intervals.append('{}->{}'.format(nums[i], nums[j]))  # if < python 3.6
+                intervals.append(f'{nums[i]}->{nums[j]}')
+
+            # move j over by 1 to begin new range, and move i to j to mark new range 
+            j += 1
+            i = j
+
+        return intervals 
+
+        
