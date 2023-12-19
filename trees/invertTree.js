@@ -42,7 +42,7 @@ const tree = new TreeNode(4,
 )
 
 const invertTree = (root) => {
-  // base case 
+  // base case, we have reached the furthest leaves of the tree
   if( root === null ) return null 
 
   let temp = root.left

@@ -28,13 +28,16 @@ class TreeNode(object):
 
 class Solution(object):
     def invertTree(self, root):
+        # base case, we have reached the furthest leaves of the tree
         if root is None:
             return None
 
+        # invert, ie swap left and right nodes 
         temp = root.left 
         root.left = root.right
         root.right = temp
 
+        # recursive calls 
         self.invertTree(root.left)
         self.invertTree(root.right)
 
