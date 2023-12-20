@@ -32,11 +32,12 @@ class Solution(object):
             if not node:
                 return depth
 
-            # must use + 1 not += 1 becasue of recursion 
+            # must use + 1 not += 1 for counter becasue of recursion 
             left_depth = dfs(node.left, depth + 1)
             right_depth = dfs(node.right, depth + 1)
 
             return max(left_depth, right_depth)
 
+        # recursive call, pass in the tree(root) and a starting counter of 0
         return dfs(root, 0) 
         
