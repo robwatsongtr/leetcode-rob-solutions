@@ -27,3 +27,37 @@ Design an algorithm that runs in less than O(n) time complexity.
 
 """
 
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def countNodes(self, root):
+        count = 0
+
+        def traverse(node):
+            # needed for lexical scoping of count outside traverse
+            nonlocal count 
+
+            if node is None:
+                return 0
+            
+            if node.left:
+                traverse(node.left)
+
+            if node.right:
+                traverse(node.right)
+
+            count += 1
+
+        traverse(root)
+
+        return count 
+
+
+
+
+
