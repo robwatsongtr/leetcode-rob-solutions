@@ -14,9 +14,11 @@ class Binary_Tree:
             queue.append(root)
 
         while len(queue) > 0:
+            # remove a node from the 'front' of the queue and place its value in array
             curr_node = queue.pop(0)
             bfs_traversal.append(curr_node.val)
 
+            # place left and / or right children of current node in the 'back of the queue 
             if curr_node.left:
                 queue.append(curr_node.left)
 

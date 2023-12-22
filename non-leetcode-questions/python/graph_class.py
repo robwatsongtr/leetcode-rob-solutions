@@ -62,20 +62,20 @@ class Graph:
     # definition not connected to the last graph you just searched
     def find_groups(self):
         graph = self.adjacency_list
-        groups = []
+        graph_groups = []
         visited = set()
         
         # perform a dfs on each UNVISITED node and gather it all up into a group  
         for node in graph:
             if node not in visited:
                 group = self.depth_first_search(node, visited=visited)
-                groups.append(group)
+                graph_groups.append(group)
         
-        return groups 
+        return graph_groups 
 
     def breadth_first_search(self, start_node):
         queue = []
-        group = []
+        graph_group = []
         visited = {}
 
         # push the starting node onto the queue and mark it as visited
@@ -83,9 +83,9 @@ class Graph:
         visited[start_node] = True
 
         while len(queue) > 0:
-            # dequeue the front and push it into the group array
+            # dequeue the front of queue and push it into the group array
             current = queue.pop(0)
-            group.append(current)
+            graph_group.append(current)
 
             # check neighbors of the current node
             if current in self.adjacency_list:  # check if the node has neighbors
@@ -94,7 +94,7 @@ class Graph:
                         visited[neighbor] = True
                         queue.append(neighbor)
 
-        return group
+        return graph_group
 
 
 if __name__ == '__main__':
