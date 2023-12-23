@@ -32,8 +32,8 @@ class Graph:
         del self.adjacency_list[node]
 
     def depth_first_search(self, start_node, visited=None):
-        # by definition dfs finds a group of connected nodes 
-        group = []
+        # dfs finds a group of connected nodes 
+        graph_group = []
 
         if visited is None:
             visited = set()
@@ -44,7 +44,7 @@ class Graph:
                 return None
 
             visited.add(node)
-            group.append(node) 
+            graph_group.append(node) 
 
             if node in self.adjacency_list:
                 # loop through and visit neighbors recursively
@@ -54,7 +54,7 @@ class Graph:
 
         dfs(start_node)  # kick off the recursion
 
-        return group
+        return graph_group
 
     # to get all groups you need to perform DFS’s (or BFS’s) across the entire graph / 
     # adjacency list. If you keep track of all visited, then you simply just keep searching 

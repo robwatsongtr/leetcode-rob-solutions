@@ -42,14 +42,14 @@ const getMinimumDistance = (root) => {
   let prevVal = undefined;
 
   function traverseInOrder(node) {
-    if( node.left) traverseInOrder(node.left);
+    if(node.left) traverseInOrder(node.left);
 
     if (prevVal !== undefined) {
       minDiff = Math.min( minDiff, Math.abs(node.val - prevVal) );
     }
     prevVal = node.val;
 
-    if( node.right) traverseInOrder(node.right);
+    if(node.right) traverseInOrder(node.right);
   }
 
   traverseInOrder(root);
