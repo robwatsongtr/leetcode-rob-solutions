@@ -10,7 +10,8 @@ var search = function(nums, target) {
       if( nums[middle] === target) {
           return middle
       // if middle is greater than target
-      // search LEFT half 
+      // search LEFT half. - 1 and + 1 are necessary to avoid redundant comparisons and possible 
+      // infinite loop
       } else if( nums[middle] > target) {
           max = middle - 1
       // otherwise search RIGHT half 

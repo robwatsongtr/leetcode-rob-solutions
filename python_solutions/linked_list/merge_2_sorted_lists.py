@@ -15,7 +15,7 @@ Approach:
 Take the two linked lists, and link them together by changing the references of a node
 to point to the next smallest item.
 
-""""
+"""
 
 # Definition for singly-linked list.
 class ListNode(object):
