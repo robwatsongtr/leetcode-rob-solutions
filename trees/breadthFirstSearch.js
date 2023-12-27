@@ -39,14 +39,19 @@ const tree2 = new TreeNode( 3,
 function bfs(tree) {
   if(!tree) return 
   let queue = [tree] // put the tree in the queue
+  let result = []
 
   while( queue.length > 0) {
-    const atNode = queue.shift() // current node is dequeued from the front 
-
-    console.log(`cur node: ${atNode.val} queue length:${queue.length}  queue state: ${JSON.stringify(queue)} `)
-    if( atNode.left )  queue.push( atNode.left ) // put left side in queue (enqueue)
-    if( atNode.right ) queue.push( atNode.right ) // put right side in queue (enqueue)
+    const node = queue.shift() // current node is dequeued from the front 
+    
+    // this is the 'processing stage': in this case push the node value into result array 
+    result.push(node.val)
+    
+    if( node.left )  queue.push( node.left ) // put left side in queue (enqueue)
+    if( node.right ) queue.push( node.right ) // put right side in queue (enqueue)
    }
+
+   return result 
 }
                        
-console.log( bfs(tree) )
+console.log( bfs(tree2) )
