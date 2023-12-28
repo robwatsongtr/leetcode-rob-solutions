@@ -13,8 +13,6 @@ class Binary_Tree:
 
         while len(queue) > 0:
             node = queue.pop(0)
-
-            # this is the 'processing stage', in this case push the value into result array
             result.append(node.val)
 
             if node.left:
@@ -24,6 +22,65 @@ class Binary_Tree:
                 queue.append(node.right)
 
         return result 
+    
+    def DFS_preorder(self, root):
+        result = []
+
+        def traverse(node):
+            if node is None:
+                return 
+            
+            result.append(node.val)
+
+            if node.left:
+                traverse(node.left)
+
+            if node.right:
+                traverse(node.right)
+
+        traverse(root)
+
+        return result
+    
+    def DFS_inorder(self, root):
+        result = []
+
+        def traverse(node):
+            if node is None:
+                return
+            
+            if node.left:
+                traverse(node.left)
+
+            result.append(node.val)
+
+            if node.right:
+                traverse(node.right)
+        
+        traverse(root)
+
+        return result
+    
+    def DFS_postorder(self, root):
+        result = []
+
+        def traverse(node):
+            if node is None:
+                return
+            
+            if node.left:
+                traverse(node.left)
+
+            if node.right:
+                traverse(node.right)
+
+            result.append(node.val)
+
+        traverse(root)
+
+        return result 
+
+
 
 def main():
     btree = Binary_Tree()
