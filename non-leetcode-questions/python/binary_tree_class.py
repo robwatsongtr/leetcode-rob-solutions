@@ -4,24 +4,29 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Binary_Tree:
     def BFS(self, root):
-        if root is not None:
-            queue = [root]
+        queue = []
+        bfs_traversal = []
 
-        result = []
+        if root is not None:
+            queue.append(root)
 
         while len(queue) > 0:
-            node = queue.pop(0)
-            result.append(node.val)
+            # remove a node from the 'front' of the queue and place its value in array
+            curr_node = queue.pop(0)
+            bfs_traversal.append(curr_node.val)
 
-            if node.left:
-                queue.append(node.left)
+            # place left and / or right children of current node in the 'back of the queue 
+            if curr_node.left:
+                queue.append(curr_node.left)
 
-            if node.right:
-                queue.append(node.right)
+            if curr_node.right:
+                queue.append(curr_node.right)
 
-        return result 
+        return bfs_traversal
+    
     
     def DFS_preorder(self, root):
         result = []
@@ -42,6 +47,7 @@ class Binary_Tree:
 
         return result
     
+    
     def DFS_inorder(self, root):
         result = []
 
@@ -60,6 +66,7 @@ class Binary_Tree:
         traverse(root)
 
         return result
+    
     
     def DFS_postorder(self, root):
         result = []
@@ -93,4 +100,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
+            
+
+
+

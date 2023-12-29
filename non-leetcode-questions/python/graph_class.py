@@ -35,6 +35,7 @@ class Graph:
         # dfs finds a group of connected nodes 
         graph_group = []
 
+        # ask gpt about the if statement
         if visited is None:
             visited = set()
 
@@ -46,7 +47,7 @@ class Graph:
             visited.add(node)
             graph_group.append(node) 
 
-            if node in self.adjacency_list:
+            if node in self.adjacency_list: 
                 # loop through and visit neighbors recursively
                 for neighbor in self.adjacency_list[node]:
                     if neighbor not in visited:
@@ -87,8 +88,9 @@ class Graph:
             current = queue.pop(0)
             graph_group.append(current)
 
-            # check neighbors of the current node
-            if current in self.adjacency_list:  # check if the node has neighbors
+            # check neighbors of the current node and add to result list 
+            # if they are not already visited   
+            if current in self.adjacency_list:  
                 for neighbor in self.adjacency_list[current]:
                     if neighbor not in visited:
                         visited[neighbor] = True
