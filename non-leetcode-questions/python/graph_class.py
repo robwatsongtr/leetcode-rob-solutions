@@ -3,9 +3,9 @@ class Graph:
         # keeps track of the connections between nodes in a dictionary
         self.adjacency_list = {}
 
-    def add_node(self, value):
-        if value not in self.adjacency_list:
-            self.adjacency_list[value] = []
+    def add_node(self, node):
+        if node not in self.adjacency_list:
+            self.adjacency_list[node] = []
 
     def add_edge(self, node_1, node_2):
         if node_1 not in self.adjacency_list:
