@@ -83,13 +83,16 @@ class Binary_Tree:
 
 def main():
     btree = Binary_Tree()
-
+                    
     root = TreeNode(5,
-        TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2))),
+        TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2)), None),
         TreeNode(8, TreeNode(13), TreeNode(4, None, TreeNode(1)))
     )
 
-    print(btree.BFS(root))
+    print(f"Breadth First Search:  {btree.BFS(root)}")
+    print(f"DFS Pre-order {btree.DFS_preorder(root)}")
+    print(f"DFS In-order {btree.DFS_inorder(root)}")
+    print(f"DFS Post-order {btree.DFS_postorder(root)}")
 
 if __name__ == "__main__":
     main()
