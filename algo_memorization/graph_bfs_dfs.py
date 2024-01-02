@@ -17,20 +17,20 @@ class Graph:
 
     def bfs(self, start_node):
         if start_node not in self.adjacency_list:
-            raise ValueError(f"Node {start_node} not found.")
-
+            raise ValueError(f"Node '{start_node}' not found")
+        
         queue = []
-        visited = set()
         result = []
+        visited = set()
 
         queue.append(start_node)
         visited.add(start_node)
-        
+
         while len(queue) > 0:
             current = queue.pop(0)
             result.append(current)
 
-            for neighbor in self.adjacency_list[current]:
+            for neighbor in self.adjacency_list.get(current, []):
                 if neighbor not in visited:
                     visited.add(neighbor)
                     queue.append(neighbor)
@@ -44,17 +44,17 @@ if __name__ == '__main__':
     g.add_node("New York")
     g.add_node("Madrid")
     g.add_node("Berlin")
-    g.add_node("Dehli")
+    g.add_node("Delhi")
     g.add_node("Stockholm")
     g.add_node("Prague")
 
     g.add_edge("New York", "Madrid")
     g.add_edge("New York", "Berlin")
     g.add_edge("New York", "Dehli")
-    g.add_edge("Dehli", "Madrid")
+    g.add_edge("Delhi", "Madrid")
     g.add_edge("Madrid", "Berlin")
     g.add_edge("Berlin", "Stockholm")
-    g.add_edge("Dehli", "Prague")
+    g.add_edge("Delhi", "Prague")
 
     print("Adjacency List")
     print(g.adjacency_list)
@@ -62,6 +62,6 @@ if __name__ == '__main__':
 
     try:
         print(f"BFS from Berlin:  {g.bfs('Berlin')}")
-        print(f"BFS from Prage:  {g.bfs('Prage')}")
+        print(f"BFS from Prague:  {g.bfs('Prague')}")
     except ValueError as e:
         print(e) 

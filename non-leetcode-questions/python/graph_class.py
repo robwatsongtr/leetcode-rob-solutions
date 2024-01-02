@@ -75,6 +75,9 @@ class Graph:
         return graph_groups 
 
     def breadth_first_search(self, start_node):
+        if start_node not in self.adjacency_list:
+            raise ValueError(f"Node {start_node} not found.")        
+
         queue = []
         graph_group = []
         visited = set()
@@ -88,7 +91,7 @@ class Graph:
             current = queue.pop(0)
             graph_group.append(current)
 
-            for neighbor in self.adjacency_list[current]:
+            for neighbor in self.adjacency_list.get(current, []):
                 if neighbor not in visited:
                     visited.add(neighbor)
                     queue.append(neighbor)
