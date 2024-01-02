@@ -77,24 +77,21 @@ class Graph:
     def breadth_first_search(self, start_node):
         queue = []
         graph_group = []
-        visited = {}
+        visited = set()
 
         # push the starting node onto the queue and mark it as visited
         queue.append(start_node)
-        visited[start_node] = True
+        visited.add(start_node)
 
         while len(queue) > 0:
             # dequeue the front of queue and push it into the group array
             current = queue.pop(0)
             graph_group.append(current)
 
-            # check neighbors of the current node and add to result list 
-            # if they are not already visited   
-            if current in self.adjacency_list:  
-                for neighbor in self.adjacency_list[current]:
-                    if neighbor not in visited:
-                        visited[neighbor] = True
-                        queue.append(neighbor)
+            for neighbor in self.adjacency_list[current]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
 
         return graph_group
 

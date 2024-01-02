@@ -96,7 +96,10 @@ def main():
         TreeNode(8, TreeNode(13), TreeNode(4, None, TreeNode(1)))
     )
 
-    print(btree.BFS(root))
+    print(f"Breadth First Search:  {btree.BFS(root)}")
+    print(f"DFS Pre-order {btree.DFS_preorder(root)}")
+    print(f"DFS In-order {btree.DFS_inorder(root)}")
+    print(f"DFS Post-order {btree.DFS_postorder(root)}")
 
 if __name__ == "__main__":
     main()
