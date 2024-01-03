@@ -35,20 +35,18 @@ class Graph:
         # dfs finds a group of connected nodes 
         graph_group = []
 
-        # ask gpt about the if statement
         if visited is None:
             visited = set()
 
         def dfs(node):
             # base case
-            if not node:
+            if node not in self.adjacency_list:
                 return None
 
-            visited.add(node)
+            visited.add(node) 
             graph_group.append(node) 
 
             if node in self.adjacency_list: 
-                # loop through and visit neighbors recursively
                 for neighbor in self.adjacency_list[node]:
                     if neighbor not in visited:
                         dfs(neighbor)

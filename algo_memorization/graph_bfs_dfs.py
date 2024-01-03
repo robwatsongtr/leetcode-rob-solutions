@@ -37,6 +37,30 @@ class Graph:
 
         return result 
     
+    def dfs(self, start_node, visited=None):
+        if start_node not in self.adjacency_list:
+            raise ValueError(f"Node '{start_node}' Not found")
+
+        if visited is None:
+            visited = set()
+
+        result = []
+
+        def traverse(node):
+            if node not in self.adjacency_list:
+                return None
+            
+            visited.add(node) # needs to be outside loop or else duplicates 
+            result.append(node)
+
+            for neighbor in self.adjacency_list.get(node, []):
+                if neighbor not in visited:
+                    traverse(neighbor)
+
+        traverse(start_node)
+
+        return result 
+
 
 if __name__ == '__main__':
     g = Graph()
@@ -50,7 +74,7 @@ if __name__ == '__main__':
 
     g.add_edge("New York", "Madrid")
     g.add_edge("New York", "Berlin")
-    g.add_edge("New York", "Dehli")
+    g.add_edge("New York", "Delhi")
     g.add_edge("Delhi", "Madrid")
     g.add_edge("Madrid", "Berlin")
     g.add_edge("Berlin", "Stockholm")
@@ -63,5 +87,7 @@ if __name__ == '__main__':
     try:
         print(f"BFS from Berlin:  {g.bfs('Berlin')}")
         print(f"BFS from Prague:  {g.bfs('Prague')}")
+        print(f"DFS from Berlin:  {g.dfs('Berlin')}")
+        print(f"DFS from Prague:  {g.dfs('Prague')}")
     except ValueError as e:
         print(e) 
