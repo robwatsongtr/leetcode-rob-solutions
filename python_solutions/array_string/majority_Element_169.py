@@ -29,6 +29,6 @@ class Solution(object):
             my_dict[val] = my_dict.get(val, 0) + 1
 
         for key in my_dict:
-            if my_dict[key] > majority_val:
+            if my_dict.get(key) > majority_val:
                 return key
                 
