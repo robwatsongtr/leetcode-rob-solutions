@@ -43,11 +43,11 @@ iterate from the end of the string
   // iterate backwards over string starting from second to last character
   for( let i = s.length - 2; i >= 0; i-- ) {
 
-    // if character after i is less than i, subtract
-    if( lookup.get( s[i] ) < lookup.get( s[i+1]) ) {
+    // if character after i is greater than i, subtract
+    if( lookup.get( s[i+1] ) > lookup.get( s[i]) ) {
       result -= lookup.get(s[i])
     } else {
-      // character after i s greater than, so add
+      // character after i is less, so add
       result += lookup.get(s[i])
     }
     

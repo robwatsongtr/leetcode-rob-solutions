@@ -16,16 +16,18 @@ class Solution(object):
         }
 
         end = len(s) - 1
-        result = roman_dict[s[end]]
+        result = roman_dict.get(s[end])
 
+        # len(s) - 2 is the starting point.
 		# first -1 indicates that the loop should continue to beginning of string
 		# second -1 indicates the loop should go backwards 
+        #
         # the core logic is: if the letter to the right of the current letter 
-        # is greater, then subtract from running result. Otherwise, add.
+        # is greater than curr letter, then subtract from running result. Otherwise, add.
         for i in range(len(s) - 2, -1, -1):
-            if roman_dict[s[i + 1]] > roman_dict[s[i]]:
-                result -= roman_dict[s[i]]
+            if roman_dict.get(s[i+1]) > roman_dict.get(s[i]):
+                result -= roman_dict.get(s[i])
             else:
-                result += roman_dict[s[i]]
+                result += roman_dict.get(s[i])
 
         return result
