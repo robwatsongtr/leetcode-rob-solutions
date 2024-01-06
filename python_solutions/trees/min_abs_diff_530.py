@@ -18,12 +18,12 @@ class Solution:
         min_diff = float('inf')
         prev_val = None
 
-        def traverse(node):
+        def traverse_inorder(node):
             nonlocal min_diff
             nonlocal prev_val
 
             if node.left:
-                traverse(node.left)
+                traverse_inorder(node.left)
 
             if prev_val is not None:
                 min_diff = min(min_diff, abs(node.val - prev_val))
@@ -31,8 +31,8 @@ class Solution:
             prev_val = node.val
 
             if node.right:
-                traverse(node.right)
+                traverse_inorder(node.right)
 
-        traverse(root)
+        traverse_inorder(root)
 
         return min_diff
