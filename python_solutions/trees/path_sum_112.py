@@ -26,7 +26,8 @@ class Solution(object):
         if root.left is None and root.right is None and targetSum == 0:
             return True
 
-        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)
+        return ( self.hasPathSum(root.left, targetSum) or
+                 self.hasPathSum(root.right, targetSum) )
 
     def print_tree_inorder(self, root):
         if root:

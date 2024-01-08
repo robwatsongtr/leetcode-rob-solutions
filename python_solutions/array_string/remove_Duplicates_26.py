@@ -17,21 +17,17 @@ Return k.
 
 """
 
-class Solution(object):
-	def removeDuplicates(self, nums):
-		if len(nums) == 0:
-      		return 0
+class Solution:
+    def removeDuplicates(self, nums: [int]) -> int:
+        i = 0
+        j = 1
 
-    	i = 0
-    	j = 1
+        while j < len(nums):
+            if nums[i] == nums[j]:
+                j += 1
 
-    	while j < len(nums):
-				# j runs the duplicate length
-      		if nums[j] == nums[i]:
-        		j += 1
-			else:
-				# when duplicate run ends increment i and copy j over 
-				i += 1
-				nums[i] = nums[j]
+            else:
+                i += 1
+                nums[i] = nums[j]
 
-    	return i + 1  # number of unique elements. 
+        return i + 1
