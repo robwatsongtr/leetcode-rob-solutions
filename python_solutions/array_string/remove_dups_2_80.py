@@ -25,13 +25,13 @@ class Solution:
         if len(nums) <= 2:
             return len(nums)
 
-        index = 2  # Start from the third element
+        k = 2  # Start from the third element
         i = 2  # Start from the third element in the list
 
         while i < len(nums):
-            if nums[i] != nums[index - 2]:
-                nums[index] = nums[i]
-                index += 1
+            if nums[i] != nums[k - 2]:
+                nums[k] = nums[i]
+                k += 1
             i += 1
 
-        return index
+        return k
