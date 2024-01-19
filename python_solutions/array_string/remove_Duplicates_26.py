@@ -18,16 +18,17 @@ Return k.
 """
 
 class Solution:
-    def removeDuplicates(self, nums: [int]) -> int:
-        i = 0
-        j = 1
+    def remove_duplicates(nums):
+        if len(nums) == 0:
+            return 0
 
-        while j < len(nums):
-            if nums[i] == nums[j]:
-                j += 1
+        k = 1  # Initialize unique elements count
+        i = 1  # Start from the second element
 
-            else:
-                i += 1
-                nums[i] = nums[j]
+        while i < len(nums):
+            if nums[i] != nums[i - 1]:
+                nums[k] = nums[i]
+                k += 1
+            i += 1
 
-        return i + 1
+        return k

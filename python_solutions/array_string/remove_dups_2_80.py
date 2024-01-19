@@ -15,26 +15,23 @@ It does not matter what you leave beyond the first k elements.
 Return k after placing the final result in the first k slots of nums.
 
 Do not allocate extra space for another array. You must do this by modifying 
-the input array in-place with O(1) extra memory.
+athe input array in-place with O(1) extra memory.
 """
 
 
 
 class Solution:
-    def removeDuplicates(self, nums):
+    def remove_duplicates(nums):
         if len(nums) <= 2:
             return len(nums)
 
-        i = 2
-        j = 2
+        index = 2  # Start from the third element
+        i = 2  # Start from the third element in the list
 
         while i < len(nums):
-            if nums[i] == nums[j - 2]:
-                i += 1
-            else:
-                nums[j] = nums[i]
-                i += 1
-                j += 1
+            if nums[i] != nums[index - 2]:
+                nums[index] = nums[i]
+                index += 1
+            i += 1
 
-        return j      
-        
+        return index
