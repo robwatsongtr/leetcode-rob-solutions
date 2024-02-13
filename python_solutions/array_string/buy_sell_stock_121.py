@@ -1,9 +1,6 @@
 """
 121. Best Time to Buy and Sell Stock
-Easy
-29.1K
-1K
-Companies
+
 You are given an array prices where prices[i] is the price of a given stock on the ith day.
 
 You want to maximize your profit by choosing a single day to buy one stock and choosing a 
