@@ -21,7 +21,6 @@ class Solution(object):
         if len(needle) > len(haystack):
             return -1 
 
-        # iterate one i at a time through haystack:
         # the range takes into account the length of the needle so you don't
         # go all the way to the end of the haystack, which would be inefficient
         for i in range(len(haystack) - len(needle) + 1):
