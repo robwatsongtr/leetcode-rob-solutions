@@ -11,6 +11,9 @@ Each letter in magazine can only be used once in ransomNote
 
 class Solution(object):
     def canConstruct(self, ransomNote, magazine):
+        if len(ransomNote) > len(magazine):
+            return False 
+
         ransom_dict = {}
         mag_dict = {}
 
