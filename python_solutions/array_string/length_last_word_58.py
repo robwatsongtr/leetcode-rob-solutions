@@ -10,7 +10,6 @@ A word is a maximal substring consisting of non-space characters only.
 
 class Solution(object):
     def lengthOfLastWord(self, s):
-        # remove any and all whitespace and split string into list of words 
         processed_str = s.strip().split()
 
         if not processed_str:
