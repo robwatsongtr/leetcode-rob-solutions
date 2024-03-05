@@ -25,10 +25,10 @@ class Solution(object):
             # if right is the value, skip it and loop to next element 
             if nums[right] == val:
                 continue
-            # it's not the val so copy left to right 
-            nums[left] = nums[right]
-
-            left += 1
+            else:
+                # it's not the val so copy left to right 
+                nums[left] = nums[right]
+                left += 1
         
         return left 
 
