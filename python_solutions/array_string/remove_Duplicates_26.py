@@ -22,13 +22,14 @@ class Solution:
         if len(nums) == 0:
             return 0
 
-        k = 1  # Initialize unique elements count
-        i = 1  # Start from the second element
+        k_unique = 1  
+        i = 1  
 
         while i < len(nums):
             if nums[i] != nums[i - 1]:
-                nums[k] = nums[i]
-                k += 1
+                nums[k_unique] = nums[i]
+                k_unique += 1
+                
             i += 1
 
-        return k
+        return k_unique
