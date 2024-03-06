@@ -25,13 +25,14 @@ class Solution:
         if len(nums) <= 2:
             return len(nums)
 
-        k = 2  # Start from the third element
+        k_unique = 2  # Start from the third element
         i = 2  # Start from the third element in the list
 
         while i < len(nums):
-            if nums[i] != nums[k - 2]:
-                nums[k] = nums[i]
-                k += 1
+            if nums[i] != nums[k_unique - 2]:
+                nums[k_unique] = nums[i]
+                k_unique += 1
+                
             i += 1
 
-        return k
+        return k_unique

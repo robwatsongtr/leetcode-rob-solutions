@@ -26,7 +26,7 @@ class Solution:
         i = 1  
 
         while i < len(nums):
-            if nums[i] != nums[i - 1]:
+            if nums[i] != nums[k_unique - 1]:
                 nums[k_unique] = nums[i]
                 k_unique += 1
                 
