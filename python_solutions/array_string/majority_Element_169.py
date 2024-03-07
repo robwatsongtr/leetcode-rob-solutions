@@ -22,13 +22,13 @@ class Solution(object):
     def majorityElement(self, nums):
         my_dict = {}
         # // divides and rounds down 
-        majority_val = len(nums) // 2
+        majority_size = len(nums) // 2
 
         # get frequency map
         for val in nums:
             my_dict[val] = my_dict.get(val, 0) + 1
 
         for key in my_dict:
-            if my_dict.get(key) > majority_val:
+            if my_dict.get(key) > majority_size:
                 return key
                 
