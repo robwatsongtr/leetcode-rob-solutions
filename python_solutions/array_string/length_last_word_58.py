@@ -11,12 +11,13 @@ A word is a maximal substring consisting of non-space characters only.
 class Solution(object):
     def lengthOfLastWord(self, s):
         processed_str = s.strip().split()
-
-        if not processed_str:
-            return 0
-
-        # negative indexing access the last element of the list 
+        
         last_word = processed_str[-1]
         length = len(last_word)
 
         return length 
+    
+# one liner 
+class Solution2(object):
+    def lengthOfLastWord(self, s):
+        return len(s.strip().split()[-1])

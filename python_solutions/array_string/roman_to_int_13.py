@@ -15,7 +15,7 @@ class Solution(object):
             'M': 1000
         }
 
-        end = len(s) - 1
+        end = s[-1]
         result = roman_dict.get(s[end])
 
         # len(s) - 2 is the starting point.
