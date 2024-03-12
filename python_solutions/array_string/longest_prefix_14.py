@@ -17,14 +17,16 @@ class Solution(object):
         if len(strs) == 0: 
             return ''
 
-        # make the entire first string as the prefix. clever!
+        # make the entire first string as the prefix. Clever!
         prefix = strs[0]
 
-        for s in strs:
-            while not s.startswith(prefix):
+        for word in strs:
+            while not word.startswith(prefix):
                 # slice prefix by one character from the end
                 prefix = prefix[:-1]
-                if not prefix:
-                    return ''
+
+            # if 'prefix' is sliced down to nothing there is no common prefix 
+            if not prefix:
+                return ''
         
         return prefix

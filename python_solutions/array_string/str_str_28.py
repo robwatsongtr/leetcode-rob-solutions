@@ -22,7 +22,7 @@ class Solution(object):
             return -1 
 
         # the range takes into account the length of the needle so you don't
-        # go all the way to the end of the haystack, which would be inefficient
+        # end up with an out of range error 
         for i in range(len(haystack) - len(needle) + 1):
             j = 0
             # inner loop will try and loop the length of needle within the haystack
