@@ -22,7 +22,6 @@ Input: pattern = "aaaa", s = "dog cat cat dog"
 Output: false
 
 """
-
 class Solution(object):
     def wordPattern(self, pattern, s):
         hashmap = {}
@@ -32,12 +31,10 @@ class Solution(object):
             return False 
 
         for i in range(len(words)):
-            letter = pattern[i]
-
             # If letter is in hashmap, check if it's associated with the current word
             # if not return False
-            if letter in hashmap:
-                if hashmap[letter] != words[i]:
+            if pattern[i] in hashmap:
+                if hashmap[pattern[i]] != words[i]:
                     return False    
             else:  
                 # If word is already associated with another letter, return False
@@ -45,9 +42,7 @@ class Solution(object):
                     return False
             
             # Build the hashmap
-            hashmap[letter] = words[i]
+            hashmap[pattern[i]] = words[i]
         
-        return True 
-
-
+        return True
 
