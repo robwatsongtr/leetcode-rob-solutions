@@ -30,7 +30,7 @@ Output: true
 class Solution(object):
     def isIsomorphic(self, s, t):
         if len(s) != len(t):
-            return false
+            return False
 
         dict_s = {}
         dict_t = {}
