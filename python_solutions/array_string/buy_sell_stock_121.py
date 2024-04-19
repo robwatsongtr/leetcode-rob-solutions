@@ -32,11 +32,11 @@ class Solution(object):
         # there's no max profit as of yet, so set to zero 
         max_profit = 0
 
-        for current_price in prices:
+        for curr_price in prices:
             # the minimum price is the lowest number we've seen or the current one
-            min_price = min(min_price, current_price)
+            min_price = min(min_price, curr_price)
             # Max profit is the larger of current - min, or the the last max profit we've seen 
-            max_profit = max(max_profit, current_price - min_price)
+            max_profit = max(max_profit, curr_price - min_price)
 
         return max_profit
 
