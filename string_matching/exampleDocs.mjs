@@ -79,7 +79,7 @@ const exampleDocs = [
           name: 'Criminal Justice' 
         },
         { name: 'government' },
-        { name: 'Memphis' },
+        { name: 'Healt' },
         {
           name: 'public safety'
          

@@ -3,6 +3,7 @@ import optOutCategories from "./optOutCategories.mjs"
 
 const matchCategories = (rssCategories, optOutCategories) => {
   const matches = []
+  
   rssCategories.forEach(rssCat => {
     optOutCategories.forEach(optOutCat => {
       const lowerCaseRssCat = rssCat.toLowerCase()
@@ -12,6 +13,7 @@ const matchCategories = (rssCategories, optOutCategories) => {
       }
     })
   })
+
   return matches 
 }
 
@@ -20,14 +22,24 @@ const updateExampleDocs = (arrOfDocs) => {
 
   for (let doc of arrOfDocs) {
     const rssCategories = doc.categories.map(category => category.name)
-    console.log(`RSS category names for doc:[ ${rssCategories} ]`)
-
     const matchingCategories = matchCategories(rssCategories, optOutCategories)
-    console.log(`Matching opt-out categories: ${matchingCategories}`)
-
-    console.log("\n")
+    const modifiedDoc = {
+      ...doc,
+      customCategories: matchingCategories
+    }
+    newArrayOfDocs.push(modifiedDoc)
   }
 
+  return newArrayOfDocs
 }
 
-console.log( updateExampleDocs(exampleDocs) )
+const newDocArray = updateExampleDocs(exampleDocs) 
+console.log(newDocArray)
+
+
+
+
+// console.log(`RSS category names for doc:[ ${rssCategories} ]`)
+
+// console.log(`Matching opt-out categories: ${matchingCategories}`)
+// console.log("\n")
