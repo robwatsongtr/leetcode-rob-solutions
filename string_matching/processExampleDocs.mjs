@@ -23,9 +23,12 @@ const updateExampleDocs = (arrOfDocs) => {
   for (let doc of arrOfDocs) {
     const rssCategories = doc.categories.map(category => category.name)
     const matchingCategories = matchCategories(rssCategories, optOutCategories)
+    const categoriesArray = matchingCategories.map(str => { 
+      return { name: str } 
+    })
     const modifiedDoc = {
       ...doc,
-      customCategories: matchingCategories
+      customCategories: categoriesArray
     }
     newArrayOfDocs.push(modifiedDoc)
   }
@@ -34,12 +37,5 @@ const updateExampleDocs = (arrOfDocs) => {
 }
 
 const newDocArray = updateExampleDocs(exampleDocs) 
-console.log(newDocArray)
+console.log(JSON.stringify(newDocArray, null, 2))
 
-
-
-
-// console.log(`RSS category names for doc:[ ${rssCategories} ]`)
-
-// console.log(`Matching opt-out categories: ${matchingCategories}`)
-// console.log("\n")
