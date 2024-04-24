@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import Media from '../../models/Media.js'
+import Media from '../models/Media.js'
 import PQueue from 'p-queue'
 
 let queue = new PQueue({ concurrency: 30 })
@@ -10,6 +10,29 @@ const optOutCategories = [
   'Labor Organizing', 'LGBTQ+', 'Media', 'Racial Justice', 'Science',
   'Sports', 'Tech', 'U.S. Politics', "Women's Rights", 'Money in Politics'
 ]
+
+const matchCategoriesFaster = (rssCategories, optOutCategories) => {
+  const matches = []
+  const optoutCategoriesMap = new Map()
+  const rssCategoriesMap = new Map()
+
+  for (const cat of optOutCategories) {
+    // store the lowercase category and the properly capitalized category 
+    optoutCategoriesMap.set(cat.toLowerCase(), cat)
+  }
+  for (const cat of rssCategories) {
+    rssCategoriesMap.set(cat.toLowerCase(), true )
+  }
+
+  for (const key of optoutCategoriesMap.keys()) {
+    if ( rssCategoriesMap.has(key) ) {
+      // put the properly capitalized category into the matches arr 
+      matches.push(optoutCategoriesMap.get(key))
+    }
+  } 
+
+  return matches
+}
 
 const matchCategories = (rssCategories, optOutCategories) => {
   try {
@@ -34,7 +57,7 @@ const saveToDb = async (id, matchedCategoriesArr) => {
   try {
     const update = { customCategories: matchedCategoriesArr }
     const filter = { _id: id }
-    console.log(`updating document id ${id} with categories ${matchedCategoriesArr}`)
+    console.log(`updating document id ${id} with categories ${JSON.stringify(matchedCategoriesArr)}`)
     return Media.findOneAndUpdate(filter, update, { rawResult: true })
   } catch(err) {
     console.log(`${err} saving document id${id}`)
@@ -44,11 +67,11 @@ const saveToDb = async (id, matchedCategoriesArr) => {
 
 const main = async () => {
   try {
-    const twoWeeksAgo = new Date();
-    twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14)
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
     const media = await Media.find({
       $and: [
-        { publicationDateISO: { $gte: twoWeeksAgo } },
+        { publicationDateISO: { $gte: oneWeekAgo } },
         { customCategories: { $eq: [] } }
       ] 
     })
@@ -56,11 +79,11 @@ const main = async () => {
       async doc => {
         const rssCategories = doc.categories.map(category => category.name)
         const matchingCategories = matchCategories(rssCategories, optOutCategories)
-        const matchedCategoriesArr = matchingCategories.map(str => { return { name: str } })
-        return queue.add ( () => saveToDb( doc?.id, matchedCategoriesArr ))
+        const deDupedMatchingCats = [...new Set(matchingCategories)]
+        const matchedCategoriesArrObjs = deDupedMatchingCats.map(str => { return { name: str } })
+        return queue.add ( () => saveToDb( doc?.id, matchedCategoriesArrObjs ))
       }
     )
-    console.log("created all promises")
     return Promise.all(matchAndSaveOptOutCategories)
   } catch(err) {
     console.log(`Overall script error: ${err}`)
