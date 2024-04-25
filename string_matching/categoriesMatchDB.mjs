@@ -11,32 +11,13 @@ const optOutCategories = [
   'Sports', 'Tech', 'U.S. Politics', "Women's Rights", 'Money in Politics'
 ]
 
-const matchCategoriesFaster = (rssCategories, optOutCategories) => {
-  const matches = []
-  const optoutCategoriesMap = new Map()
-  const rssCategoriesMap = new Map()
-
-  for (const cat of optOutCategories) {
-    // store the lowercase category and the properly capitalized category 
-    optoutCategoriesMap.set(cat.toLowerCase(), cat)
-  }
-  for (const cat of rssCategories) {
-    rssCategoriesMap.set(cat.toLowerCase(), true )
-  }
-
-  for (const key of optoutCategoriesMap.keys()) {
-    if ( rssCategoriesMap.has(key) ) {
-      // put the properly capitalized category into the matches arr 
-      matches.push(optoutCategoriesMap.get(key))
-    }
-  } 
-
-  return matches
-}
 
 const matchCategories = (rssCategories, optOutCategories) => {
+  // Will get substring matches. But exponential time complexity. 
+  // Not a big deal with the small arrays we're working with but lets try faster ...
   try {
     const matches = []
+    
     rssCategories.forEach(rssCat => {
       optOutCategories.forEach(optOutCat => {
         const lowerCaseRssCat = rssCat.toLowerCase()
@@ -51,6 +32,63 @@ const matchCategories = (rssCategories, optOutCategories) => {
     console.log(`Error matching catetgores : ${err}`)
   }
 }
+
+const matchCategoriesFasterPartial = (rssCategories, optOutCategories) => {
+  // will get substring matches, better time complexity than matchCategories
+  // 347 documents were matched going back a week of media documents. 
+  try {
+    const matches = []
+    const optoutCategoriesMap = new Map()
+    const rssCategoriesMap = new Map()
+
+    for (const cat of optOutCategories) {
+      // 'lowercase category': 'the properly capitalized category' 
+      optoutCategoriesMap.set(cat.toLowerCase(), cat)
+    }
+    for (const cat of rssCategories) {
+      rssCategoriesMap.set(cat.toLowerCase(), true )
+    }
+
+    for ( const [optOutCatLower, optOutCat] of optoutCategoriesMap.entries()) {
+      for( const rssCatLower of rssCategoriesMap.keys()) {
+        if (rssCatLower.includes(optOutCatLower)) {
+          matches.push(optOutCat)
+        }
+      }
+    }
+    return matches
+  } catch(err) {
+    console.log(`Error matching catetgores : ${err}`)
+  }
+}
+
+const matchCategoriesFasterExact = (rssCategories, optOutCategories) => {
+  // will not get substring matches, best time complexity (straight lookup)
+  // 228 documents were matched going back a week of media documents. 
+  try {
+    const matches = []
+    const optoutCategoriesMap = new Map()
+    const rssCategoriesMap = new Map()
+
+    for (const cat of optOutCategories) {
+      // 'lowercase category': 'the properly capitalized category' 
+      optoutCategoriesMap.set(cat.toLowerCase(), cat)
+    }
+    for (const cat of rssCategories) {
+      rssCategoriesMap.set(cat.toLowerCase(), true )
+    }
+
+    for (const key of optoutCategoriesMap.keys()) {
+      if (rssCategoriesMap.has(key)) {
+        matches.push(optoutCategoriesMap.get(key))
+      }
+    } 
+    return matches
+  } catch(err) {
+    console.log(`Error matching catetgores : ${err}`)
+  }
+}
+
 
 const saveToDb = async (id, matchedCategoriesArr) => {
   if( !id || !matchedCategoriesArr ) return Promise.resolve()
@@ -78,10 +116,10 @@ const main = async () => {
     const matchAndSaveOptOutCategories = media.map(
       async doc => {
         const rssCategories = doc.categories.map(category => category.name)
-        const matchingCategories = matchCategories(rssCategories, optOutCategories)
+        const matchingCategories = matchCategoriesFasterPartial(rssCategories, optOutCategories)
         const deDupedMatchingCats = [...new Set(matchingCategories)]
         const matchedCategoriesArrObjs = deDupedMatchingCats.map(str => { return { name: str } })
-        return queue.add ( () => saveToDb( doc?.id, matchedCategoriesArrObjs ))
+        return queue.add (() => saveToDb( doc?.id, matchedCategoriesArrObjs ))
       }
     )
     return Promise.all(matchAndSaveOptOutCategories)
