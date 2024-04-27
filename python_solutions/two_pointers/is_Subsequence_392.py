@@ -8,8 +8,7 @@ t is long string
 
 A subsequence of a string is a new string that is formed from the original string 
 by deleting some (can be none) of the characters without disturbing the relative 
-positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" 
-while "aec" is not).
+positions of the remaining characters. 
 
 """
 
