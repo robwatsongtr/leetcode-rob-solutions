@@ -7,8 +7,8 @@ oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
 const categoriesMatchAggPipeline = [
 	{
 		$match: {
-				publicationDateISO: { $gte: oneWeekAgo },
-				customCategories: { $eq: [] }
+      publicationDateISO: { $gte: oneWeekAgo },
+      customCategories: { $eq: [] }
 		}
 	},
 	{
@@ -29,7 +29,7 @@ const categoriesMatchAggPipeline = [
 	{
 		$replaceRoot: {
 				newRoot: {
-						$mergeObjects: ['$document', { categories: '$categories' }] // Merge the document with categories
+          $mergeObjects: ['$document', { categories: '$categories' }] // Merge the document with categories
 				}
 		}
 	}
