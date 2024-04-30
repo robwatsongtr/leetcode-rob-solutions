@@ -1,15 +1,12 @@
 import mongoose from 'mongoose'
 import Media from '../models/Media.js'
 import PQueue from 'p-queue'
+import categoriesMatchAggPipeline from './catMatchAggPipeline.mjs'
+import optOutCategories from './optOutCategories.mjs'
 
 let queue = new PQueue({ concurrency: 30 })
 
-const optOutCategories = [
-  'Arts and Culture', 'Business and Economics', 'Climate', 'Criminal Justice',
-  'Education', 'Extremism', 'Geopolitics', 'Health', 'Immigration', 
-  'Labor Organizing', 'LGBTQ+', 'Media', 'Racial Justice', 'Science',
-  'Sports', 'Tech', 'U.S. Politics', "Women's Rights", 'Money in Politics'
-]
+
 
 const saveToDb = async (id, matchedCategoriesArr) => {
   if( !id || !matchedCategoriesArr ) return Promise.resolve()
@@ -24,60 +21,25 @@ const saveToDb = async (id, matchedCategoriesArr) => {
   }
 }
 
-const regexSearchTerms = optOutCategories.map(term => new RegExp(`\\b${term}\\b`, 'i'))
-const oneWeekAgo = new Date();
-oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
-
-const categoriesMatchAggPipeline = [
-	{
-		$match: {
-				publicationDateISO: { $gte: oneWeekAgo },
-				customCategories: { $eq: [] }
-		}
-	},
-	{
-		$unwind: '$categories'
-	},
-	{
-		$match: {
-			'categories.name': { $in: regexSearchTerms}
-		}
-	},
-	{
-		$group: {
-			_id: '$_id',
-			categories: { $push: '$categories'},
-			document: { $first: '$$ROOT' }, // Preserve the entire document
-		}
-	},
-	{
-		$replaceRoot: {
-				newRoot: {
-						$mergeObjects: ['$document', { categories: '$categories' }] // Merge the document with categories
-				}
-		}
-	}
-]
-
 const main = async () => {
-  try {
-    
+  try {  
     const filteredMedia = await Media.aggregate(categoriesMatchAggPipeline) 
-
-    console.log(`filtered Media: ${JSON.stringify(filteredMedia, null, 2)}`)
-
-    // const saveOptOutCategories = filteredMedia.map(
-    //   async doc => {
-    //     const rssCategories = doc.categories.map(category => category.name)
-    //     const optOutedCategories = {
-
-		// 		}
-    //     const deDupedMatchingCats = [...new Set(optOutedCategories)]
-    //     const matchedCategoriesArrObjs = deDupedMatchingCats.map(str => { return { name: str } })
-    //     return queue.add (() => saveToDb( doc?.id, matchedCategoriesArrObjs ))
-    //   }
-    // )
-    // return Promise.all(saveOptOutCategories)
+    //console.log(`filtered Media: ${JSON.stringify(filteredMedia, null, 2)}`)
+    const saveOptOutCategories = filteredMedia.map(
+      async doc => {
+        const rssCategories = doc.categories.map(category => category.name)
+        const optOutedCategories = []
+				rssCategories.forEach(category => {
+					if (optOutCategories.includes(category)) {
+						optOutedCategories.push(category)
+					}
+				})
+        const deDupedMatchingCats = [...new Set(optOutedCategories)]
+        const matchedCategoriesArrObjs = deDupedMatchingCats.map(str => { return { name: str } })
+        return queue.add (() => saveToDb( doc?.id, matchedCategoriesArrObjs ))
+      }
+    )
+    return Promise.all(saveOptOutCategories)
   } catch(err) {
     console.log(`Overall script error: ${err}`)
   }
