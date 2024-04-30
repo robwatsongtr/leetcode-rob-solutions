@@ -31,7 +31,7 @@ const main = async () => {
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
     const regexSearchTerms = optOutCategories.map(term => new RegExp(`\\b${term}\\b`, 'i'))
 		// group operation undoes the unwind 
-    const filteredMedia = Media.aggregate([
+    const filteredMedia = await Media.aggregate([
 			{
         $match: {
             publicationDateISO: { $gte: oneWeekAgo },
