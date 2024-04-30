@@ -11,7 +11,6 @@ const optOutCategories = [
   'Sports', 'Tech', 'U.S. Politics', "Women's Rights", 'Money in Politics'
 ]
 
-
 const saveToDb = async (id, matchedCategoriesArr) => {
   if( !id || !matchedCategoriesArr ) return Promise.resolve()
   try {
@@ -25,36 +24,47 @@ const saveToDb = async (id, matchedCategoriesArr) => {
   }
 }
 
+const regexSearchTerms = optOutCategories.map(term => new RegExp(`\\b${term}\\b`, 'i'))
+const oneWeekAgo = new Date();
+oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
+
+const categoriesMatchAggPipeline = [
+	{
+		$match: {
+				publicationDateISO: { $gte: oneWeekAgo },
+				customCategories: { $eq: [] }
+		}
+	},
+	{
+		$unwind: '$categories'
+	},
+	{
+		$match: {
+			'categories.name': { $in: regexSearchTerms}
+		}
+	},
+	{
+		$group: {
+			_id: '$_id',
+			categories: { $push: '$categories'},
+			document: { $first: '$$ROOT' }, // Preserve the entire document
+		}
+	},
+	{
+		$replaceRoot: {
+				newRoot: {
+						$mergeObjects: ['$document', { categories: '$categories' }] // Merge the document with categories
+				}
+		}
+	}
+]
+
 const main = async () => {
   try {
-    const oneWeekAgo = new Date();
-    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
-    const regexSearchTerms = optOutCategories.map(term => new RegExp(`\\b${term}\\b`, 'i'))
-		// group operation undoes the unwind 
-    const filteredMedia = await Media.aggregate([
-			{
-        $match: {
-            publicationDateISO: { $gte: oneWeekAgo },
-            customCategories: { $eq: [] }
-        }
-    	},
-			{
-				$unwind: '$categories'
-			},
-			{
-				$match: {
-					'categories.name': { $in: regexSearchTerms}
-				}
-			},
-			{
-				$group: {
-					_id: '$_id',
-					categories: { $push: '$categories'}
-				}
-			}
-    ]) 
+    
+    const filteredMedia = await Media.aggregate(categoriesMatchAggPipeline) 
 
-    console.log(`filtered Media: ${JSON.stringify(filteredMedia)}`)
+    console.log(`filtered Media: ${JSON.stringify(filteredMedia, null, 2)}`)
 
     // const saveOptOutCategories = filteredMedia.map(
     //   async doc => {
