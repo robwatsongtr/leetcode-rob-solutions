@@ -9,7 +9,6 @@ only alphanumeric characters and ignoring cases.
 
 class Solution(object):
     def isPalindrome(self, s):
-        # converts to lowercase, removes spaces and non alphanumeric characters
         s = "".join(char.lower() for char in s if char.isalnum())
 
         lp = 0
