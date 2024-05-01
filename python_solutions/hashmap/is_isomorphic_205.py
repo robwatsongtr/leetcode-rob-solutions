@@ -37,12 +37,16 @@ class Solution(object):
 
         # if a character in s isn't mapped to a character in t, do so and add it to map
         # if that characer is in the map and its mapped to a different character, return false
-        for charS, charT in zip(s, t):
+        # 
+        # enumerate returns a tuple, index and the item itself!!
+        for i, charS in enumerate(s):
+            charT = t[i]
+
             if charS not in dict_s:
                 dict_s[charS] = charT
             else:
                 if dict_s[charS] != charT:
-                    return False   
+                    return False
 
             if charT not in dict_t:
                 dict_t[charT] = charS
@@ -50,6 +54,8 @@ class Solution(object):
                 if dict_t[charT] != charS:
                     return False
 
-        return True
+        return True 
 
-    
+
+
+
