@@ -39,14 +39,14 @@ const validParens2 = (s) => {
 
   for ( let i = 0; i < s.length; i++ ) {
     let currentBracket = s[i]
-    let topOfStack = stack[stack.length - 1]
-
-    // 
+    
+    // if the current bracket in the string (key) has a corresponding closing bracket (value)
     if( currentBracket in parensMap) {
+    // push it to the strack 
       stack.push(currentBracket)
-      // check if its closing bracket exists in map 
-    } else if( currentBracket === parensMap[topOfStack] ) {
-      // if so, pop it
+      // else, if the current bracket matches a bracket in the stack, 
+    } else if( currentBracket === parensMap[stack[stack.length-1]] ) {
+      // then pop it off the stack 
       stack.pop()
     } else {
       // else no matching bracket 
