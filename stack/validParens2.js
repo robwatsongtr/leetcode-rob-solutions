@@ -40,20 +40,21 @@ const validParens2 = (s) => {
   for ( let i = 0; i < s.length; i++ ) {
     let currentBracket = s[i]
     
-    // if the current bracket in the string (key) has a corresponding closing bracket (value)
+    // if the current character is an opening bracket 
     if( currentBracket in parensMap) {
-    // push it to the strack 
+      // push it to the stack 
       stack.push(currentBracket)
-      // else, if the current bracket matches a bracket in the stack, 
+      // else, if the current character is a closing bracket, check if it matches the most recent
+      // opening bracket on the stack 
     } else if( currentBracket === parensMap[stack[stack.length-1]] ) {
-      // then pop it off the stack 
+      // if it does pop the opening bracket off the stack 
       stack.pop()
     } else {
-      // else no matching bracket 
+      // If it doesn't match or there's no opening bracket in the stack, return False.
       return false 
     }
   }
-
+  // if the stack is empty here then return true, the parens are balanced.
   return stack.length === 0 ? true : false 
 
 }
