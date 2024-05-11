@@ -39,6 +39,9 @@ const validParens2 = (s) => {
 
   for ( let i = 0; i < s.length; i++ ) {
     let currentBracket = s[i]
+
+    // good to check if stack is empty 
+    let topOfStack = stack.length > 0 ? stack[stack.length - 1] : null 
     
     // if the current character is an opening bracket 
     if( currentBracket in parensMap) {
@@ -46,7 +49,7 @@ const validParens2 = (s) => {
       stack.push(currentBracket)
       // else, if the current character is a closing bracket, check if it matches the most recent
       // opening bracket on the stack 
-    } else if( currentBracket === parensMap[stack[stack.length-1]] ) {
+    } else if( currentBracket === parensMap[topOfStack] ) {
       // if it does pop the opening bracket off the stack 
       stack.pop()
     } else {
