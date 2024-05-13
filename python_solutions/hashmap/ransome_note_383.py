@@ -24,7 +24,7 @@ class Solution(object):
             mag_dict[val] = mag_dict.get(val, 0) + 1
 
         for key in ransom_dict:
-            if not key in mag_dict:
+            if key not in mag_dict:
                 return False
             if ransom_dict[key] > mag_dict[key]:
                 return False
