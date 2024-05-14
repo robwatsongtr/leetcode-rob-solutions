@@ -26,14 +26,16 @@ var containsNearbyDuplicate = function(nums, k) {
 
   for( let i = 0; i < nums.length; i++ ) {
     let currentNum = nums[i]
-
+    // if there's a duplicate:
     if( currentNum in hashMap ) {
+      // assign j to the index of that number
       let j = hashMap[currentNum]
+      // check if the duplicate is k indicies away 
       if( Math.abs( (i - j) <= k ) ) {
         return true 
       }
     }
-
+    // build the hash map with the number as a key and the index as a value 
     hashMap[currentNum] = i
   } 
 

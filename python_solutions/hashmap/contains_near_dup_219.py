@@ -26,10 +26,11 @@ class Solution(object):
         hashmap = {}
 
         for i, current_num in enumerate(nums):
-            # we've found a duplicate, so
+            # if there's a duplicate 
             if current_num in hashmap:
-                # check if it is k indicies away 
+                # assign j to the index of the duplicate 
                 j = hashmap[current_num]
+                # check if it is k indicies away.
                 if abs(i - j) <= k:
                     return True 
 
