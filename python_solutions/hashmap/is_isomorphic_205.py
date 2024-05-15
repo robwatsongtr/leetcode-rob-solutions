@@ -35,22 +35,28 @@ class Solution(object):
         dict_s = {}
         dict_t = {}
 
-        # if a character in s isn't mapped to a character in t, do so and add it to map
-        # if that characer is in the map and its mapped to a different character, return false
-        # 
+        
         # enumerate returns a tuple, index and the item itself!!
         for i, charS in enumerate(s):
             charT = t[i]
 
+            # if character in s isn't in its dictionary yet
             if charS not in dict_s:
+                # add it and assign it to the corresponding character t index 
                 dict_s[charS] = charT
             else:
+                # if the character s is in the dict and its assigned to a different
+                # character, return false 
                 if dict_s[charS] != charT:
                     return False
 
+            # if a character in t isn't in its dictionary yet
             if charT not in dict_t:
+                # add it and assign it to the corresponding character in s index 
                 dict_t[charT] = charS
             else:
+                # if the character t is in the dict and its assigned to a different
+                # character, return false 
                 if dict_t[charT] != charS:
                     return False
 
