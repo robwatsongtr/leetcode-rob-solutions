@@ -41,27 +41,27 @@ Note that because m = 0, there are no elements in nums1. The 0 is only there to 
 
 
 const merge = (nums1, m, nums2, n) => {
-  let p1 = m - 1;  // Index for nums1
-  let p2 = n - 1;  // Index for nums2
-  let i = m + n - 1;  // Index for the merged array (nums1)
+  let n1p = m - 1;  // Index for nums1
+  let n2p = n - 1;  // Index for nums2
+  let n1end = m + n - 1;  // Index for the merged array (nums1)
 
-  while (p1 >= 0 && p2 >= 0) {
-    if( nums2[p2] > nums1[p1] ) {
-      nums1[i] = nums2[p2]
-      p2--
+  while (n1p >= 0 && n2p >= 0) {
+    if( nums2[n2p] > nums1[n1p] ) {
+      nums1[n1end] = nums2[n2p]
+      n2p--
     } else {
-      nums1[i] = nums1[p1]
-      p1--
+      nums1[n1end] = nums1[n1p]
+      n1p--
     }
-    i--
+    n1end--
   }
 
   // If there are remaining elements in nums2 and we haven't reached
-  // the end of p1, copy them to nums1
-  while (p2 >= 0) {
-    nums1[i] = nums2[p2];
-    p2--;
-    i--;
+  // the end of nums1 copy over to nums1
+  while (n2p >= 0) {
+    nums1[n1end] = nums2[n2p];
+    n2p--;
+    n1end--;
   }
   
   
