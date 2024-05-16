@@ -16,21 +16,20 @@ const wordPattern = (pattern, s) => {
 
   for( let i = 0; i < words.length; i++) {
     let char = pattern[i]
+    let word = words[i]
 
     if( char in hashmap ) {
-      if( hashmap[char] !== words[i] ) {
+      if( hashmap[char] !== word ) {
         return false 
       }
     } else {
       let valuesArray = Object.values(hashmap)
-      if( valuesArray.includes(words[i]) ) {
+      if( valuesArray.includes(word) ) {
         return false 
       }
     }
 
-    hashmap[char] = words[i]
-    console.log(hashmap)
-    
+    hashmap[char] = word
   }
 
   return true 

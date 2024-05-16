@@ -31,18 +31,21 @@ class Solution(object):
             return False 
 
         for i in range(len(words)):
+            pattern_char = pattern[i]
+            word = words[i]
+
             # If letter is in hashmap, check if it's associated with the current word
             # if not return False
-            if pattern[i] in hashmap:
-                if hashmap[pattern[i]] != words[i]:
+            if pattern_char in hashmap:
+                if hashmap[pattern_char] != word:
                     return False    
             else:  
                 # If word is already associated with another letter, return False
-                if words[i] in hashmap.values():
+                if word in hashmap.values():
                     return False
             
             # Build the hashmap
-            hashmap[pattern[i]] = words[i]
+            hashmap[pattern_char] = word
         
         return True
 
