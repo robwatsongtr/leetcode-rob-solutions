@@ -38,16 +38,18 @@ var isIsomorphic = function(s, t) {
     let charS = s[i]
     let charT = t[i]
 
-    // if a character in s isn't mapped to a character in t, do so and add it to map
-    // if that characer is in the map and its mapped to a different character, return false 
-    if( sMap[charS] === undefined ) {
+    // if the current character in s isn't in its map, put it in and map it to the character in t 
+    // with the same index
+    //
+    // if the current characer is in the map and its mapped to a different character, return false 
+    if( !(charS in sMap) ) {
       sMap[charS] = charT
     } else if( sMap[charS] !== charT ) {
       return false 
     }
 
     // same as above but check mapping from t to s 
-    if( tMap[charT] === undefined ) {
+    if( !(charT in tMap) ) {
       tMap[charT] = charS
     } else if( tMap[charT] !== charS ) {
       return false 
