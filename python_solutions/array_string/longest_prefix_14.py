@@ -5,9 +5,7 @@ Write a function to find the longest common prefix string amongst an array of st
 If there is no common prefix, return an empty string ""
 
 Approach:
-
 make the entire first string as the prefix.
-Each iteration shorten the prefix based on what's there in the other strings
 
 """
 
@@ -17,7 +15,7 @@ class Solution(object):
         if len(strs) == 0: 
             return ''
 
-        # make the entire first string as the prefix. Clever!
+        # make the entire first string as the prefix.
         prefix = strs[0]
 
         for word in strs:
