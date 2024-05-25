@@ -30,3 +30,25 @@ class Solution(object):
                 return False
 
         return True 
+    
+
+class Solution2(object):
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        def make_counter(iterable):
+            hashmap = {}
+            for i in iterable:
+                hashmap[i] = hashmap.get(i, 0) + 1
+
+            return hashmap
+
+        ransom_counter = make_counter(ransomNote)
+        mag_counter = make_counter(magazine)
+
+        for key in ransom_counter:
+            if key not in mag_counter:
+                return False
+            else:
+                if ransom_counter[key] > mag_counter[key]:
+                    return False
+
+        return True 
