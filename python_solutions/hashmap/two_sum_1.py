@@ -24,5 +24,17 @@ class Solution(object):
             hashmap[num] = index
 
 
+# using range instead of enumerate:
+            
+class Solution2(object):
+    def twoSum(self, nums, target):
+        hashmap = {}
 
+        for i in range(len(nums)):
+            complement = target - nums[i]
+
+            if complement in hashmap:
+                return [hashmap[complement], i]
+
+            hashmap[nums[i]] = i
        
