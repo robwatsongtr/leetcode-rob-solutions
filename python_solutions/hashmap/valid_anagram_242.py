@@ -34,4 +34,27 @@ class Solution(object):
 
         return True 
         
+class Solution2(object):
+    def isAnagram(self, s, t):
+        if len(s) != len(t):
+            return False
+        
+        def counter(string):
+            hashmap = {}
 
+            for char in string:
+                hashmap[char] = hashmap.get(char, 0) + 1
+
+            return hashmap
+
+        s_map = counter(s)
+        t_map = counter(t)
+
+        for key in s_map:
+            if key not in t_map:
+                return False
+            else:
+                if s_map[key] != t_map[key]:
+                    return False
+
+        return True  
