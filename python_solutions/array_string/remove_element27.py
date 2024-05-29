@@ -28,7 +28,8 @@ class Solution(object):
             else:
                 # it's not the val so copy left to right 
                 nums[left] = nums[right]
-                left += 1
+                
+            left += 1
         
         return left 
 
