@@ -63,5 +63,32 @@ class Solution(object):
         return True 
 
 
+# this solution just uses a range for loop, not an enumerated for loop 
+class Solution2:
+    def isIsomorphic(self, s, t):
+        if len(s) != len(t):
+            return False 
+
+        s_map = {}
+        t_map = {}
+
+        for i in range(len(s)):
+            s_char = s[i]
+            t_char = t[i]
+
+            if s_char not in s_map:
+                s_map[s_char] = t_char
+            else:
+                if s_map[s_char] != t_char:
+                    return False
+
+            if t_char not in t_map:
+                t_map[t_char] = s_char
+            else:
+                if t_map[t_char] != s_char:
+                    return False
+
+        return True 
+
 
 
