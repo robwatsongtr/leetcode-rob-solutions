@@ -38,4 +38,21 @@ class Solution(object):
             hashmap[current_num] = i
 
         return False 
-        
+
+# using range instead of enumerate in for loop 
+class Solution2:
+    def containsNearbyDuplicate(self, nums) -> bool:
+        hashmap = {}
+
+        for i in range(len(nums)):
+            curr_num = nums[i]
+
+            if curr_num in hashmap:
+                j = hashmap[curr_num]
+
+                if abs(i - j) <= k:
+                    return True 
+
+            hashmap[curr_num] = i
+
+        return False 
