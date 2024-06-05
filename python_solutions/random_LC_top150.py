@@ -7,9 +7,12 @@ def choose_random_150():
         100, 226, 101, 112, 222, 637, 530, 108, 35
     ]
 
-    array_hashtable_list_easy = [
-        88, 27, 26, 169, 121, 13, 58, 14, 28, 125, 392, 383, 
-        290, 242, 1, 219, 202, 205, 228, 20
+    array_list_easy = [
+        88, 27, 26, 169, 121, 13, 58, 14, 28,  125, 392, 228, 20
+    ]
+
+    hashtable_list_easy = [
+        383, 290, 242, 1, 219, 202, 205, 
     ]
 
     medium_list = [
@@ -18,11 +21,13 @@ def choose_random_150():
  
     random_easy = random.choice(easy_list)
     random_medium = random.choice(medium_list)
-    random_array_list_easy = random.choice(array_hashtable_list_easy)
+    random_array_list_easy = random.choice(array_list_easy)
+    random_hashtable_list_easy = random.choice(hashtable_list_easy)
 
     # print(f"Random easy question: {random_easy}")
     # print(f"Random medium question: {random_medium}")
     print(f"Random array easy question: {random_array_list_easy}")
+    print(f"Random hashtable easy question: {random_hashtable_list_easy}")
 
 
 if __name__ == "__main__":

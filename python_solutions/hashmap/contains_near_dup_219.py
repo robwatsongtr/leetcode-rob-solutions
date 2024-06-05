@@ -41,7 +41,7 @@ class Solution(object):
 
 # using range instead of enumerate in for loop 
 class Solution2:
-    def containsNearbyDuplicate(self, nums) -> bool:
+    def containsNearbyDuplicate(self, nums, k) -> bool:
         hashmap = {}
 
         for i in range(len(nums)):
