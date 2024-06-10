@@ -33,7 +33,9 @@ class Solution(object):
                 return False 
 
         return True 
-        
+
+
+
 class Solution2(object):
     def isAnagram(self, s, t):
         if len(s) != len(t):
@@ -41,7 +43,6 @@ class Solution2(object):
         
         def counter(string):
             hashmap = {}
-
             for char in string:
                 hashmap[char] = hashmap.get(char, 0) + 1
 
@@ -51,10 +52,7 @@ class Solution2(object):
         t_map = counter(t)
 
         for key in s_map:
-            if key not in t_map:
+            if key not in t_map or s_map[key] != t_map[key]:
                 return False
-            else:
-                if s_map[key] != t_map[key]:
-                    return False
 
         return True  
