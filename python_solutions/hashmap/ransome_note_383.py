@@ -38,17 +38,13 @@ class Solution2(object):
             hashmap = {}
             for i in iterable:
                 hashmap[i] = hashmap.get(i, 0) + 1
-
             return hashmap
 
         ransom_counter = make_counter(ransomNote)
         mag_counter = make_counter(magazine)
 
         for key in ransom_counter:
-            if key not in mag_counter:
+            if key not in mag_counter or ransom_counter[key] > mag_counter[key]:
                 return False
-            else:
-                if ransom_counter[key] > mag_counter[key]:
-                    return False
 
         return True 
