@@ -35,7 +35,6 @@ class Solution(object):
         return True 
 
 
-
 class Solution2(object):
     def isAnagram(self, s, t):
         if len(s) != len(t):
