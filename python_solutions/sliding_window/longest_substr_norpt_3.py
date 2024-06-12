@@ -1,7 +1,7 @@
 """
 3. Longest Substring Without Repeating Characters
 
-Given a string s, find the length of the longest substringvwithout repeating characters.
+Given a string s, find the length of the longest substring without repeating characters.
 
 Example 1:
 
@@ -28,7 +28,7 @@ class Solution:
         l_ptr = 0
         r_ptr = 0
         unique = set()
-        max_len = 0
+        max_len = 0     
 
         while r_ptr < len(s):
             if s[r_ptr] not in unique:
