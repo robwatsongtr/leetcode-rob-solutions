@@ -22,21 +22,21 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 
 """
 
+def lengthOfLongestSubstring(s):
+    l_ptr = 0
+    r_ptr = 0
+    unique = set()
+    max_len = 0     
 
-class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        l_ptr = 0
-        r_ptr = 0
-        unique = set()
-        max_len = 0     
+    while r_ptr < len(s):
+        if s[r_ptr] not in unique:
+            unique.add(s[r_ptr])
+            r_ptr += 1
+            max_len = max(max_len, len(unique))
+        else:
+            unique.remove(s[l_ptr])
+            l_ptr += 1
 
-        while r_ptr < len(s):
-            if s[r_ptr] not in unique:
-                unique.add(s[r_ptr])
-                r_ptr += 1
-                max_len = max(max_len, len(unique))
-            else:
-                unique.remove(s[l_ptr])
-                l_ptr += 1
-
-        return max_len
+    return max_len
+    
+print( lengthOfLongestSubstring('abxgejxn') )
