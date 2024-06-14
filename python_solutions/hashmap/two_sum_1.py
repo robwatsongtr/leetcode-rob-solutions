@@ -15,13 +15,13 @@ class Solution(object):
     def twoSum(self, nums, target):
         hashmap = {}
 
-        for index, num in enumerate(nums):
+        for i, num in enumerate(nums):
             complement = target - num
             
             if complement in hashmap:
-                return [hashmap[complement], index]
+                return [hashmap[complement], i]
 
-            hashmap[num] = index
+            hashmap[num] = i
 
 
 # using range instead of enumerate:
