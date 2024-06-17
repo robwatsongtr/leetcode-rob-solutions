@@ -78,15 +78,13 @@ class Solution2:
 
             if s_char not in s_map:
                 s_map[s_char] = t_char
-            else:
-                if s_map[s_char] != t_char:
-                    return False
+            elif s_map[s_char] != t_char:
+                return False
 
             if t_char not in t_map:
                 t_map[t_char] = s_char
-            else:
-                if t_map[t_char] != s_char:
-                    return False
+            elif t_map[t_char] != s_char:
+                return False
 
         return True 
 
