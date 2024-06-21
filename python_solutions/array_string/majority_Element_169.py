@@ -32,3 +32,20 @@ class Solution(object):
             if my_dict.get(key) > majority_size:
                 return key
                 
+
+# Boyer-Moore voting algorithm:
+class Solution2(object):
+    def majorityElement(self, nums):
+        candidate = None
+        count = 0
+
+        for curr_num in nums:
+            if count == 0:
+                candidate = curr_num
+
+            if curr_num == candidate:
+                count += 1
+            else:
+                count -= 1
+
+        return candidate 
