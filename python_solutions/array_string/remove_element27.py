@@ -21,16 +21,32 @@ class Solution(object):
     def removeElement(self, nums, val):
         left = 0
 
-        for right in range(0, len(nums)):
+        for right in range(len(nums)):
             # if right is the value, skip it and loop to next element 
             if nums[right] == val:
                 continue
-            else:
-                # it's not the val so copy left to right 
-                nums[left] = nums[right]
-                
+            
+            # it's not the val so copy left to right and increment left 
+            nums[left] = nums[right]  
             left += 1
         
+        return left 
+
+# lets try with a while loop for s*ts and giggles:    
+class Solution2(object):
+    def removeElement2(self, nums, val):
+        left = 0
+        right = 0
+
+        while right < len(nums):
+            if nums[right] == val:
+                right += 1
+                continue
+
+            nums[left] = nums[right]
+            left += 1
+            right += 1
+
         return left 
 
         
