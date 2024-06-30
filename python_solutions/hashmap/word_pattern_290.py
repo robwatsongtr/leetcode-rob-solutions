@@ -30,10 +30,9 @@ class Solution(object):
         if len(words) != len(pattern):
             return False 
 
-        for i in range(len(words)):
+        for i, word in enumerate(words):
             pattern_char = pattern[i]
-            word = words[i]
-
+            
             # If letter is in hashmap, check if it's associated with the current word
             # if not return False
             if pattern_char in hashmap:
