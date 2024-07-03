@@ -36,7 +36,11 @@ class Solution(object):
                 
             n1end -= 1
 
-        # If there are remaining elements in nums2 merge the rest to nums1
+        # If there are remaining elements in nums2 merge the rest to nums1.
+        #
+        # a case where this would be necessary is if the first array 
+        # was [0, 0, 0], the first while loop will not run so it's up to
+        # the second while loop to do the job 
         while p2 >= 0:
             nums1[n1end] = nums2[p2]
             p2 -= 1
