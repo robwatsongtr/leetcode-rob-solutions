@@ -36,24 +36,25 @@ class Solution(object):
 
         return -1 # no match
     
-
+# better variable names than needle and haystack 
 class Solution2(object):
     def strStr(self, haystack: str, needle: str) -> int:
-        if len(needle) > len(haystack):
+        short_str = needle
+        long_str = haystack
+
+        if len(short_str) > len(long_str):
             return -1
 
-        i = 0
+        if not short_str:
+            return 0
 
-        while i < len(haystack) - len(needle) + 1:
+        for i in range(len(long_str) - len(short_str) + 1):
             j = 0
-
-            while j < len(needle) and haystack[i + j] == needle[j]:
+            while j < len(short_str) and long_str[i + j] == short_str[j]:
                 j += 1
 
-            if j == len(needle):
+            if j == len(short_str):
                 return i
 
-            i += 1
-
-        return -1
+        return -1 
         

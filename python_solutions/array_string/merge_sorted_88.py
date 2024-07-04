@@ -13,12 +13,7 @@ where the first m elements denote the elements that should be merged, and the la
 elements are set to 0 and should be ignored. 
 
 nums2 has a length of n.
-
- 
-
 """
-
-
 
 class Solution(object):
     def merge(self, nums1, m, nums2, n):
