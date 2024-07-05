@@ -19,18 +19,18 @@ Return k.
 
 class Solution(object):
     def removeElement(self, nums, val):
-        left = 0
+        l = 0
 
-        for right in range(len(nums)):
+        for r in range(len(nums)):
             # if right is the value, skip it and loop to next element 
-            if nums[right] == val:
+            if nums[r] == val:
                 continue
             
             # it's not the val so copy left to right and increment left 
-            nums[left] = nums[right]  
-            left += 1
+            nums[l] = nums[r]  
+            l += 1
         
-        return left 
+        return l 
 
 # lets try with a while loop for s*ts and giggles:    
 class Solution2(object):
