@@ -20,7 +20,7 @@ def choose_random_150():
     ]
 
     challenging_easy = [
-        88, 27, 26, 13, 28, 392, 290, 205, 228, 20 
+        88, 27, 26, 13, 28, 392, 290, 205, 228, 20, 219 
     ]
  
     random_easy = random.choice(easy_list)

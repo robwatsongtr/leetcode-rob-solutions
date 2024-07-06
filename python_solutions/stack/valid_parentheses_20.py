@@ -19,7 +19,7 @@ class Solution(object):
                 # push it to the stack 
                 stack.append(bracket)
             # else, if the current character is a closing bracket, check if it matches the most recent
-            # opening bracket on the stack 
+            # opening bracket on the stack. In python need to check if stack is empty here as well 
             elif stack and bracket == parens_dict[top_of_Stack]:
                 # if it does pop the opening bracket off the stack 
                 stack.pop()
