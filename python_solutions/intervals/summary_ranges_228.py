@@ -27,12 +27,13 @@ Explanation: The ranges are:
 class Solution(object):
     def summaryRanges(self, nums):
         intervals = []
-        i = 0
-        j = 0
+        i = 0 # marks the range 
+        j = 0 # traverses the range 
         
         while j < len(nums):
             
             # while there's a consecutive range, increment j. 
+            #
             # the condition ' j + 1 < len(nums) ' is because we are 
             # always checking one after and without that we would be checking out of bounds.
             while (j + 1) < len(nums) and nums[j + 1] == nums[j] + 1:
