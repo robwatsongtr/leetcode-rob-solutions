@@ -37,7 +37,8 @@ class Graph:
 
         return result 
     
-    def dfs(self, start_node, visited=None):
+    # process the nodes "on the way down" the call stack recursion 
+    def dfs_preorder(self, start_node, visited=None):
         if start_node not in self.adjacency_list:
             raise ValueError(f"Node '{start_node}' Not found")
 
@@ -60,7 +61,32 @@ class Graph:
         traverse(start_node)
 
         return result 
+    
+    # process the nodes "on the way up" the call stack recursion 
+    def dfs_postorder(self, start_node, visited=None):
+        if start_node not in self.adjacency_list:        
+            raise ValueError(f'Node ${start_node} not found')
+        
+        if visited is None:
+            visited = set()
 
+        result = []
+
+        def traverse(node):
+            if node not in self.adjacency_list:
+                return None
+            
+            visited.add(node)
+
+            for neighbor in self.adjacency_list.get(node, []):
+                if neighbor not in visited:
+                    traverse(neighbor)
+            
+            result.append(node)
+
+        traverse(start_node)
+
+        return result 
 
 if __name__ == '__main__':
     g = Graph()
