@@ -25,17 +25,17 @@ class Solution(object):
     def containsNearbyDuplicate(self, nums, k):
         hashmap = {}
 
-        for i, current_num in enumerate(nums):
+        for i, same_num in enumerate(nums):
             # if there's a duplicate 
-            if current_num in hashmap:
+            if same_num in hashmap:
                 # assign j to the index of the duplicate 
-                j = hashmap[current_num]
+                j = hashmap[same_num]
                 # check if it is k indicies away.
                 if abs(i - j) <= k:
                     return True 
 
             # build the map 
-            hashmap[current_num] = i
+            hashmap[same_num] = i
 
         return False 
 
@@ -45,14 +45,14 @@ class Solution2:
         hashmap = {}
 
         for i in range(len(nums)):
-            curr_num = nums[i]
+            same_num = nums[i]
 
-            if curr_num in hashmap:
-                j = hashmap[curr_num]
+            if same_num in hashmap:
+                j = hashmap[same_num]
 
                 if abs(i - j) <= k:
                     return True 
 
-            hashmap[curr_num] = i
+            hashmap[same_num] = i
 
         return False 
