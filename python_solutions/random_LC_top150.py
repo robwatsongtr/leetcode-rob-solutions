@@ -16,7 +16,7 @@ def choose_random_150():
     ]
 
     medium_list = [
-        80, 167, 3
+        80, 167, 3, 209 
     ]
 
     challenging_easy = [
@@ -30,10 +30,10 @@ def choose_random_150():
     random_challenging_list_easy = random.choice(challenging_easy)
 
     # print(f"Random easy question: {random_easy}")
-    # print(f"Random medium question: {random_medium}")
     print(f"Random array easy question: {random_array_list_easy}")
     print(f"Random hashtable easy question: {random_hashtable_list_easy}")
     print(f"Random challenging easy question: {random_challenging_list_easy}")
+    print(f"Random medium question: {random_medium}")
     
 
 

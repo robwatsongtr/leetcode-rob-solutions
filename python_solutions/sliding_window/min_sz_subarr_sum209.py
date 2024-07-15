@@ -22,7 +22,7 @@ Output: 0
 """
 
 class Solution:
-    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+    def minSubArrayLen(self, target, nums):
         lptr = 0
         rptr = 0
         minLength = float('inf')
