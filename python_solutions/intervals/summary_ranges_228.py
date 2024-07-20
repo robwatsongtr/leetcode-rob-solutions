@@ -33,7 +33,6 @@ class Solution(object):
         while j < len(nums):
             
             # while there's a consecutive range, increment j. 
-            #
             # the condition ' j + 1 < len(nums) ' is because we are 
             # always checking one after and without that we would be checking out of bounds.
             while (j + 1) < len(nums) and nums[j + 1] == nums[j] + 1:

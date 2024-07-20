@@ -17,8 +17,6 @@ class Solution(object):
         sPtr = 0 
         tPtr = 0
 
-        if len(s) > len(t): 
-            return False
         if not s:
             return True  # An empty string is always a subsequence
 
@@ -45,9 +43,6 @@ class Solution2(object):
     def isSubsequence(self, s: str, t: str) -> bool:
         short_str, long_str = s, t 
         s, l = 0, 0
-
-        if len(short_str) > len(long_str):
-            return False
 
         if not short_str:
             return True
