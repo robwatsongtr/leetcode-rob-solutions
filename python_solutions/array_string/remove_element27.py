@@ -32,21 +32,6 @@ class Solution(object):
         
         return l 
 
-# lets try with a while loop for s*ts and giggles:    
-class Solution2(object):
-    def removeElement2(self, nums, val):
-        left = 0
-        right = 0
 
-        while right < len(nums):
-            if nums[right] == val:
-                right += 1
-                continue
-
-            nums[left] = nums[right]
-            left += 1
-            right += 1
-
-        return left 
 
         
