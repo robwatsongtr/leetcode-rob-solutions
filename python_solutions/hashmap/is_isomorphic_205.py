@@ -35,7 +35,6 @@ class Solution(object):
         dict_s = {}
         dict_t = {}
 
-        
         # enumerate returns a tuple, index and the item itself!!
         for i, charS in enumerate(s):
             charT = t[i]
@@ -88,5 +87,22 @@ class Solution2:
 
         return True 
 
+# probably the cleanest solution, using zip 
+class Solution3:
+    def isIsomorphic(self, s, t):
+        s_map = {}
+        t_map = {}
 
+        for s_char, t_char in zip(s, t):
+            if s_char not in s_map:
+                s_map[s_char] = t_char
+            elif s_map[s_char] != t_char:
+                return False
+            
+            if t_char not in t_map:
+                t_map[t_char] = s_char
+            elif t_map[t_char] != s_char:
+                return False
+
+        return True 
 

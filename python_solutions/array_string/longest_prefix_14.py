@@ -28,3 +28,14 @@ class Solution(object):
                 return ''
         
         return prefix
+
+# bit shorter with return 'ternary'  
+class Solution2:
+    def longestCommonPrefix(self, strs) -> str:
+        prefix = strs[0]
+
+        for word in strs:
+            while not word.startswith(prefix):
+                prefix = prefix[:-1]
+
+        return prefix if prefix else ''
