@@ -25,7 +25,7 @@ class Solution:
     def minSubArrayLen(self, target, nums):
         lptr = 0
         rptr = 0
-        minLength = float('inf')
+        min_size = float('inf')
         sum = 0
 
         # initally this expands the window from the start until the target is reached
@@ -37,11 +37,8 @@ class Solution:
             # contracts window border from the left when the sum is greater than or equal 
             # to target and keeps a running minimum 
             while sum >= target:
-                minLength = min(minLength, rptr - lptr)
+                min_size = min(min_size, rptr - lptr)
                 sum -= nums[lptr]
                 lptr += 1
 
-        if minLength == float('inf'):
-            return 0
-        else:
-            return minLength
+        return 0 if min_size == float('inf') else min_size
