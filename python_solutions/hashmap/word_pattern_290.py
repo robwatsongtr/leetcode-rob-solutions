@@ -48,3 +48,22 @@ class Solution(object):
         
         return True
 
+# shorter solution using zip
+class Solution(object):
+    def wordPattern(self, pattern, s):
+        words = s.split()
+        hashmap = {}
+
+        if len(words) != len(pattern):
+            return False 
+
+        for word, pattern_char in zip(words, pattern):
+            if pattern_char in hashmap:
+                if hashmap[pattern_char] != word:
+                    return False
+            elif word in hashmap.values():
+                return False 
+
+            hashmap[pattern_char] = word
+        
+        return True 
