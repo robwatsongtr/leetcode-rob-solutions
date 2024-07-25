@@ -30,4 +30,19 @@ class Solution(object):
         #if the stack is empty here then return true, the parens are balanced.
         return not stack
 
-        
+#shorter:
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        parens_map = { "(":")", "[":"]","{":"}" }
+
+        for bracket in s:
+            if bracket in parens_map:
+                stack.append(bracket)
+            elif stack and bracket == parens_map[stack[-1]]:
+                stack.pop()
+            else:
+                return False
+
+        return not stack 
+    
