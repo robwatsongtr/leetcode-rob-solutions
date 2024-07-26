@@ -39,13 +39,10 @@ class Solution2(object):
         candidate = None
         count = 0
 
-        for curr_num in nums:
+        for num in nums:
             if count == 0:
-                candidate = curr_num
+                candidate = num
 
-            if curr_num == candidate:
-                count += 1
-            else:
-                count -= 1
+            count += 1 if num == candidate else - 1
 
         return candidate 

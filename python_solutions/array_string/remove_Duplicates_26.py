@@ -28,6 +28,9 @@ class Solution:
         while i_dups < len(nums):
             # if this if is true duplicate run has ended so copy over the new non dup number
             # next to the last non dup number 
+            #
+            # So essentially k places the next non unique number, and i searches for the 
+            # next unique number, which is after the end of a duplicate run 
             if nums[i_dups] != nums[k_unique - 1]:
                 nums[k_unique] = nums[i_dups]
                 k_unique += 1
