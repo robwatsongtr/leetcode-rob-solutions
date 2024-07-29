@@ -26,13 +26,12 @@ class Solution:
             return len(nums)
 
         k_unique = 2  # Start from the third element
-        i = 2  # Start from the third element in the list
+        i_dups = 2  # Start from the third element in the list
 
-        while i < len(nums):
-            if nums[i] != nums[k_unique - 2]:
-                nums[k_unique] = nums[i]
-                k_unique += 1
-                
-            i += 1
+        while i_dups < len(nums):
+            if nums[i_dups] != nums[k_unique - 2]:
+                nums[k_unique] = nums[i_dups]
+                k_unique += 1   
+            i_dups += 1
 
         return k_unique
