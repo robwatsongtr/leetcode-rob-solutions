@@ -11,14 +11,13 @@ class Solution(object):
     def isPalindrome(self, s):
         s = "".join(char.lower() for char in s if char.isalnum())
 
-        lp = 0
-        rp = len(s) - 1
+        l = 0
+        r = len(s) - 1
 
-        while lp < rp: 
-            if s[lp] != s[rp]:
-                return False
-            lp += 1
-            rp -= 1
+        while l < r: 
+            if s[l] != s[r]: return False
+            l += 1
+            r -= 1
 
         return True 
 

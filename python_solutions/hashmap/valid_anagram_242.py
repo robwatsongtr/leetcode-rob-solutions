@@ -55,3 +55,17 @@ class Solution2(object):
                 return False
 
         return True  
+    
+class Solution3(object):
+    def isAnagram(self, s, t):
+
+        def counter(iterable):
+            hashmap = {}
+            for i in iterable:
+                hashmap[i] = hashmap.get(i, 0) + 1
+            return hashmap
+
+        s_counter = counter(s)
+        t_counter = counter(t)
+
+        return s_counter == t_counter 
