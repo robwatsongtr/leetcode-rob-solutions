@@ -12,7 +12,7 @@ def choose_random_150():
     ]
 
     hashtable_list_easy = [
-        383, 290, 242, 1, 219, 205, 
+        383, 290, 242, 1, 219, 205, 202
     ]
 
     medium_list = [

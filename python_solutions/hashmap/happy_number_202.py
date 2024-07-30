@@ -36,18 +36,16 @@ class Solution(object):
     def isHappy(self, n):
         hashmap = {}
         
-        def square_and_add_digits(num):
-            return sum(int(digit) ** 2 for digit in str(num))
-
         # if the cycle hits 1 we exit loop and its happy
-        # if the sum of squre of digits repeats itself at all it's not happy 
-        # we use a hashmap to keep track of previous iterations 
         while n != 1:
+            # if the sum of squre of digits repeats itself at all it's not happy 
             if n in hashmap:
                 return False
 
+            # we use a hashmap to keep track of previous iterations 
             hashmap[n] = -1
-            n = square_and_add_digits(n)
+            # generator expression produces the sum of squared digits on the fly 
+            n = sum(int(digit) ** 2 for digit in str(n)) 
 
         return True 
         

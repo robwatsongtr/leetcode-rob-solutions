@@ -38,23 +38,15 @@ class Solution(object):
         return False 
 
 
-# better variable names, tuple assignment for shorter initialization section 
+# shorter 
 class Solution2(object):
     def isSubsequence(self, s: str, t: str) -> bool:
-        short_str, long_str = s, t 
-        s, l = 0, 0
+        s_ptr, t_ptr = 0, 0
 
-        if not short_str:
-            return True
+        while s_ptr < len(s) and t_ptr < len(t):
+            if s[s_ptr] == t[t_ptr]:
+                s_ptr += 1
+            t_ptr += 1
 
-        while l < len(long_str):
-            if long_str[l] == short_str[s]:
-                s += 1
-
-            l += 1
-            
-            if s == len(short_str):
-                return True
-
-        return False 
+        return s_ptr == len(s)
         
