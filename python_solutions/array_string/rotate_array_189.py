@@ -31,10 +31,13 @@ class Solution:
                 start += 1
                 end -= 1
 
-        k %= len(nums)        
-        
-        reverse(0, len(nums) - 1)
-        reverse(0, k - 1)
-        reverse(k, len(nums) - 1)
+        k %= len(nums)  # in case k is larger than the size of the array, 
+                        # modulo wraps around to the equivalent rotation less than
+                        # length of array        
+
+        # where the magic happens. You need three reversals to rotate an array:
+        reverse(0, len(nums) - 1) # reverse entire array
+        reverse(0, k - 1) # reverse first k elements
+        reverse(k, len(nums) - 1) # reverse the rest of array
 
     
