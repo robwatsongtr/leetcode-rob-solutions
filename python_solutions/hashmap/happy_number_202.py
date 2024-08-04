@@ -44,7 +44,9 @@ class Solution(object):
 
             # we use a hashmap to keep track of previous iterations 
             hashmap[n] = -1
+
             # generator expression produces the sum of squared digits on the fly 
+            # next iteration of while loop it gets checked if its 1....
             n = sum(int(digit) ** 2 for digit in str(n)) 
 
         return True 
