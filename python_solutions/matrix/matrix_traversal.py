@@ -3,13 +3,13 @@
 def row_traversal(matrix):
     for row in matrix:
         for element in row:
-            print(element)
+            print(element, end=' ')
     print()
 
 def column_traversal(matrix):
     for col in range(len(matrix[0])):
         for row in range(len(matrix)):
-            print(matrix[row][col])
+            print(matrix[row][col], end=' ')
     print()
         
 
