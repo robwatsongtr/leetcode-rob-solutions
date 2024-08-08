@@ -12,9 +12,7 @@ def column_traversal(matrix):
             print(matrix[row][col], end=' ')
     print()
         
-
-
-
+        
 if __name__ == "__main__":
     matrix = [
         [1, 2, 3],
