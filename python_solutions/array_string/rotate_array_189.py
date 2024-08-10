@@ -35,7 +35,7 @@ class Solution:
                         # modulo wraps around to the equivalent rotation less than
                         # length of array        
 
-        # where the magic happens. You need three reversals to rotate an array:
+        # where the magic happens. You need three reversals to rotate an array by k steps:
         reverse(0, len(nums) - 1) # reverse entire array
         reverse(0, k - 1) # reverse first k elements
         reverse(k, len(nums) - 1) # reverse the rest of array
