@@ -21,8 +21,9 @@ class Solution(object):
         if len(needle) > len(haystack):
             return -1 
 
-        # the range takes into account the length of the needle so you don't
-        # end up with an out of range error 
+        # the range takes into account the length of the needle so you only look 
+        # up to a total length of where the needle could fit. the + 1 on len(needle) 
+        # is because the python range method doesn't include the last element 
         for i in range(len(haystack) - len(needle) + 1):
             j = 0
             # inner loop will try and loop the length of needle within the haystack
