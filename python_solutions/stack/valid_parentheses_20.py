@@ -41,8 +41,10 @@ class Solution:
                 stack.append(bracket)
             elif stack and bracket == parens_map[stack[-1]]:
                 stack.pop()
+            # the else checks for improper sequencing or invalid characters,
             else:
                 return False
 
+        # checks for balance of parens 
         return not stack 
     
