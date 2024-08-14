@@ -44,14 +44,18 @@ class Solution:
                 return int(op1 / op2)
 
         for token in tokens:
+            # if token is an operand, push to stack
             if token not in operators:
                 stack.append(int(token))
             else:
+                # token is an operator, so pop off last two operands 
+                # and do the operation, then push it back to stack 
                 op2 = stack.pop() 
                 op1 = stack.pop() 
                 partial_result = do_operations(token, op2, op1)
                 stack.append(partial_result)
 
+        # last item on the stack is the final result of the expression 
         final_result = stack.pop()
 
         return final_result

@@ -26,8 +26,13 @@ class Solution:
         furthest = 0
 
         for i in range(len(nums)):
-            # this is the case of you're 'stuck', like on a 0
-            if i > furthest: return False 
+            # The first if check ensures that you're only updating furthest if you're still within 
+            # reach (i.e., i <= furthest). This is crucial because the calculation 
+            # furthest = max(furthest, nums[i] + i) relies on i being reachable.
+            # if i > furthest that means your standing at an index that is the max distance you can go in the array,
+            # ie its position is greater than the current furthest, hence you're stuck. 
+            if i > furthest: 
+                return False 
 
             furthest = max(furthest, nums[i] + i)
             
