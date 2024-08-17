@@ -16,11 +16,11 @@ def choose_random_150():
     ]
 
     easy_medium_list = [
-        80, 167, 189
+        80, 167, 189, 151
     ]
 
     medium_list = [
-        3, 209, 122, 55, 151, 150, 12, 134, 238 
+        3, 209, 122, 55, 150, 12, 134, 238 
     ]
 
     challenging_easy = [

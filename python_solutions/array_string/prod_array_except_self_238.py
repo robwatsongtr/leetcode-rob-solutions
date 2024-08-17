@@ -27,13 +27,15 @@ class Solution:
         answer = [1] * len(nums)
 
         # calculate prefix sums and store in answer array
-        left_product = 1
+        left_product = 1 # keeps track of running product 
         for i in range(len(nums)):
+            # this places the current accumulation in answer array 
             answer[i] = left_product
+            # this accumulates the multiplications 
             left_product *= nums[i]
 
         # calculate suffix sums, and multiply against what's in the answer array
-        right_product = 1
+        right_product = 1 # keeps track of running product 
         for i in range(len(nums) - 1, -1, -1):
             answer[i] *= right_product
             right_product *= nums[i]
