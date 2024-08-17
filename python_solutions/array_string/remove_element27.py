@@ -16,7 +16,7 @@ Return k.
 
 
 """
-
+# positive logic version 
 class Solution(object):
     def removeElement(self, nums, val):
         l = 0
@@ -33,5 +33,17 @@ class Solution(object):
         return l 
 
 
+# negative logic version
+class Solution:
+    def removeElement(self, nums, val: int) -> int:
+        lp = 0
+        
+        for rp in range(len(nums)):
+            if nums[rp] != val:
+                nums[lp] = nums[rp]
+                lp += 1
 
+        return lp
+
+        
         
