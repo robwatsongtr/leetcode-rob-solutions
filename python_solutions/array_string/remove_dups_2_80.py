@@ -22,9 +22,7 @@ the input array in-place with O(1) extra memory.
 
 class Solution:
     def remove_duplicates(nums):
-        if len(nums) <= 2:
-            return len(nums)
-
+  
         k_unique = 2  # Start from the third element
         i_dups = 2  # Start from the third element in the list
 
@@ -35,3 +33,16 @@ class Solution:
             i_dups += 1
 
         return k_unique
+    
+
+# for loop version
+class Solution:
+    def removeDuplicates(self, nums) -> int:
+        k_unique = 2
+
+        for i_dups in range(2, len(nums)):
+            if nums[i_dups] != nums[k_unique - 2]:
+                nums[k_unique] = nums[i_dups]
+                k_unique += 1
+        
+        return k_unique 

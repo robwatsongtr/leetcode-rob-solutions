@@ -20,15 +20,15 @@ class Solution:
             (1, 'I')
         ]
 
-        roman_numeral = ''
+        result = ''
 
         # iterate over each tuple in tuple array 
         for val, rn in value_map:
-            # while num in its current state is greater or equal to current value in tuple array
+            # while (input) num in its current state is greater or equal to current value in tuple array
             while num >= val:
                 # append the corresponding roman numeral to result
-                roman_numeral += rn 
+                result += rn 
                 # subtract that value from num  
                 num -= val
 
-        return roman_numeral
+        return result
