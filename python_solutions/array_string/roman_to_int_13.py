@@ -32,8 +32,10 @@ class Solution(object):
 
         return result
     
-# put curent and next into their own variables
-class Solution2:
+    
+
+# Flip the if condition
+class Solution:
     def romanToInt(self, s: str) -> int:
         roman_map = {
             "I": 1,
@@ -47,13 +49,10 @@ class Solution2:
 
         result = roman_map[s[-1]]
 
-        for i in range(len(s) - 2, -1, -1):
-            curr = s[i]
-            next = s[i + 1]
-            
-            if roman_map[next] > roman_map[curr]:
-                result -= roman_map[curr]
+        for i in range(len(s) - 2, - 1, - 1):
+            if roman_map[s[i + 1]] > roman_map[s[i]]:
+                result -= roman_map[s[i]]
             else:
-                result += roman_map[curr]
+                result += roman_map[s[i]]
 
         return result 
