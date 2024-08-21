@@ -12,6 +12,21 @@ it is guaranteed to be unique
 
 """
 
+"""
+
+Greedy solution synopsis:
+
+Traverse the gas stations while maintaining a running total of the current surplus (current_gas). 
+If current_gas drops below zero, this means you can't start from the current start station, so you 
+should move the starting point to the next station.
+
+The sum of all gas minus the sum of all costs (total_gas) must be non-negative for a solution to exist.
+If total_gas is non-negative, the last start point you attempted when your current_gas dropped below 
+zero is the correct starting point.
+
+"""
+
+
 class Solution:
     def canCompleteCircuit(self, gas, cost) -> int:
         total_gas = 0
