@@ -36,7 +36,4 @@ class Solution:
 
             furthest = max(furthest, nums[i] + i)
             
-            if furthest >= len(nums) - 1:
-                return True
-        
-        return False 
+        return furthest >= len(nums) - 1
