@@ -21,16 +21,17 @@ impossible to reach the last index.
 """
 
 # Greedy solution:
+
+# The first if check ensures that you're only updating furthest if you're still within 
+# reach (i.e., i <= furthest). This is crucial because the calculation 
+# furthest = max(furthest, nums[i] + i) relies on i being reachable.
+# if i > furthest that means your standing at an index that is the max distance you can go in the array,
+# ie its position is greater than the current furthest, hence you're stuck. 
 class Solution:
     def canJump(self, nums) -> bool:
         furthest = 0
 
         for i in range(len(nums)):
-            # The first if check ensures that you're only updating furthest if you're still within 
-            # reach (i.e., i <= furthest). This is crucial because the calculation 
-            # furthest = max(furthest, nums[i] + i) relies on i being reachable.
-            # if i > furthest that means your standing at an index that is the max distance you can go in the array,
-            # ie its position is greater than the current furthest, hence you're stuck. 
             if i > furthest: 
                 return False 
 
