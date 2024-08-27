@@ -19,6 +19,26 @@ class WeightedGraph:
         self.adj_list[node1][node2] = weight
         self.adj_list[node2][node1] = weight 
 
+    def bfs(self, start_node):
+        queue = []
+        visited = set()
+        result = []
+
+        queue.append(start_node)
+        visited.add(start_node)
+
+        while len(queue) > 0:
+            current = queue.pop(0)
+            result.append(current)
+
+            for neighbor in self.adj_list:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
+
+        return result 
+
+ 
 
 if __name__ == '__main__':
     g = WeightedGraph()
@@ -37,3 +57,4 @@ if __name__ == '__main__':
 
     pprint.pprint(g.adj_list)
     
+    pprint.pprint(f'BFS from San Rafael: {g.bfs('San Rafael')}')
