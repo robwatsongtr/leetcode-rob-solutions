@@ -5,12 +5,11 @@ class WeightedGraph:
     def __init__(self):
         self.adj_list = {}
 
-    # setting up the nested dict
     def add_node(self, node):
         if node not in self.adj_list:
             self.adj_list[node] = []
 
-    # use a nested dictionary to store the edge and weight 
+    # storing edges and weights as a list of tuples 
     def add_edge(self, node1, node2, weight):
         if node1 not in self.adj_list:
             self.add_node(node1)
@@ -39,19 +38,45 @@ class WeightedGraph:
 
         return result 
      
-    def dijkstra_shortest(self, start, finish):
+    # this implementation will give the shortest distance to any other node
+    # from the passed in start node: it returns a dict 
+    def dijkstra_shortest(self, start):
         priority_queue = []
         distances = {}
-        previous = {}
 
+        # set up distances map with all infinty, except starting node set to 0 
         for node in self.adj_list:
-            if node == start:
-                distances[node] = 0
-                heapq.heappush( priority_queue,(node, 0) )
-            else:
                 distances[node] = float('inf')
-                heapq.heappush( priority_queue, (node, float('inf')) )
+        distances[start] = 0
+        heapq.heappush(priority_queue, (0, start))
+
+        # the heart of the algo. Process the priority queue. 
+        while priority_queue:
+            # get the smallest distance node from the minheap
+            curr_distance, curr_node = heapq.heappop(priority_queue)
+
+            # optimization: discard 'old data' about the node 
+            if curr_distance > distances[curr_node]:
+                continue 
+
+            # sort of a 'bfs' through the adj list 
+            for neighbor, weight in self.adj_list[curr_node]:
+                dist = curr_distance + weight
+
+                # this is the 'greedy part'. Only consider the path if its less cost 
+                # if so update priority queue 
+                if dist < distances[neighbor]:
+                    distances[neighbor] = dist 
+                    heapq.heappush(priority_queue, (dist, neighbor))
+
+        return distances
  
+
+
+
+
+
+
 
 if __name__ == '__main__':
     g = WeightedGraph()
