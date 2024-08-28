@@ -1,4 +1,5 @@
 import pprint 
+import heapq 
 
 class WeightedGraph:
     def __init__(self):
@@ -7,7 +8,7 @@ class WeightedGraph:
     # setting up the nested dict
     def add_node(self, node):
         if node not in self.adj_list:
-            self.adj_list[node] = {}
+            self.adj_list[node] = []
 
     # use a nested dictionary to store the edge and weight 
     def add_edge(self, node1, node2, weight):
@@ -16,8 +17,8 @@ class WeightedGraph:
         if node2 not in self.adj_list:
             self.add_node(node2)
 
-        self.adj_list[node1][node2] = weight
-        self.adj_list[node2][node1] = weight 
+        self.adj_list[node1].append((node2, weight))
+        self.adj_list[node2].append((node1, weight))
 
     def bfs(self, start_node):
         queue = []
@@ -37,7 +38,19 @@ class WeightedGraph:
                     queue.append(neighbor)
 
         return result 
+     
+    def dijkstra_shortest(self, start, finish):
+        priority_queue = []
+        distances = {}
+        previous = {}
 
+        for node in self.adj_list:
+            if node == start:
+                distances[node] = 0
+                heapq.heappush( priority_queue,(node, 0) )
+            else:
+                distances[node] = float('inf')
+                heapq.heappush( priority_queue, (node, float('inf')) )
  
 
 if __name__ == '__main__':
