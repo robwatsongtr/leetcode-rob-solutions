@@ -31,7 +31,8 @@ class WeightedGraph:
             current = queue.pop(0)
             result.append(current)
 
-            for neighbor in self.adj_list:
+            # need _ because don't forget iterating over a list of tuples 
+            for neighbor, _ in self.adj_list[current]:
                 if neighbor not in visited:
                     visited.add(neighbor)
                     queue.append(neighbor)
@@ -44,13 +45,13 @@ class WeightedGraph:
         priority_queue = []
         distances = {}
 
-        # set up distances map with all infinty, except starting node set to 0 
+        # set up distances map with all infinty, except starting node set to 0
+        # push only the start node to the priority queue  
         for node in self.adj_list:
                 distances[node] = float('inf')
         distances[start] = 0
         heapq.heappush(priority_queue, (0, start))
 
-        # the heart of the algo. Process the priority queue. 
         while priority_queue:
             # get the smallest distance node from the minheap
             curr_distance, curr_node = heapq.heappop(priority_queue)
@@ -64,19 +65,11 @@ class WeightedGraph:
                 dist = curr_distance + weight
 
                 # this is the 'greedy part'. Only consider the path if its less cost 
-                # if so update priority queue 
                 if dist < distances[neighbor]:
                     distances[neighbor] = dist 
                     heapq.heappush(priority_queue, (dist, neighbor))
 
         return distances
- 
-
-
-
-
-
-
 
 if __name__ == '__main__':
     g = WeightedGraph()
@@ -95,4 +88,5 @@ if __name__ == '__main__':
 
     pprint.pprint(g.adj_list)
     
-    pprint.pprint(f'BFS from San Rafael: {g.bfs('San Rafael')}')
+    print( f'BFS from San Rafael: {g.bfs('San Rafael')}' )
+    print( f'Dijkstras algo from Oakland: {g.dijkstra_shortest('Oakland')}' )
