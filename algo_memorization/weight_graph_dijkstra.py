@@ -31,7 +31,7 @@ class WeightedGraph:
             current = queue.pop(0)
             result.append(current)
 
-            # need _ because don't forget iterating over a list of tuples 
+            # need _ because iterating over a list of tuples 
             for neighbor, _ in self.adj_list[current]:
                 if neighbor not in visited:
                     visited.add(neighbor)
@@ -52,22 +52,26 @@ class WeightedGraph:
         distances[start] = 0
         heapq.heappush(priority_queue, (0, start))
 
+        # Every time a node is processed, the algorithm checks all its neighbors (using the adjacency list) and 
+        # updates the shortest known distance to those neighbors (using the distances map). 
+        # The priority queue ensures that nodes are processed in order of their current shortest known distance.
         while priority_queue:
             # get the smallest distance node from the minheap
             curr_distance, curr_node = heapq.heappop(priority_queue)
 
-            # optimization: discard 'old data' about the node 
+            # The condition ensures that you skip any outdated or less optimal entries in the queue, 
+            #which is a standard optimization to avoid processing nodes more than once with worse paths.
             if curr_distance > distances[curr_node]:
                 continue 
 
             # sort of a 'bfs' through the adj list 
             for neighbor, weight in self.adj_list[curr_node]:
-                dist = curr_distance + weight
+                dist_to_eval = curr_distance + weight
 
                 # this is the 'greedy part'. Only consider the path if its less cost 
-                if dist < distances[neighbor]:
-                    distances[neighbor] = dist 
-                    heapq.heappush(priority_queue, (dist, neighbor))
+                if dist_to_eval < distances[neighbor]:
+                    distances[neighbor] = dist_to_eval 
+                    heapq.heappush(priority_queue, (dist_to_eval, neighbor))
 
         return distances
 
