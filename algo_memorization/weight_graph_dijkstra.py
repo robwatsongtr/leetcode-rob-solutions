@@ -44,11 +44,13 @@ class WeightedGraph:
     def dijkstra_shortest(self, start):
         priority_queue = []
         distances = {}
+        predecessors = {} # used for backtrakcing to reconstruct path 
 
         # set up distances map with all infinty, except starting node set to 0
         # push only the start node to the priority queue  
         for node in self.adj_list:
                 distances[node] = float('inf')
+                predecessors[node] = None
         distances[start] = 0
         heapq.heappush(priority_queue, (0, start))
 
@@ -69,8 +71,10 @@ class WeightedGraph:
                 dist_to_eval = curr_distance + weight
 
                 # this is the 'greedy part'. Only consider the path if its less cost 
+                # if so, update the distances map and push back to the priority queue 
                 if dist_to_eval < distances[neighbor]:
                     distances[neighbor] = dist_to_eval 
+                    predecessors[neighbor] = curr_node # used for backtrackingto reconstruct path
                     heapq.heappush(priority_queue, (dist_to_eval, neighbor))
 
         return distances
