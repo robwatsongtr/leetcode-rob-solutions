@@ -62,7 +62,7 @@ class WeightedGraph:
             curr_distance, curr_node = heapq.heappop(priority_queue)
 
             # The condition ensures that you skip any outdated or less optimal entries in the queue, 
-            #which is a standard optimization to avoid processing nodes more than once with worse paths.
+            # Standard optimization to avoid processing nodes more than once with worse paths.
             if curr_distance > distances[curr_node]:
                 continue 
 
@@ -74,10 +74,23 @@ class WeightedGraph:
                 # if so, update the distances map and push back to the priority queue 
                 if dist_to_eval < distances[neighbor]:
                     distances[neighbor] = dist_to_eval 
-                    predecessors[neighbor] = curr_node # used for backtrackingto reconstruct path
+                    predecessors[neighbor] = curr_node # used for backtracking to reconstruct path
                     heapq.heappush(priority_queue, (dist_to_eval, neighbor))
 
-        return distances
+        return distances, predecessors
+    
+    def reconstruct_path(self, predecessors, start, end):
+        path = []
+        curr = end
+        while curr is not None:
+            path.append(curr)
+            curr = predecessors[curr]
+        
+        path.reverse()
+        return path 
+
+
+
 
 if __name__ == '__main__':
     g = WeightedGraph()
