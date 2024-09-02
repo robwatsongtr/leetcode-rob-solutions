@@ -62,7 +62,6 @@ class WeightedGraph:
             curr_distance, curr_node = heapq.heappop(priority_queue)
 
             # The condition ensures that you skip any outdated or less optimal entries in the queue, 
-            # Standard optimization to avoid processing nodes more than once with worse paths.
             if curr_distance > distances[curr_node]:
                 continue 
 
@@ -79,6 +78,7 @@ class WeightedGraph:
 
         return distances, predecessors
     
+    # traversess the predecessors map to reconstruct path 
     def reconstruct_path(self, predecessors, start, end):
         path = []
         curr = end
