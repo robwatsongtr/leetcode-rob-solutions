@@ -35,7 +35,8 @@ class Solution:
             rptr += 1
 
             # contracts window border from the left when the sum is greater than or equal 
-            # to target and keeps a running minimum 
+            # to target by subtracting out the leftmost number, incrementing the left pointer 
+            # and keeps a running minimum 
             while sum >= target:
                 min_size = min(min_size, rptr - lptr)
                 sum -= nums[lptr]
