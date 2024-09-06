@@ -19,16 +19,15 @@ Explanation: You need to reduce multiple spaces between two words to a single sp
 
 class Solution:
     def reverseWords(self, s: str) -> str:
-        word_arr = s.split()
-
+        s = s.split()
         lp = 0
-        rp = len(word_arr) - 1
+        rp = len(s) - 1
 
         while lp < rp:
-            temp = word_arr[lp]
-            word_arr[lp] = word_arr[rp]
-            word_arr[rp] = temp
+            temp = s[lp]
+            s[lp] = s[rp]
+            s[rp] = temp
             lp += 1
             rp -= 1
 
-        return " ".join(word_arr)
+        return " ".join(s)
