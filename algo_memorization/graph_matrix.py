@@ -36,6 +36,21 @@ class MatrixGraph:
                     queue.append((new_row, new_col))
                     
         return result 
+    
+    def dfs(self, start):
+        visited = set()
+        row, col = start 
+        result = []
+        
+        visited.add(start)
+
+        for d_r, d_c in self.directions:
+            new_row, new_col = d_r + row, d_c + col
+            if self.is_within_bounds(new_row, new_col) and (new_row, new_col) not in visited:
+                self.dfs(self, new_row, new_col)
+
+
+
 
 
 if __name__ == '__main__':
