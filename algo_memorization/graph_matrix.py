@@ -39,16 +39,21 @@ class MatrixGraph:
     
     def dfs(self, start):
         visited = set()
-        row, col = start 
         result = []
         
-        visited.add(start)
+        def traverse(current):
+            visited.add(current)
+            result.append(current)
+            row, col = current 
 
-        for d_r, d_c in self.directions:
-            new_row, new_col = d_r + row, d_c + col
-            if self.is_within_bounds(new_row, new_col) and (new_row, new_col) not in visited:
-                self.dfs(self, new_row, new_col)
+            for d_r, d_c in self.directions:
+                new_row, new_col = d_r + row, d_c + col
+                # failing if statement here breaks the recursion automatically:
+                if self.is_within_bounds(new_row, new_col) and (new_row, new_col) not in visited:
+                    traverse( (new_row, new_col) ) # get the tuples properly
 
+        traverse(start)
+        return result 
 
 
 
@@ -58,7 +63,9 @@ if __name__ == '__main__':
 
     mat_1 = MatrixGraph(matrix_1)
 
-    print(f'bfs traversal of matrix_1: { mat_1.bfs((2,2)) }')
+    print(f'bfs traversal of matrix_1: { mat_1.bfs((1,1)) }')
+    print()
+    print(f'dfs traversal of matrix_1: { mat_1.dfs((1,1)) }')
 
 
 
