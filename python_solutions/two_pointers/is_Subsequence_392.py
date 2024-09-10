@@ -49,4 +49,20 @@ class Solution2(object):
             t_ptr += 1
 
         return s_ptr == len(s)
+    
+class Solution(object):
+    def isSubsequence(self, s: str, t: str) -> bool:
+        s_ptr = 0
+        t_ptr = 0
+
+        if not s: return True 
+
+        for t_ptr in range(len(t)):
+            if s[s_ptr] == t[t_ptr]:
+                s_ptr += 1
+
+            if s_ptr == len(s):
+                return True
+
+        return False 
         
