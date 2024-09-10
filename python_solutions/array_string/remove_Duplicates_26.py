@@ -18,7 +18,7 @@ Return k.
 """
 
 class Solution:
-    def remove_duplicates(nums):
+    def remove_duplicates(self, nums):
         if len(nums) == 0:
             return 0
 
@@ -38,3 +38,16 @@ class Solution:
             i_dups += 1 # this keeps incrementing as long as there are duplicates 
 
         return k_unique
+    
+
+# more concise:
+class Solution:
+    def removeDuplicates(self, nums) -> int:
+        l = 1
+
+        for r in range(1, len(nums)):
+            if nums[r] != nums[l - 1]:
+                nums[l] = nums[r]
+                l += 1
+
+        return l 
