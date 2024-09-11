@@ -58,8 +58,7 @@ class Graph:
                 if neighbor not in visited:
                     traverse(neighbor)
 
-        traverse(start_node)
-
+        traverse(start_node) 
         return result 
     
     # process the nodes "on the way up" the call stack recursion 
@@ -85,7 +84,6 @@ class Graph:
             result.append(node)
 
         traverse(start_node)
-
         return result 
 
 if __name__ == '__main__':

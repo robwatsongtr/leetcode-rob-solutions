@@ -37,7 +37,7 @@ class MatrixGraph:
                     
         return result 
     
-    def dfs(self, start):
+    def dfs_preorder(self, start):
         visited = set()
         result = []
         
@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
     print(f'bfs traversal of matrix_1: { mat_1.bfs((1,1)) }')
     print()
-    print(f'dfs traversal of matrix_1: { mat_1.dfs((1,1)) }')
+    print(f'dfs preorder traversal of matrix_1: { mat_1.dfs_preorder((1,1)) }')
 
 
 
