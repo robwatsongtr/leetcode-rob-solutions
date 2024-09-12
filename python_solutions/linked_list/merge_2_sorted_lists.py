@@ -49,4 +49,29 @@ class Solution(object):
             curr.next = p2
 
         return dummy_node.next 
+    
+
+class Solution:
+    def mergeTwoLists(self, list1, list2) :
+        dummy_node = ListNode(-1)
+        p1 = list1
+        p2 = list2
+        curr = dummy_node
+
+        while p1 and p2:
+            if p1.val <= p2.val:
+                curr.next = p1
+                p1 = p1.next 
+            else:
+                curr.next = p2
+                p2 = p2.next
+
+            curr = curr.next 
+
+        if p1:
+            curr.next = p1
+        if p2:
+            curr.next = p2
+
+        return dummy_node.next
         
