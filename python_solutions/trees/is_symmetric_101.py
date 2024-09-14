@@ -15,6 +15,7 @@ class TreeNode(object):
 
 class Solution(object):
     def isSymmetric(self, root):
+        result = False  
         
         def isMirror(left, right):
             # we have reached the furthest leaves and didnt fail the tests so is symmetric 
@@ -31,6 +32,8 @@ class Solution(object):
 
             # check the symmetry of the subtrees rooted at pairs of nodes
             return isMirror(left.left, right.right) and isMirror(left.right, right.left)
+        
+        result = isMirror(root.left, root.right)
 
-        return isMirror(root.left, root.right)
+        return result 
 
