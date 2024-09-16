@@ -45,7 +45,7 @@ def choose_random_150():
    
 
     print(f"Random medium question 1: {random_medium_1}")
-    print(f"Random medium question 1: {random_medium_2}")
+    print(f"Random medium question 2: {random_medium_2}")
     
     print(f"Random linked list easy: {random_linked_list_easy}")
     print(f"Random bin tree easy: {random_bin_tree_easy}")

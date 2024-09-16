@@ -9,17 +9,17 @@ element left to examine. which is why you need it instead of while lptr < rptr
 """
 class Solution:
     def search(self, nums, target: int) -> int:
-        lptr = 0
-        rptr = len(nums) - 1
+        min = 0
+        max = len(nums) - 1
 
-        while lptr <= rptr:
-            mid_idx = (lptr + rptr) // 2
+        while min <= max:
+            mid = (min + max) // 2
 
-            if nums[mid_idx] == target:
-                return mid_idx
-            elif nums[mid_idx] > target:
-                rptr = mid_idx - 1 #  the - 1 excludes the current mid
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] > target:
+                max = mid - 1 #  the - 1 excludes the current mid
             else:
-                lptr = mid_idx + 1 # the + 1 excludes the current mid 
+                min = mid + 1 # the + 1 excludes the current mid 
 
         return -1 

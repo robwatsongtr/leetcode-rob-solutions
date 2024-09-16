@@ -12,7 +12,7 @@ class Sort:
             # used for early exit if no more swaps, that means we're done sorting now 
             swapped = False
             # Inner loop compares adjacent elements and swaps them if needed.
-            # The range shrinks with each outer pass because the largest elements "bubble" to the end.
+            # The range shrinks with each outer pass because the largest elements "bubble" to the end
             for j in range(list_len - outer_pass - 1):
                 if list[j] > list[j + 1]:
                     self.swap(list, j, j + 1)
@@ -23,7 +23,7 @@ class Sort:
         
         return list 
     
-    # Selection sort scans the array for the smallest element and when found swaps it to the front 
+    # Selection sort scans the array for the lowest element and when found swaps it to the front 
     # of the array, swapped to the next unsorted index
     def selection_sort(self, list):
         for i in range(len(list)):
@@ -32,11 +32,31 @@ class Sort:
                 if list[j] < list[lowest]:
                     lowest = j
             
-            # The if statement ensures that you only swap when i and lowest refer to different indices.d
+            # The if statement ensures that you only swap when i and lowest refer to different indices
             if i != lowest:
                 self.swap(list, i, lowest)
         
         return list 
+    
+    def insertion_sort(self, list):
+        for i in range(1, len(list)):
+            curr = list[i] # current val is saved in variable to copy back 
+
+            j = i - 1 # start j one before i, this will be the sorted side
+
+            # Shift elements of the sorted portion to the right until we find the correct position for curr
+            while j >= 0 and list[j] > curr:
+                list[j + 1] = list[j] # shift element at j to the right
+                j -= 1 # move left to compare the next element
+            
+            # Insert curr into its correct position (just after where we stopped the while loop)
+            list[j + 1] = curr
+
+        return list 
+            
+            
+
+
             
 
 
