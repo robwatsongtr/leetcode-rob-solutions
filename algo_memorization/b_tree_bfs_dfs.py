@@ -34,12 +34,10 @@ class Binary_Tree:
 
             if node.left:
                 traverse(node.left)
-
             if node.right:
                 traverse(node.right)
 
         traverse(root)
-
         return result
     
     def DFS_inorder(self, root):
@@ -58,7 +56,6 @@ class Binary_Tree:
                 traverse(node.right)
         
         traverse(root)
-
         return result
     
     def DFS_postorder(self, root):
@@ -70,14 +67,12 @@ class Binary_Tree:
             
             if node.left:
                 traverse(node.left)
-
             if node.right:
                 traverse(node.right)
 
             result.append(node.val)
 
         traverse(root)
-
         return result 
 
 

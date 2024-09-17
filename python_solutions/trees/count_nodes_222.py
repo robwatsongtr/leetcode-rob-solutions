@@ -47,7 +47,6 @@ class Solution:
             
             if node.left:
                 traverse(node.left)
-
             if node.right:
                 traverse(node.right)
 
@@ -56,6 +55,17 @@ class Solution:
         traverse(root)
 
         return count 
+    
+# simpler implementation without helper dfs func
+class Solution2:
+    def countNodes(self, root) -> int:
+        if not root:
+            return 0
+
+        l_count = self.countNodes(root.left)
+        r_count = self.countNodes(root.right)
+
+        return l_count + r_count + 1
 
 
 
