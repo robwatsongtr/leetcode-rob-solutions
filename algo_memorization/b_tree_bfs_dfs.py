@@ -23,6 +23,9 @@ class Binary_Tree:
 
         return result 
     
+
+    # for DFS the if checks on left and right are not strictly necessary, they are an optimization
+    # than can potentially reduce the recursion depth 
     def DFS_preorder(self, root):
         result = []
 
@@ -85,9 +88,13 @@ def main():
     )
 
     print(f"Breadth First Search:  {btree.BFS(root)}")
+    print()
     print(f"DFS Pre-order {btree.DFS_preorder(root)}")
+    print()
     print(f"DFS In-order {btree.DFS_inorder(root)}")
+    print()
     print(f"DFS Post-order {btree.DFS_postorder(root)}")
+    print()
 
 if __name__ == "__main__":
     main()
