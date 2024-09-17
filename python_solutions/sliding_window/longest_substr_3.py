@@ -33,6 +33,8 @@ def lengthOfLongestSubstring(s):
             unique.add(s[r_ptr])
             r_ptr += 1
             max_len = max(max_len, len(unique))
+            # rawdogging fining the max: 
+            # max_len = max_len if max_len > len(unique) else len(unique) 
         else:
             unique.remove(s[l_ptr])
             l_ptr += 1
