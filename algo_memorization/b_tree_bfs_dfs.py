@@ -24,7 +24,7 @@ class Binary_Tree:
         return result 
     
 
-    # for DFS the if checks on left and right are not strictly necessary, they are an optimization
+    # for DFS, the 'if checks' on left and right are not strictly necessary, they are an optimization
     # than can potentially reduce the recursion depth 
     def DFS_preorder(self, root):
         result = []
