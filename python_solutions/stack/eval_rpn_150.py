@@ -41,12 +41,12 @@ class Solution:
             elif operator == '*':
                 return op1 * op2
             elif operator == '/':
-                return int(op1 / op2)
+                return int(op1 / op2) # need this to truncate towards zero 
 
         for token in tokens:
             # if token is an operand, push to stack
             if token not in operators:
-                stack.append(int(token))
+                stack.append(int(token)) # need to convert to int s
             else:
                 # token is an operator, so pop off last two operands 
                 # and do the operation, then push it back to stack 
