@@ -58,6 +58,59 @@ class Linked_list:
             curr = curr.next
         print("None")
 
+    def reverse_list(self):
+        # this will iterate
+        current = self.head
+
+        # this will eventually become the new head
+        prev = None 
+
+        # storing the current head for later use 
+        self.tail = self.head 
+
+        while current is not None:
+            # store one node after current node
+            # this pointer is crucial as we would lose the rest of the list without it 
+            next_node = current.next
+
+            # flip the pointer 
+            current.next = prev
+
+            # move prev over by one
+            prev = current
+
+            # jump current to the node that was one after the old current 
+            current = next_node
+
+        self.head = prev
+        self.tail.next = None 
+
+    # robert's verision 
+    def reverseList(self):
+
+        newHead = None  # i prefer to call this 'prev'
+
+        # this will iterate, I would call this 'current'
+        temp = self.head
+
+        while temp is not None:
+            # store one node after current node
+            # this pointer is crucial as we would lose the rest of the list without it 
+            self.head = temp.next
+
+            # flip the pointer
+            temp.next = newHead
+
+            # move 'prev' over by one
+            newHead = temp
+
+            # jump 'current' to the node that was one after the old 'current'
+            temp = self.head
+
+        self.head = newHead
+
+
+
 if __name__ == "__main__":
     ll = Linked_list()
     ll.make_sll([3, 2, 6, 5, 9])
@@ -66,6 +119,10 @@ if __name__ == "__main__":
     ll.print_sll()
     ll.push_front('hi')
     ll.print_sll()
+    ll.reverse_list()
+    ll.print_sll()
+    ll.reverseList
+    ll.print_sll
 
 
 
