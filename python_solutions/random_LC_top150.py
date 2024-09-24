@@ -7,7 +7,7 @@ def choose_random_150():
     ]
 
     easy_linked_list = [
-        141, 21
+        141, 21, 206
     ]
 
     easy_bin_tree = [
