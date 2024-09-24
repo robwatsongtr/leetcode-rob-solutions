@@ -85,7 +85,7 @@ class Linked_list:
         self.head = prev
         self.tail.next = None 
 
-    # robert's verision 
+    # bobbi's verision 
     def reverseList(self):
 
         newHead = None  # i prefer to call this 'prev'
@@ -119,9 +119,9 @@ if __name__ == "__main__":
     ll.print_sll()
     ll.push_front('hi')
     ll.print_sll()
-    ll.reverse_list()
+    ll.reverse_list() # my version
     ll.print_sll()
-    ll.reverseList
+    ll.reverseList # bobbi's version 
     ll.print_sll
 
 
