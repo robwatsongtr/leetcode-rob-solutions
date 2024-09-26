@@ -17,9 +17,9 @@ class Doubly_linked_list:
             self.head = newNode
             self.tail = newNode
         else:
-            newNode.next = self.head
-            self.head.prev = newNode # gotta wire backwards
-            self.head = newNode
+            newNode.next = self.head # wire forwards
+            self.head.prev = newNode # wire backwards
+            self.head = newNode # make it the new head 
         self.length += 1
 
         return self.head
@@ -31,9 +31,9 @@ class Doubly_linked_list:
             self.head = newNode
             self.tail = newNode
         else:
-            self.tail.next = newNode
-            newNode.prev = self.tail
-            self.tail = newNode
+            self.tail.next = newNode # wire forwards
+            newNode.prev = self.tail # wire backwards
+            self.tail = newNode # make new tail 
         self.length += 1
 
         return self.head
