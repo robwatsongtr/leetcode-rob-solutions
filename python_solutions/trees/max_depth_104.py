@@ -40,4 +40,18 @@ class Solution(object):
 
         # recursive call, pass in the tree(root) and a starting counter of 0
         return dfs(root, 0) 
-        
+
+
+
+# simpler solution without helper dfs func 
+class Solution2:
+    def maxDepth(self, root) -> int:
+        if not root:
+            return 0
+
+        l_depth = self.maxDepth(root.left) + 1
+        r_depth = self.maxDepth(root.right) + 1
+
+        max_depth = max(l_depth, r_depth)
+
+        return max_depth 
