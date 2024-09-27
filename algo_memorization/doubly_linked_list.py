@@ -24,6 +24,27 @@ class Doubly_linked_list:
 
         return self.head
     
+    # so in a dll we have to temporarily store the head to update the pointers, 
+    # while in an SLL you just disconnect the head
+    def pop_front(self):
+        if self.head is None:
+            return None
+        
+        # temporarily store the head 
+        old_head = self.head
+
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = old_head.next # update what will be new head to next node 
+            self.head.prev = None # disconnect the new head from old head 
+            old_head.next = None # disconnect old head from new head 
+        self.length -= 1
+
+        return old_head # old head has the item 
+
+    
     def push_back(self, val):
         newNode = Node(val)
 
@@ -37,3 +58,5 @@ class Doubly_linked_list:
         self.length += 1
 
         return self.head
+    
+   
