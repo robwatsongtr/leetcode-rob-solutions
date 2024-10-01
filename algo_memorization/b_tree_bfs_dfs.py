@@ -136,21 +136,21 @@ class Binary_Tree:
     
 
 if __name__ == "__main__":
-    # btree = Binary_Tree()
+    btree = Binary_Tree()
                     
-    # root = TreeNode(5,
-    #     TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2)), None),
-    #     TreeNode(8, TreeNode(13), TreeNode(4, None, TreeNode(1)))
-    # )
+    root = TreeNode(5,
+        TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2)), None),
+        TreeNode(8, TreeNode(13), TreeNode(4, None, TreeNode(1)))
+    )
 
-    # print(f"Breadth First Search:  {btree.BFS(root)}")
-    # print()
-    # print(f"DFS Pre-order {btree.DFS_preorder(root)}")
-    # print()
-    # print(f"DFS In-order {btree.DFS_inorder(root)}")
-    # print()
-    # print(f"DFS Post-order {btree.DFS_postorder(root)}")
-    # print()
+    print(f"Breadth First Search:  {btree.BFS(root)}")
+    print()
+    print(f"DFS Pre-order {btree.DFS_preorder(root)}")
+    print()
+    print(f"DFS In-order {btree.DFS_inorder(root)}")
+    print()
+    print(f"DFS Post-order {btree.DFS_postorder(root)}")
+    print()
 
     btree2 = Binary_Tree()
     btree3 = Binary_Tree()
