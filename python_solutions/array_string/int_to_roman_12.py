@@ -4,7 +4,7 @@
 class Solution:
     def intToRoman(self, num: int) -> str:
         # array of tuples in descending order to iterate over
-        # this is critical to how the algorithm works a
+        # this is critical to how the algorithm works 
         value_map = [
             (1000, 'M'),
             (900, 'CM'),
@@ -24,13 +24,16 @@ class Solution:
         result = ''
 
         # iterate over each tuple in tuple array 
-        for val, rn in value_map:
-            # while loop allows multiple of the same roman numeral to be appended in situations
-            # where you need that, like MMM. Clever!
-            while num >= val:
-                # append the corresponding roman numeral to result
-                result += rn 
-                # subtract that value from num  
-                num -= val
+        for dec_val, rn_val in value_map:
+
+            # while the number in the current state is greater than or equal to the current decimal value 
+            # in tuple array, you keep appending the necessary roman numeral 
+            while num >= dec_val:
+
+                # append the corresponding roman numeral to result as needed 
+                result += rn_val
+
+                # subtract current decimal value from num  
+                num -= dec_val
 
         return result
