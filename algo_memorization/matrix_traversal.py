@@ -1,15 +1,15 @@
 # matrix traversal
 
 def row_traversal(matrix):
-    for row in matrix:
-        for element in row:
-            print(element, end=' ')
+    for row in range(len(matrix)):
+        for col in range(len(matrix[0])):
+            print(matrix[row][col], end=', ')
     print()
 
 def column_traversal(matrix):
     for col in range(len(matrix[0])):
         for row in range(len(matrix)):
-            print(matrix[row][col], end=' ')
+            print(matrix[row][col], end=', ')
     print()
         
         
