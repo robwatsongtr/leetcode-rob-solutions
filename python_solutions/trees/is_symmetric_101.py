@@ -17,6 +17,8 @@ class Solution(object):
     def isSymmetric(self, root):
         result = False  
         
+        # inner func is necessary for recursion because the need to pass 
+        # left and right subtrees separately 
         def isMirror(left, right):
             # we have reached the furthest leaves and didnt fail the tests so is symmetric 
             if left is None and right is None:

@@ -28,26 +28,4 @@ class Solution(object):
 
         return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum) 
 
-    def print_tree_inorder(self, root):
-        if root:
-            self.print_tree_inorder(root.left)
-            print(root.val, end=' ')
-            self.print_tree_inorder(root.right)
-
-
-def main():
-    sol = Solution()
-
-    tree = TreeNode(5,
-        TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2))),
-        TreeNode(8, TreeNode(13), TreeNode(4, None, TreeNode(1)))
-    )
-
-    sol.print_tree_inorder(tree)
-
-    print(sol.hasPathSum(tree, 28))
-
-if __name__ == "__main__":
-    main()
-        
-        
+   
