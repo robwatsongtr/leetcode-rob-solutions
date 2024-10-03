@@ -32,6 +32,6 @@ class Solution:
             for row in range(1, len(strs)):
                 if strs[row][col] < strs[row - 1][col]:
                     delete_col += 1
-                    break
+                    break # BREAK out of loop to prevent multiple counts of out of order in one colum 
 
         return delete_col

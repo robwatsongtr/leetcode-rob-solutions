@@ -35,6 +35,8 @@ class Solution(object):
         curr = dummy_node # the merged list 
 
         while p1 is not None and p2 is not None:
+            # the <= comparison sorts the list in ascending order
+            # flip that and you have descending order 
             if p1.val <= p2.val:
                 curr.next = p1
                 p1 = p1.next 
