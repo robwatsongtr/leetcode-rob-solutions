@@ -95,7 +95,23 @@ class LRUCache:
         
         return -1 
     
-            
+    def print(self):
+        current = self.head
+        while current is not None:
+            print(f"key {current.key}: value {current.val}")
+            current = current.next
+
+if __name__ == "__main__":
+    cache = LRUCache(3)
+    cache.put("a", 1)
+    cache.put("b", 2)
+    cache.put("c", 3)
+
+    print(cache.get("b"))
+
+    cache.put("d",4)
+
+    cache.print()      
 
                     
 
