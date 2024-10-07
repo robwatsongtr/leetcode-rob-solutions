@@ -78,6 +78,7 @@ class LRUCache:
             self.remove_dll_node(least_used_node)
             self.length -= 1
         
+    # ** this is the core logic of the cache ***
     def put(self, key, val):
         if key not in self.hashmap:
             # --Cache eviciton--: check if DLL is at capacity remove from dll and map
