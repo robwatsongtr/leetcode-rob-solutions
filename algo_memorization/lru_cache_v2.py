@@ -29,39 +29,42 @@ class LRUCache:
             new_lru_node.next = self.head
             self.head.prev = new_lru_node
             self.head = new_lru_node
+            new_lru_node.prev = None
         
     def remove_dll_node(self, node):
-        retrieved_node = node
-        # remove the target node from the list (DLL 'revmove')
-        if retrieved_node != self.head:
-            if retrieved_node.prev:
+        target_node = node
+        # remove the target node from the list (DLL 'remove')
+        if target_node != self.head:
+            if target_node.prev:
                 # wire node before target node to one after 'forwards'
-                retrieved_node.prev.next = retrieved_node.next 
-            if retrieved_node.next:
-                # wire node before target node to one after 'backwards'
-                retrieved_node.next.prev = retrieved_node.prev
+                target_node.prev.next = target_node.next 
+            if target_node.next:
+                # wire node after target node to one before 'backwards'
+                target_node.next.prev = target_node.prev
+        else:
+            # if target node is head 
+            self.head = self.head.next
+            # edge case: if there's only one node left
+            if self.head:
+                self.head.prev = None
 
+        # handle case if the target node is the tail
+        if target_node == self.tail:
+            self.tail = self.tail.prev
+            if self.tail:
+                self.tail.next = None
 
     def move_to_head(self, node):
-        retrieved_node = node
-        if self.head is None:
-                self.head = retrieved_node
-                self.tail = retrieved_node
-        else:
-            retrieved_node.next = self.head # wire forwards
-            self.head.prev = retrieved_node # wire backwards
+        self.remove_dll_node(node)
+        self.add_dll_node(node)
 
     def evict_cache(self):
-        #  DLL 'pop_back' and delete from hashmap 
-        del self.hashmap[self.tail.key] # delete from hashmap
-        self.tail = self.tail.prev # move tail back by one
-        if self.tail:
-            self.tail.next = None # delete last node from dll 
-        else:
-            self.head = None # cache is empty 
-        self.length -= 1
+        least_used_node = self.tail
+        if least_used_node:
+            del self.hashmap[least_used_node.key]
+            self.remove_dll_node(least_used_node)
+            self.length -= 1
         
-
     def put(self, key, val):
         if key not in self.hashmap:
             # --Cache eviciton--: check if DLL is at capacity remove from dll and map
@@ -75,18 +78,16 @@ class LRUCache:
             self.length += 1 
         else:
             # retrieve target node from reference in hashmap
-            retrieved_node = self.hashmap.get(key)
-            retrieved_node.val = val # update value
-            self.remove_dll_node(retrieved_node) # remove from list 
-            self.move_to_head(retrieved_node) # make MRU 
+            existing_node = self.hashmap.get(key)
+            existing_node.val = val # update value
+            self.move_to_head(existing_node) # make MRU 
 
     def get(self, key):
         if key in self.hashmap:
             retrieved_node = self.hashmap.get(key)
             self.put(key, retrieved_node.val)
-
             return retrieved_node.val
-        
+    
         return -1 
     
     def print(self):
