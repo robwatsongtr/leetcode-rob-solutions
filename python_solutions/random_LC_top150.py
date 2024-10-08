@@ -24,13 +24,10 @@ def choose_random_150():
 
    
     medium_list = [
-        3, 209, 122, 55, 150, 12, 134, 238, 80, 167, 189, 151
+        3, 209, 122, 55, 150, 12, 134, 238, 80, 167, 189, 151, 146
     ]
 
     
- 
-   
-
     random_medium_1 = random.choice(medium_list)
     random_medium_2 = random.choice(medium_list)
 
