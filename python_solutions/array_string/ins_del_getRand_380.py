@@ -31,12 +31,19 @@ randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom()
 
 """
 
+import random 
+
 class RandomizedSet:
 
     def __init__(self):
         self.hashmap = {}
         self.array = []
-    
+
+    def swap(self, list, start, end):
+        temp = list[start]
+        list[start] = list[end]
+        list[end] = temp 
+
     # check for existence for set-ness, then add the new value and its 
     # index to a hashmap for later lookup 
     def insert(self, val: int) -> bool:
@@ -47,12 +54,34 @@ class RandomizedSet:
             return True
         return False 
 
-    def remove(self, val: int) -> bool:
-        pass
+    def remove(self, val_to_remove: int) -> bool:
+        
+        if val_to_remove in self.hashmap:
+            last_idx = len(self.array) - 1
 
-    def getRandom(self) -> int:
-        pass
+             # get the value to remove's index
+            val_idx = self.hashmap[val_to_remove]
 
+            # get value of last entry in array
+            last_val = self.array[last_idx]
+
+            # swap the value with the last value in array 
+            self.swap(self.array, val_idx, last_idx)
+
+            # update index of last element that got swapped
+            self.hashmap[last_val] = val_idx
+
+            # remove from array and hashmap
+            self.array.pop()
+            del self.hashmap[val_to_remove]
+
+            return True
+        
+        return False 
+    
+    def getRandom(self):
+        return random.choice(self.array)
+          
 
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()

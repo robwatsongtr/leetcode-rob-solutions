@@ -1,21 +1,6 @@
 """
 LRU Cache v2
 
-** v2 Split out linked list operations into their own methods **
-
-A cache that keeps track of most recentely and least recently used data as 
-its 'heuristic' for cache eviction. 
-
-It leverages the strengths of two data structures working together. Using the O(1) features of a 
-doubly linked list (insertion and removal at ends) with the O(1) feature of a hashtable lookup to 
-randomly access nodes on the linked list. 
-
-The nitty gritty:
-
-While doing an insert (or PUT) we insert the element in the head of the list and record it in the hashmap. 
-If element is found (GET) , we move the node to the head of the list .
-When the list is full we discard the tail and update the corresponding hashmap entry as well.
-
 """
 
 class LRUNode:
@@ -48,12 +33,10 @@ class LRUCache:
     def remove_dll_node(self, node):
         target_node = node
         if target_node != self.head:
-            if target_node.prev:
-                # wire node before target node to one after 'forwards'
-                target_node.prev.next = target_node.next 
-            if target_node.next:
-                # wire node after target node to one before 'backwards'
-                target_node.next.prev = target_node.prev
+            # wire node before target node to one after 'forwards'
+            target_node.prev.next = target_node.next 
+            # wire node after target node to one before 'backwards'
+            target_node.next.prev = target_node.prev
         else:
             # if target node is head 
             self.head = self.head.next
