@@ -53,28 +53,23 @@ class RandomizedSet:
             self.hashmap[val] = len(self.array) - 1
             return True
         return False 
-
+    
+    # get the value to remove's index
+    # get value of last entry in array
+    # swap the value with the last value in array 
+    # update index of last element that got swapped
+    # remove from array and hashmap
     def remove(self, val_to_remove: int) -> bool:
-        
         if val_to_remove in self.hashmap:
             last_idx = len(self.array) - 1
-
-             # get the value to remove's index
+            
             val_idx = self.hashmap[val_to_remove]
-
-            # get value of last entry in array
             last_val = self.array[last_idx]
 
-            # swap the value with the last value in array 
             self.swap(self.array, val_idx, last_idx)
-
-            # update index of last element that got swapped
             self.hashmap[last_val] = val_idx
-
-            # remove from array and hashmap
             self.array.pop()
             del self.hashmap[val_to_remove]
-
             return True
         
         return False 
