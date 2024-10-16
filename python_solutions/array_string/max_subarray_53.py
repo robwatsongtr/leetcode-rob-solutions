@@ -29,7 +29,15 @@ class Solution:
         max_global = nums[0]
 
         for i in range(len(nums)):
+            
+            # Does adding this element improve the subarray?
+            #If yes, continue the subarray.
+            #If no, start a new subarray.
             max_current = max(nums[i], max_current + nums[i])
+
+            # Is the best subarray we've just found better than all previous subarrays?
+            # If yes, update the global maximum.
+            # If no, keep the current global maximum.
             max_global = max(max_current, max_global)
 
         return max_global
