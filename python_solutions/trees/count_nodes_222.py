@@ -65,7 +65,9 @@ class Solution2:
         l_count = self.countNodes(root.left)
         r_count = self.countNodes(root.right)
 
-        return l_count + r_count + 1
+        count = l_count + r_count + 1
+
+        return count 
 
 
 

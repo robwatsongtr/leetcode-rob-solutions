@@ -20,11 +20,12 @@ class Solution:
         current = head
         prev = None
         
+        # flip every next pointer backwards, node by node. 
         while current is not None:
-            next_node = current.next
+            placeholder = current.next
             current.next = prev
             prev = current
-            current = next_node
+            current = placeholder
 
         head = prev 
 
