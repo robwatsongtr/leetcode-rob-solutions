@@ -39,6 +39,9 @@ class Solution:
         for bracket in s:
             if bracket in parens_map:
                 stack.append(bracket)
+            # you are comparing the lookup of what would be expected closing bracket
+            # to the bracket you're currently reading in the loop
+            # if they match, you have a closing bracket, else, something isn't balanced so afalse 
             elif stack and bracket == parens_map[stack[-1]]:
                 stack.pop()
             # the else checks for improper sequencing or invalid characters,
