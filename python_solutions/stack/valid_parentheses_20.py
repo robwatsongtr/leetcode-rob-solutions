@@ -14,12 +14,12 @@ class Solution(object):
             # need to check if stack is empty or python will throw an index error 
             top_of_stack = stack[-1] if stack else None
 
-            # if the current character is an opening bracket 
+            # if the current character is an opening bracket (because it matches
+            # the KEY in the dictionary
             if bracket in parens_dict:
-                # push its associated closing bracket value to the stack 
+                # push the bracket to the stack
                 stack.append(bracket)
-            # else, if the current character is a closing bracket, check if it matches the most recent
-            # opening bracket on the stack. In python need to check if stack is empty here as well 
+            # else, 
             elif stack and bracket == parens_dict[top_of_stack]:
                 # if it does pop the opening bracket off the stack 
                 stack.pop()
@@ -39,7 +39,7 @@ class Solution:
         for bracket in s:
             if bracket in parens_map:
                 stack.append(bracket)
-            # you are comparing the lookup of what would be expected closing bracket
+            # you are comparing the lookup of **what would be expected closing bracket**
             # to the bracket you're currently reading in the loop
             # if they match, you have a closing bracket, else, something isn't balanced so afalse 
             elif stack and bracket == parens_map[stack[-1]]:

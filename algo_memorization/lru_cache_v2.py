@@ -1,6 +1,22 @@
 """
 LRU Cache v2
 
+A cache that keeps track of most recentely and least recently used data as 
+its 'heuristic' for cache eviction. 
+
+It leverages the strengths of two data structures working together. Using the O(1) features of a 
+doubly linked list (insertion and removal at ends) with the O(1) feature of a hashtable lookup to 
+randomly access nodes on the linked list. 
+
+The nitty gritty:
+
+- While doing an insert (or PUT) we insert the element in the head of the list and record it in the hashmap. 
+-
+- If element is found (GET) , we move the node to the head of the list .
+-
+- When the list is full we discard the tail and update the corresponding hashmap entry as well.
+
+
 """
 
 class LRUNode:
