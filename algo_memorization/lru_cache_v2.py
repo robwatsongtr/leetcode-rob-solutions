@@ -19,6 +19,9 @@ The nitty gritty:
 
 """
 
+from collections import OrderedDict
+
+
 class LRUNode:
     def __init__(self, key = '', val=0, next=None, prev=None):
         self.key = key 
@@ -122,7 +125,34 @@ if __name__ == "__main__":
     cache.print()      
 
                     
+# using OrderedDict: 
 
+class LRUCache2:
+
+    def __init__(self, capacity: int):
+        self.cache = OrderedDict()
+        self.capacity = capacity
+
+    def get(self, key: int) -> int:
+        if key in self.cache:
+            result = self.cache[key]
+            # move to front because most recently used move_to_end is the FRONT 
+            self.cache.move_to_end(key)
+            return result
+        else:
+            return -1 
+        
+
+    def put(self, key: int, value: int) -> None:
+        if key not in self.cache:
+            # reached capacity so evict the last item last=false gets you the END 
+            if len(self.cache) >= self.capacity: 
+                self.cache.popitem(last=False)
+        else:
+            # move_to_end is the FRONT 
+            self.cache.move_to_end(key)
+
+        self.cache[key] = value
 
 
 
