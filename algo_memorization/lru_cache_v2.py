@@ -148,11 +148,11 @@ class LRUCache2:
             # reached capacity so evict the last item last=false gets you the END 
             if len(self.cache) >= self.capacity: 
                 self.cache.popitem(last=False)
+            self.cache[key] = value
         else:
             # move_to_end is the FRONT 
             self.cache.move_to_end(key)
-
-        self.cache[key] = value
+            self.cache[key] = value
 
 
 
