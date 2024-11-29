@@ -36,3 +36,23 @@ class Solution:
         traverse_inorder(root)
 
         return min_diff
+
+# uses instance variables instead of traversal func  
+class Solution2:
+    def __init__(self):
+        self.min_diff = float('inf')
+        self.prev_val = None 
+
+    def getMinimumDifference(self, root) -> int:
+        if root.left:
+            self.getMinimumDifference(root.left)
+        
+        if self.prev_val is not None:
+            self.min_diff = min(self.min_diff, root.val - self.prev_val)
+
+        self.prev_val = root.val
+
+        if root.right:
+            self.getMinimumDifference(root.right)
+
+        return self.min_diff 
