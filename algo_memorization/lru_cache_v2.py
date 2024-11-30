@@ -135,25 +135,24 @@ class LRUCache2:
 
     def get(self, key: int) -> int:
         if key in self.cache:
-            result = self.cache[key]
-            # move to front because most recently used move_to_end is the FRONT 
+            # the 'end' is the most recently used side 
             self.cache.move_to_end(key)
-            return result
+            return self.cache[key]
         else:
             return -1 
         
 
     def put(self, key: int, value: int) -> None:
-        if key not in self.cache:
-            # reached capacity so evict the last item last=false gets you the END 
+        if key in self.cache:
+            # the 'end' is the most recently used side 
+            self.cache.move_to_end(key) 
+            
+            self.cache[key] = value  
+        else:
+            # reached capacity so evict,last=false gets you the least recently used side
             if len(self.cache) >= self.capacity: 
                 self.cache.popitem(last=False)
-            # put data into ordered dict (cache)
-            self.cache[key] = value
-        else:
-            # move_to_end is the FRONT 
-            self.cache.move_to_end(key)
-            # put data into ordered dict (cache)    
+            
             self.cache[key] = value
 
 
