@@ -6,7 +6,7 @@ the form of an array. Answers within 10-5 of the actual answer will be accepted.
 
 """
 
-
+from collections import deque
 
 # Definition for a binary tree node.
 class TreeNode:
@@ -17,7 +17,7 @@ class TreeNode:
 
 class Solution:
     def averageOfLevels(self, root: TreeNode) -> list[float]:
-        queue = []
+        queue = deque()
         levels_avg = []
 
         if root is not None:
@@ -29,7 +29,7 @@ class Solution:
             level_sum = 0
 
             for _ in range(level_size):
-                curr_node = queue.pop(0)
+                curr_node = queue.popleft()
                 level_sum += curr_node.val 
 
                 if curr_node.left:
