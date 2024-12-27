@@ -24,8 +24,9 @@ class MatrixGraph:
             # since matrix we are popping out a row/col coordinate not a 'named node'
             # out of the front of the queue 
             current = queue.pop(0)
-            result.append(current)
             row, col = current 
+            result.append(current)
+            
 
             # now loop through possible directions from current node popped out of queue 
             # to visit neighbors 
@@ -42,9 +43,10 @@ class MatrixGraph:
         result = []
         
         def traverse(current):
+            row, col = current 
             visited.add(current)
             result.append(current)
-            row, col = current 
+            
 
             for d_r, d_c in self.directions:
                 new_row, new_col = d_r + row, d_c + col
@@ -59,13 +61,13 @@ class MatrixGraph:
 
 
 if __name__ == '__main__':
-    matrix_1 = [[1,2,3], [4,5,6], [7,8,9]]
+    matrix_1 = [[1,1,0,0], [0,1,0,0], [0,0,1,1], [0,0,1,0]]
 
     mat_1 = MatrixGraph(matrix_1)
 
-    print(f'bfs traversal of matrix_1: { mat_1.bfs((1,1)) }')
+    print(f'bfs traversal of matrix_1: { mat_1.bfs((0,0)) }')
     print()
-    print(f'dfs preorder traversal of matrix_1: { mat_1.dfs_preorder((1,1)) }')
+    print(f'dfs preorder traversal of matrix_1: { mat_1.dfs_preorder((0,0)) }')
 
 
 
