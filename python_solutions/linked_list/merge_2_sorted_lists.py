@@ -25,6 +25,7 @@ class ListNode(object):
 
 class Solution(object):
     def mergeTwoLists(self, list1, list2):
+        # the 'dummy node' forms the the head before the head of the merged list 
         # initialize with -1 so the node value doesn't possibly conflict with other values
         # could also use something like float('inf')
         dummy_node = ListNode(-1)
@@ -32,7 +33,7 @@ class Solution(object):
         p1 = list1
         p2 = list2
 
-        curr = dummy_node # the merged list 
+        curr = dummy_node # pointer to traverse the merged list to place the merged nodeds 
 
         while p1 is not None and p2 is not None:
             # the <= comparison sorts the list in ascending order
@@ -52,6 +53,8 @@ class Solution(object):
         if p2 is not None:
             curr.next = p2
 
+        # this makes sure to return the node after the dummy node, which will be the
+        # proper head of the merged list 
         return dummy_node.next 
     
 
