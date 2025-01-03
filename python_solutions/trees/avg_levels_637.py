@@ -29,14 +29,14 @@ class Solution:
             level_sum = 0
 
             for _ in range(level_size):
-                curr_node = queue.popleft()
-                level_sum += curr_node.val 
+                curr = queue.popleft()
+                level_sum += curr.val 
 
-                if curr_node.left:
-                    queue.append(curr_node.left)
+                if curr.left:
+                    queue.append(curr.left)
 
-                if curr_node.right:
-                    queue.append(curr_node.right)
+                if curr.right:
+                    queue.append(curr.right)
 
             level_avg = level_sum / level_size
             levels_avg.append(level_avg)

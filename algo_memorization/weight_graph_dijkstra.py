@@ -1,5 +1,6 @@
 import pprint 
 import heapq 
+from collections import deque
 
 class WeightedGraph:
     def __init__(self):
@@ -20,7 +21,7 @@ class WeightedGraph:
         self.adj_list[node2].append((node1, weight))
 
     def bfs(self, start_node):
-        queue = []
+        queue = deque()
         visited = set()
         result = []
 
@@ -28,7 +29,7 @@ class WeightedGraph:
         visited.add(start_node)
 
         while len(queue) > 0:
-            current = queue.pop(0)
+            current = queue.popleft()
             result.append(current)
 
             # need _ because iterating over a list of tuples 

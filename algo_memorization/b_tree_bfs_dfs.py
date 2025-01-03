@@ -1,3 +1,5 @@
+from collections import deque
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -40,11 +42,11 @@ class Binary_Tree:
             self.root = new_node
             return self 
         
-        queue = []
+        queue = deque()
         queue.append(self.root)
 
         while queue:
-            curr = queue.pop(0)
+            curr = queue.popleft()
 
             if curr.left is None:
                 curr.left = new_node
@@ -60,13 +62,15 @@ class Binary_Tree:
                 
             
     def BFS(self, root):
+        queue = deque()
+
         if root is not None:
-            queue = [root]
+            queue.append(root)
 
         result = []
 
         while len(queue) > 0:
-            node = queue.pop(0)
+            node = queue.popleft()
             result.append(node.val)
 
             if node.left:

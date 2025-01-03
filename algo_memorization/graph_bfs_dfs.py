@@ -1,3 +1,5 @@
+from collections import deque
+
 class Graph:
     def __init__(self) -> None:
         self.adjacency_list = {}
@@ -19,7 +21,7 @@ class Graph:
         if start_node not in self.adjacency_list:
             raise ValueError(f"Node '{start_node}' not found")
         
-        queue = []
+        queue = deque()
         result = []
         visited = set()
 
@@ -27,7 +29,7 @@ class Graph:
         visited.add(start_node)
 
         while len(queue) > 0:
-            current = queue.pop(0)
+            current = queue.popleft()
             result.append(current)
 
             for neighbor in self.adjacency_list.get(current, []):
