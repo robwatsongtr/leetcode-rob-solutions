@@ -44,6 +44,8 @@ class Solution:
                     dfs((new_r, new_c))
 
         # find the start of an island and increment number of islands 
+        # in this case we just need as simple nested for loop that will invoke
+        # a dfs if the start of an island is found 
         num_islands = 0
         for row in range(rows):
             for col in range(cols):
