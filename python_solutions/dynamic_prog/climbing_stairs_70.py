@@ -22,7 +22,8 @@ Explanation: There are three ways to climb to the top.
 3. 2 steps + 1 step
 
 
-The approach here is to use dynamic programming (Fibonacci) and memoization by way of a dictionary 
+The approach here is to use top down dynamic programming and memoization by way of a dictionary 
+Almost identical to a top down solution for the nth Fibonacci number 
 
 """
 

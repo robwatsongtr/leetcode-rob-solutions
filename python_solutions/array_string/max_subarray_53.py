@@ -31,8 +31,8 @@ class Solution:
         for i in range(len(nums)):
             
             # Does adding this element improve the subarray?
-            #If yes, continue the subarray.
-            #If no, start a new subarray.
+            # If yes, continue the subarray.
+            # If no, start a new subarray.
             max_current = max(nums[i], max_current + nums[i])
 
             # Is the best subarray we've just found better than all previous subarrays?
