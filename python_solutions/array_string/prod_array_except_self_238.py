@@ -34,9 +34,10 @@ class Solution:
             # this accumulates the multiplications 
             left_product *= nums[i]
 
-        # calculate suffix sums, and multiply against what's in the answer array
+        # calculate suffix sums, and ***multiply against what's in the answer array**
         right_product = 1 # keeps track of running product 
         for i in range(len(nums) - 1, -1, -1):
+                    # *=
             answer[i] *= right_product
             right_product *= nums[i]
 
