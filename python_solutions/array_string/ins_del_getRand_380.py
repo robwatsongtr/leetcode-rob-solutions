@@ -54,15 +54,15 @@ class RandomizedSet:
             return True
         return False 
     
+    # get the last index of the array
     # get the value to remove's index
     # get value of last entry in array
     # swap the value with the last value in array 
-    # update index of last element that got swapped
+    # update index of last element that got swapped in hashmap 
     # remove from array and hashmap
     def remove(self, val_to_remove: int) -> bool:
         if val_to_remove in self.hashmap:
             last_idx = len(self.array) - 1
-            
             val_idx = self.hashmap[val_to_remove]
             last_val = self.array[last_idx]
 
