@@ -39,17 +39,13 @@ class RandomizedSet:
         self.hashmap = {}
         self.array = []
 
-    def swap(self, list, start, end):
-        temp = list[start]
-        list[start] = list[end]
-        list[end] = temp 
-
+    
     # check for existence for set-ness, then add the new value and its 
-    # index to a hashmap for later lookup 
+    # index to a hashmap for later lookup. Since we are appending to the end of the array
+    # the hashmap has the value then whatever the current index is for the end of the array.
     def insert(self, val: int) -> bool:
         if val not in self.hashmap:
             self.array.append(val)
-            # calculate the index this way, its linear:
             self.hashmap[val] = len(self.array) - 1
             return True
         return False 
@@ -58,7 +54,7 @@ class RandomizedSet:
     # get the value to remove's index
     # get value of last entry in array
     # swap the value with the last value in array 
-    # update index of last element that got swapped in hashmap 
+    # update index of last element that got swapped in hashmap to the old index of the val being removed 
     # remove from array and hashmap
     def remove(self, val_to_remove: int) -> bool:
         if val_to_remove in self.hashmap:
@@ -66,7 +62,8 @@ class RandomizedSet:
             val_idx = self.hashmap[val_to_remove]
             last_val = self.array[last_idx]
 
-            self.swap(self.array, val_idx, last_idx)
+            self.array[val_idx], self.array[last_idx] = self.array[last_idx], self.array[val_idx]
+            
             self.hashmap[last_val] = val_idx
             self.array.pop()
             del self.hashmap[val_to_remove]
