@@ -64,13 +64,38 @@ class Sort:
         return list 
             
     # O(nlogn) sorts --------------------------------------------------------------
+    def merge(self, arr1, arr2):
+        p1 = 0
+        p2 = 0
+        result = []
+
+        while p1 < len(arr1) and p2 < len(arr2):
+            if arr1[p1] <= arr2[p2]:
+                result.append(arr1[p1])
+                p1 += 1
+            else:
+                result.append(arr2[p2])
+                p2 += 1 
+
+        # add remaining elements with extend, which is faster than append in a loop
+        result.extend(arr1[p1:])
+        result.extend(arr2[p2:])
+
+        return result 
 
     def merge_sort(self, list):
-        pass     
+        if len(list) <= 1:
+            return list  
 
+        # this creates a binary tree by recursively slicing the array in halves 
+        mid = len(list) // 2
+        left = self.merge_sort(list[mid:])
+        right = self.merge_sort(list[:mid])
 
-            
+        # merges the slices with comparisons 
+        sorted_list = self.merge(left, right)
 
+        return sorted_list
 
 
 
@@ -81,11 +106,12 @@ if __name__ == "__main__":
     arr_bubble_sorted = do_sort.bubble_sort(arr)
     arr_selection_sorted = do_sort.selection_sort(arr)
     arr_insertion_sorted = do_sort.insertion_sort(arr)
+    arr_merge_sorted = do_sort.merge_sort(arr)
 
     print(f'bubble sorted arr: {arr_bubble_sorted}')
     print(f'selection sorted arr: {arr_selection_sorted}')
     print(f'insertion sorted arr: {arr_insertion_sorted}')
-                
+    print(f'merge sorted arr: {arr_merge_sorted}')           
 
 
 
