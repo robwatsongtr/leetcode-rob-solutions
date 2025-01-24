@@ -4,6 +4,8 @@ class Sort:
         list[start] = list[end]
         list[end] = temp 
 
+    # O(n2) sorts -------------------------------------------------------------------------
+
     def bubble_sort(self, list):
         list_len = len(list)
 
@@ -23,20 +25,27 @@ class Sort:
         
         return list 
     
-    # Selection sort scans the array for the lowest element and when found swaps it to the front 
-    # of the array, swapped to the next unsorted index
+    # Selection sort scans the array for the lowest element in the unsorted portion.
+    # When the lowest element is found, it is swapped with the element at the next unsorted index.
     def selection_sort(self, list):
+
+        # The unsorted portion gets smaller as the sorted portion grows.
+        # This loop controls the shrinking of the unsorted portion.
         for i in range(len(list)):
+            # Assume the current index is the lowest.
             lowest = i
+
+            # Scan the unsorted portion of the list to find the actual lowest element.
             for j in range(i + 1, len(list)):
                 if list[j] < list[lowest]:
                     lowest = j
             
-            # The if statement ensures that you only swap when i and lowest refer to different indices
+            # Swap only if the current index (i) is not the lowest index found.
             if i != lowest:
                 self.swap(list, i, lowest)
         
-        return list 
+        return list
+
     
     def insertion_sort(self, list):
         for i in range(1, len(list)):
@@ -54,7 +63,10 @@ class Sort:
 
         return list 
             
-            
+    # O(nlogn) sorts --------------------------------------------------------------
+
+    def merge_sort(self, list):
+        pass     
 
 
             
@@ -68,10 +80,11 @@ if __name__ == "__main__":
 
     arr_bubble_sorted = do_sort.bubble_sort(arr)
     arr_selection_sorted = do_sort.selection_sort(arr)
+    arr_insertion_sorted = do_sort.insertion_sort(arr)
 
     print(f'bubble sorted arr: {arr_bubble_sorted}')
     print(f'selection sorted arr: {arr_selection_sorted}')
-    
+    print(f'insertion sorted arr: {arr_insertion_sorted}')
                 
 
 
