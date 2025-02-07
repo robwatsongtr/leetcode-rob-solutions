@@ -84,12 +84,14 @@ class Binary_Tree:
 
     # for DFS, the 'if checks' on left and right are not strictly necessary, they are an optimization
     # than can potentially reduce the recursion depth 
+    #
+    # Note: the if checks function as the base case. Otherwise, no if check, you need an explicit base case at top
     def DFS_preorder(self, root):
         result = []
 
         def traverse(node):
-            if node is None:
-                return 
+            # if node is None:
+            #     return 
             
             result.append(node.val)
 
@@ -105,8 +107,8 @@ class Binary_Tree:
         result = []
 
         def traverse(node):
-            if node is None:
-                return
+            # if node is None:
+            #     return
             
             if node.left:
                 traverse(node.left)
@@ -123,8 +125,8 @@ class Binary_Tree:
         result = []
 
         def traverse(node):
-            if node is None:
-                return
+            # if node is None:
+            #     return
             
             if node.left:
                 traverse(node.left)
