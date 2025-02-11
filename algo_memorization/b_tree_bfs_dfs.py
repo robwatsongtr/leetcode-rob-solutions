@@ -91,15 +91,16 @@ class Binary_Tree:
 
         def traverse(node):
             # if node is None:
-            #     return 
-            
-            result.append(node.val)
+            #     return
 
+            result.append(node.val)
+            
             if node.left:
                 traverse(node.left)
+
             if node.right:
                 traverse(node.right)
-
+        
         traverse(root)
         return result
     
