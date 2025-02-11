@@ -26,17 +26,17 @@ Output: false
 #         self.right = right
 
 class Solution:
-    def isSame(self, root, subroot):
-        if root is None and subroot is None:
+    def isSame(self, root, subr):
+        if root is None and subr is None:
             return True
         
-        if not root or not subroot:
+        if not root or not subr:
             return False 
 
-        if root.val != subroot.val:
+        if root.val != subr.val:
             return False
 
-        return self.isSame(root.left, subroot.left) and self.isSame(root.right, subroot.right)
+        return self.isSame(root.left, subr.left) and self.isSame(root.right, subr.right)
 
     def isSubtree(self, root, subRoot) -> bool:
         if root is None:
