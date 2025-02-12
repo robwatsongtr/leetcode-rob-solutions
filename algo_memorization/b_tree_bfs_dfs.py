@@ -104,6 +104,20 @@ class Binary_Tree:
         traverse(root)
         return result
     
+    def DFS_preorder_nohelper(self, root, result=None):
+        if result is None:
+            result = []
+
+        result.append(root.val)
+        
+        if root.left:
+            self.DFS_preorder_nohelper(root.left, result)
+        if root.right:
+            self.DFS_preorder_nohelper(root.right, result)
+
+        return result 
+
+    
     def DFS_inorder(self, root):
         result = []
 
@@ -153,6 +167,8 @@ if __name__ == "__main__":
     print(f"Breadth First Search:  {btree.BFS(root)}")
     print()
     print(f"DFS Pre-order {btree.DFS_preorder(root)}")
+    print()
+    print(f"DFS Pre-order no helper func {btree.DFS_preorder_nohelper(root)}")
     print()
     print(f"DFS In-order {btree.DFS_inorder(root)}")
     print()
