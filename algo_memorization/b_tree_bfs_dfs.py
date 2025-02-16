@@ -90,8 +90,8 @@ class Binary_Tree:
         result = []
 
         def traverse(node):
-            # if node is None:
-            #     return
+            if node is None:
+                return
 
             result.append(node.val)
             
@@ -122,8 +122,8 @@ class Binary_Tree:
         result = []
 
         def traverse(node):
-            # if node is None:
-            #     return
+            if node is None:
+                return
             
             if node.left:
                 traverse(node.left)
@@ -140,8 +140,8 @@ class Binary_Tree:
         result = []
 
         def traverse(node):
-            # if node is None:
-            #     return
+            if node is None:
+                return
             
             if node.left:
                 traverse(node.left)
