@@ -54,7 +54,7 @@ class Solution:
 
         return result
     
-# using modulo
+# using modulo, definitely the way to go, cleaner and no need to use abs and makes sense for circularity.
 class Solution2:
     def get_table(self):
         alpha_table = {}
@@ -69,7 +69,7 @@ class Solution2:
     def minTimeToType(self, word: str) -> int:
         table = self.get_table()
         
-        # Fixing result calculation to correctly compute the initial movement
+        # initial movement from 'a'
         #              -----forwards ---------    ------backwards ---------
         result = min( (table[word[0]] - 0) % 26, (0 - table[word[0]]) % 26 ) + 1 
         
