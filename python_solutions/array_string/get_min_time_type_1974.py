@@ -53,3 +53,30 @@ class Solution:
             result += min(abs(table[curr] - table[next_word]), 26 - abs(table[curr] - table[next_word])) + 1
 
         return result
+    
+# using modulo
+class Solution2:
+    def get_table(self):
+        alpha_table = {}
+        counter = 0
+
+        for i in range(97, 123):
+            alpha_table[chr(i)] = counter
+            counter += 1
+
+        return alpha_table
+
+    def minTimeToType(self, word: str) -> int:
+        table = self.get_table()
+        
+        # Fixing result calculation to correctly compute the initial movement
+        #              -----forwards ---------    ------backwards ---------
+        result = min( (table[word[0]] - 0) % 26, (0 - table[word[0]]) % 26 ) + 1 
+        
+        for i in range(1, len(word)):
+            curr = word[i - 1]
+            next_word = word[i]
+            #                -----backwards----------------       ------------  forwards -------    
+            result += min( (table[curr] - table[next_word]) % 26, (table[next_word] - table[curr]) % 26) + 1
+
+        return result
