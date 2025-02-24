@@ -1,7 +1,7 @@
 """
 3083. Existence of a Substring in a String and Its Reverse
 
-Given a string s, find any  substringof length 2 which is also present in the reverse of s.
+Given a string s, find any substring of length 2 which is also present in the reverse of s.
 
 Return true if such a substring exists, and false otherwise.
 
@@ -37,6 +37,17 @@ class Solution:
                 return True
 
         return False
+    
+# no slicing
+class Solution2:
+    def isSubstringPresent(self, s):
+        rev_s = "".join(reversed(s))
+        
+        for i in range(len(s) - 1):
+            if s[i] + s[i+1] in rev_s:
+                return True
+        
+        return False 
 
             
 if __name__ == "__main__":
