@@ -25,14 +25,15 @@ class Solution:
         cols = len(grid[0])
         directions = [(-1, 0), (1,0), (0, -1), (0, 1)] # up, down, left, right
         visited = set()
+        num_islands = 0
 
         def is_inbounds(row, col):
             return 0 <= row < rows and 0 <= col < cols
 
         # used to explore the island to its boundaries
         def dfs(start):
-            row, col = start
             visited.add(start)
+            row, col = start
 
             for delta_r, delta_c in directions:
                 new_r, new_c = delta_r + row, delta_c + col
@@ -46,7 +47,6 @@ class Solution:
         # find the start of an island and increment number of islands 
         # in this case we just need as simple nested for loop that will invoke
         # a dfs if the start of an island is found 
-        num_islands = 0
         for row in range(rows):
             for col in range(cols):
                 if grid[row][col] == '1' and (row, col) not in visited:
