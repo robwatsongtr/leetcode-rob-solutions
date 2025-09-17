@@ -47,7 +47,6 @@ class MatrixGraph:
             visited.add(current)
             result.append(current)
             
-
             for d_r, d_c in self.directions:
                 new_row, new_col = d_r + row, d_c + col
                 # failing if statement here breaks the recursion automatically:
@@ -56,7 +55,6 @@ class MatrixGraph:
 
         traverse(start)
         return result 
-
 
 
 
