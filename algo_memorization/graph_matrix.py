@@ -24,8 +24,8 @@ class MatrixGraph:
             # since matrix we are popping out a row/col coordinate not a 'named node'
             # out of the front of the queue 
             current = queue.pop(0)
-            row, col = current 
             result.append(current)
+            row, col = current 
             
 
             # now loop through possible directions from current node popped out of queue 
@@ -47,8 +47,8 @@ class MatrixGraph:
             visited.add(current)
             result.append(current)
             
-            for d_r, d_c in self.directions:
-                new_row, new_col = d_r + row, d_c + col
+            for dr, dc in self.directions:
+                new_row, new_col = dr + row, dc + col
                 # failing if statement here breaks the recursion automatically:
                 if self.is_within_bounds(new_row, new_col) and (new_row, new_col) not in visited:
                     traverse( (new_row, new_col) ) # get the tuples properly
