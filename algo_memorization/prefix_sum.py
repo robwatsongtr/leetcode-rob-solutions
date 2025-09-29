@@ -21,22 +21,7 @@ class PrefixSum:
 
         return range_sum
     
-    def total_subarray_equals_k(self, k):
-        count = 0
-        p_sum_arr = self.make_prefix_sum_list()
-        p_sum_counter = Counter(p_sum_arr)
-
-        # Add this to handle subarrays starting from index 0
-        p_sum_counter[0] = 1
-
-        for ps in p_sum_arr:
-            target = ps - k
-            if target in p_sum_counter:
-                count += p_sum_counter[target]
-
-        return count 
-
-
+    
 if __name__ == '__main__':
     list_1 = [ 1, 4, 6, 3, 9 ]
 
