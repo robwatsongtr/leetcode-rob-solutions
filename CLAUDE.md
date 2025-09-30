@@ -25,8 +25,20 @@ Personal LeetCode solutions repository containing implementations in both Python
 - `intervals/` - Interval manipulation problems
 - `matrix/` - 2D matrix problems
 
-**JavaScript Solutions** (root-level directories):
-- `Array/`, `String/`, `hashmap/`, `trees/`, `linked_List/`, `stack/`, `binary_search/`, `bit_manipulation/`, `intervals/`, `sliding_window/`, `two_pointer/`, `math/`
+**JavaScript Solutions** (`javascript_solutions/`):
+- `Array/` - Array manipulation problems
+- `String/` - String manipulation problems
+- `hashmap/` - Hash table/map problems
+- `trees/` - Binary tree problems
+- `linked_List/` - Linked list operations
+- `stack/` - Stack-based problems
+- `binary_search/` - Binary search implementations
+- `bit_manipulation/` - Bitwise operation problems
+- `intervals/` - Interval problems
+- `sliding_window/` - Sliding window pattern problems
+- `two_pointer/` - Two-pointer technique problems
+- `math/` - Mathematical problems
+- `string_matching/` - String matching algorithms and implementations
 - `Grind_58/` - Solutions from the Grind 75/58 problem set
 
 ### Algorithm Reference Implementations
