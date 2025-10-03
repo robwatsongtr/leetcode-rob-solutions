@@ -15,9 +15,11 @@ def column_traversal(matrix):
 def snake_traversal(matrix):
     for row in range(len(matrix)):
         if row % 2 == 0:
+            # even row traverse left to right
             for col in range(len(matrix[0])):
                 print(matrix[row][col], end=', ')
         else:
+            # odd row traverse right to left 
             for col in range(len(matrix[0]) - 1, - 1, - 1):
                 print(matrix[row][col], end=', ')
         
