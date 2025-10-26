@@ -24,7 +24,7 @@ Example 2:
 Input: nums = [2,2,2,2,2]
 Output: 1
 Explanation: The longest continuous increasing subsequence is [2] with length 1. 
-Note that it must be strictlyincreasing.
+Note that it must be strictly increasing.
 
 """
 
