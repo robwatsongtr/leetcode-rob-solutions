@@ -48,10 +48,8 @@ class Solution:
 
         while l < r:
             if s_list[l] != s_list[r]:
-                if ord(s_list[l]) > ord(s_list[r]):
-                    s_list[l] = s_list[r]
-                else:
-                    s_list[r] = s_list[l]
+                smaller_char = min(s_list[l], s_list[r])
+                s_list[l] = s_list[r] = smaller_char
 
             l += 1
             r -= 1
