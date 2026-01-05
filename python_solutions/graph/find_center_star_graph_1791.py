@@ -1,5 +1,5 @@
 """
-1791. Find Center of Star Graph
+ 1791. Find Center of Star Graph
 
 There is an undirected star graph consisting of n nodes labeled from 1 to n. 
 A star graph is a graph where there is one center node and exactly n - 1 
@@ -29,7 +29,14 @@ Output: 1
 
 from typing import List
 
+# ACTUAL SOLUTION 
 class Solution:
+    def findCenter(self, edges: List[List[int]]) -> int:
+        # return the first node of the first tuple if it's in the second tuple
+        # else return the second node of the first tuple
+        return edges[0][0] if edges[0][0] in edges[1] else edges[0][1]
+
+class Solution1:
     def findCenter(self, edges: List[List[int]]) -> int:
         all_nodes = []
         for x, y in edges:
@@ -60,6 +67,8 @@ class Solution2:
         for key in node_freq:
             if node_freq[key] == len(all_nodes) // 2: 
                 return key
+            
+
         
             
 if __name__ == '__main__':
