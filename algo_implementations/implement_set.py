@@ -3,24 +3,18 @@ class Set:
         self.val = val 
         self.hashmap = {}
 
-    def compute_hash(self, data):
-        hashed_data = hash(data)
-        return hashed_data
-
     def add(self, val):
-        new_hash = self.compute_hash(val)
-        if new_hash in self.hashmap:
-            print(f' {self.hashmap[new_hash]} already in set')
+        if val in self.hashmap:
+            print(f' {val} already in set')
             return False 
         else:
-            self.hashmap[new_hash] = val 
+            self.hashmap[val] = True
 
         return True 
     
     def remove(self, val):
-        rehash = self.compute_hash(val)
-        if rehash in self.hashmap:
-            del self.hashmap[rehash]
+        if val in self.hashmap:
+            del self.hashmap[val]
             print(f'{val} removed from set.')
             return True 
         else:
