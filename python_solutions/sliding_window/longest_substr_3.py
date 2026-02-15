@@ -23,22 +23,43 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 """
 
 def lengthOfLongestSubstring(s):
-    l_ptr = 0
-    r_ptr = 0
+    l = 0
+    r = 0
     unique = set()
     max_len = 0     
 
-    while r_ptr < len(s):
-        if s[r_ptr] not in unique:
-            unique.add(s[r_ptr])
-            r_ptr += 1
+    while r < len(s):
+        if s[r] not in unique:
+            unique.add(s[r])
+            r += 1
             max_len = max(max_len, len(unique))
-            # rawdogging fining the max: 
-            # max_len = max_len if max_len > len(unique) else len(unique) 
         else:
-            unique.remove(s[l_ptr])
-            l_ptr += 1
+            unique.remove(s[l])
+            l += 1
 
     return max_len
     
 print( lengthOfLongestSubstring('abxgejxn') )
+
+# bobbi's solution
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        hadRepeat = False
+        longestSubstring = ""
+        currentSubstring = ""
+
+        for char in s:
+            l=len(currentSubstring)
+            if l > 0:
+                i = currentSubstring.find(char)
+                if i != -1:
+                    if len(longestSubstring) < l:
+                        longestSubstring = currentSubstring
+                    currentSubstring = currentSubstring[i+1:]
+
+            currentSubstring = currentSubstring + char
+
+        if len(longestSubstring) < len(currentSubstring):
+            return len(currentSubstring)
+        else:
+            return len(longestSubstring)
