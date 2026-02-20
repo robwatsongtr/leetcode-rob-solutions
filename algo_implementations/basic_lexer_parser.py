@@ -10,14 +10,16 @@ class TokenType(Enum):
     R_PARENS = auto()
     EOF = auto()
 
+
 class Token:
     def __init__(self, lexeme, token_type):
-        self.type = token_type
+        self.token_type = token_type
         self.lexeme = lexeme 
 
     def __repr__(self):
-        return f"Token(token_type='{self.type}', lexeme='{self.lexeme}')"
-
+        return f"Token(token_type='{self.token_type}', lexeme='{self.lexeme}')"
+    
+        
 class Lexer:
     def __init__(self, stream):
         self.stream = stream
@@ -49,6 +51,7 @@ class Lexer:
             if self.peek() is None:
                 token = Token("", TokenType.EOF)
                 tokens.append(token)
+
                 # we're done!
                 return tokens
             
@@ -81,6 +84,19 @@ class Lexer:
                     f"Unexpected character(s) starting with '{self.peek()}' at {self.pos}"
                 )
 
+
+class BinaryOpNode:
+    def __init__(self, op_type=None, l_op=None, r_op=None):
+        self.op_type = op_type
+        self.l_op = l_op
+        self.r_op = r_op
+
+
+class NumberNode:
+    def __init__(self, number=0):
+        self.number = number 
+
+
 class Parser:
     def __init__(self, token_stream):
         self.tok_stream = token_stream
@@ -91,11 +107,75 @@ class Parser:
 
     def token_peek(self):
         token = self.tok_stream[self.tok_pos]
-        return token if token.TokenType != 'EOF' else None 
+
+        return token if token.token_type != TokenType.EOF else None 
+
+    def consume(self, expected_token):
+        token = self.token_peek()
+
+        if token.token_type == expected_token:
+            self.advance()
+
+            return token 
+        else:
+            raise ValueError(
+                f"Unexpected token '{token.token_type}' at {self.tok_pos}"
+            )
+
+    # ---------------- Build the Parse Tree----------------------
+
+    def expression(self):
+        root = self.term()
+        return root  
+
+    def term(self):
+        root = self.factor()
+
+        while self.token_peek() and (
+            self.token_peek().token_type in (TokenType.PLUS, TokenType.MINUS)
+        ):
+            op = self.token_peek()
+            self.consume(op.token_type) # does validation and advances
+            r_node = self.factor()
+            root = BinaryOpNode(op, root, r_node)
+
+        return root 
+
+        
+    def factor(self):
+        root = self.primary()
+
+        while self.token_peek() and (
+            self.token_peek().token_type in (TokenType.MULTIPLY, TokenType.DIVIDE)
+        ):
+            op = self.token_peek()
+            self.consume(op.token_type) # does validation and advances
+            r_node = self.primary()
+            root = BinaryOpNode(op, root, r_node)
+
+        return root 
 
 
-    def consume(self):
-        pass
+    def primary(self):
+        if self.token_peek().token_type == TokenType.NUMBER:
+            num = self.token_peek()
+            self.consume(num.token_type)
+
+            return NumberNode(float(num.lexeme))
+        else:
+            # handle parens 
+            # parens creates a nested parse of everything inside them
+            if self.token_peek().token_type == TokenType.L_PARENS:
+                self.consume(TokenType.L_PARENS)
+                result = self.expression()
+                self.consume(TokenType.R_PARENS)
+
+                return result
+
+
+    def evaluate(self):
+        pass 
+
 
 
 
