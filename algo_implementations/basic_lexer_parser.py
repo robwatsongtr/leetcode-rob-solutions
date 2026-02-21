@@ -1,5 +1,9 @@
 from enum import Enum, auto
 
+"""
+Lexer
+"""
+
 class TokenType(Enum):
     NUMBER = auto()
     PLUS = auto()
@@ -84,6 +88,9 @@ class Lexer:
                     f"Unexpected character(s) starting with '{self.peek()}' at {self.pos}"
                 )
 
+"""
+Parser
+"""
 
 class BinaryOpNode:
     def __init__(self, op_type=None, l_op=None, r_op=None):
@@ -122,10 +129,18 @@ class Parser:
                 f"Unexpected token '{token.token_type}' at {self.tok_pos}"
             )
 
-    # ---------------- Build the Parse Tree----------------------
+    # ------------ Build the Parse Tree ------------
+
+    """
+    expression → term
+        term       → factor (('+' | '-') factor)*
+        factor     → primary (('*' | '/') primary)*
+        primary    → NUMBER | '(' expression ')'    
+    """
 
     def expression(self):
         root = self.term()
+
         return root  
 
     def term(self):
@@ -149,7 +164,7 @@ class Parser:
             self.token_peek().token_type in (TokenType.MULTIPLY, TokenType.DIVIDE)
         ):
             op = self.token_peek()
-            self.consume(op.token_type) # does validation and advances
+            self.consume(op.token_type) 
             r_node = self.primary()
             root = BinaryOpNode(op, root, r_node)
 
@@ -163,8 +178,7 @@ class Parser:
 
             return NumberNode(float(num.lexeme))
         else:
-            # handle parens 
-            # parens creates a nested parse of everything inside them
+            # handle parens, creating a nested parse of everything inside them
             if self.token_peek().token_type == TokenType.L_PARENS:
                 self.consume(TokenType.L_PARENS)
                 result = self.expression()
@@ -172,6 +186,7 @@ class Parser:
 
                 return result
 
+    # -------------------------------------------------
 
     def evaluate(self):
         pass 
