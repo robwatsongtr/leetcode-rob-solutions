@@ -213,6 +213,7 @@ if __name__ == '__main__':
 
     lexer = Lexer(expression)
     tokens = lexer.tokenize()
+    
     parser = Parser(tokens)
     tree = parser.expression()
 
