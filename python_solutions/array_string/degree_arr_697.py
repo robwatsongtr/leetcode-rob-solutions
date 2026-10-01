@@ -51,7 +51,7 @@ class Solution:
         # loop over array with nums that match degree
         # the key here is you get the length of the subarray
         # for each num by finding the first and last occurence of that
-        # number bny having the first "trip" first, and the last
+        # number by having the first "trip" first, and the last
         # is the match you're left with at teh end of the traversal 
         for num in nums_deg:
             first_idx = None
