@@ -62,6 +62,6 @@ class Solution2:
             if s[i] == '2':
                 break
             else:
-                s_list.pop()
+                s_list.pop()    
 
         return "".join(s_list)
