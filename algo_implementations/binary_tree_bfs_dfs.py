@@ -21,12 +21,14 @@ class Binary_Tree:
         
         while True:
             if val == current.val: return None 
+
             if val < current.val:
                 if current.left is None:
                     current.left = new_node
                     return self 
                 else:
                     current = current.left
+
             elif val > current.val:
                 if current.right is None:
                     current.right = new_node
@@ -34,7 +36,7 @@ class Binary_Tree:
                 else:
                     current = current.right 
 
-    # essentially a BFS but in 'reverse' 
+    # essentially a BFS but in 'reverse'. NOT BST!! Just balanced.
     def insert_balanced(self, val):
         new_node = TreeNode(val)
 
