@@ -25,6 +25,7 @@ class Linked_list:
     def pop_front(self):
         if self.head is None: 
             return None
+        
         item = self.head
         self.head = self.head.next
         self.length -= 1
@@ -42,7 +43,7 @@ class Linked_list:
             self.tail = self.head
         else:
             self.tail.next = newNode # wire up node to tail
-            self.tail = newNode # make the new node the tail
+            self.tail = newNode # MAKE THE NEW NODE THE TAIL    
         self.length += 1
 
         return self.head
