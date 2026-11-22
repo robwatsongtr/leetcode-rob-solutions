@@ -50,7 +50,7 @@ class Solution:
 class SolutionConstSpace:
     def isPalinrome(self, head: ListNode | None ) -> bool:
         def isPalindrome(self, head: ListNode | None) -> bool:
-            #find middle:
+            # find middle:
             fast = head
             mid = head
 
@@ -58,7 +58,7 @@ class SolutionConstSpace:
                 fast = fast.next.next
                 mid = mid.next
 
-            #reverse second half
+            # reverse second half
             curr = mid
             prev = None 
 
