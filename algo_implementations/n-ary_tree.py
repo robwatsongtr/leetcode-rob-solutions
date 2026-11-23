@@ -51,30 +51,39 @@ class Nary_Tree:
             return []
 
         result = []
+        count = 0 
 
         def traverse(node):
+            nonlocal count 
+
             result.append(node.val)
 
             for child in node.children:
                 traverse(child)
 
+            count += 1
+
         traverse(self.root)
-        return result 
+        return result, count 
 
     def dfs_postorder(self):
         if self.root is None:
             return []
 
         result = []
+        count = 0
 
         def traverse(node):
+            nonlocal count 
+
             for child in node.children:
                 traverse(child)
 
             result.append(node.val)
+            count += 1
 
         traverse(self.root)
-        return result 
+        return result, count  
 
     def bfs(self):
         queue = deque()
@@ -92,6 +101,23 @@ class Nary_Tree:
 
         return result 
 
+    def height(self):
+        if self.root is None:
+            return 0
+        
+        height = 0
+
+        def dfs(node, curr_depth):
+            nonlocal height
+         
+            height = max(height, curr_depth)
+
+            for child in node.children:
+                dfs(child, curr_depth + 1)
+
+        dfs(self.root, 1)
+
+        return height 
 
 if __name__ == "__main__":
     """   
@@ -124,4 +150,4 @@ if __name__ == "__main__":
     print()
     print(f'bfs: {nary_tree.bfs()}')
     print()
-
+    print(f'height: {nary_tree.height()}')
