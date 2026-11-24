@@ -5,7 +5,12 @@ class NryNode:
         self.val = val 
         self.children = []
 
-class Nary_Tree:
+    def __repr__(self):
+        return f"Node('{self.val}')"
+
+    
+
+class Nry_Tree:
     def __init__(self, root_val=None):
         self.root = None
         self.nodes = {}
@@ -14,14 +19,20 @@ class Nary_Tree:
 
 
     def node_lookup(self, val):
+        # necessary to store nodes in a dictionary to dedup 
         if val not in self.nodes:
             self.nodes[val] = NryNode(val)
 
         return self.nodes[val]
 
+    """
+    This tree loader expects parent child pairs in an array as tuples 
+    """
     def make_tree(self, pairs):
+        # to help find root 
         children = set()
 
+        # loop for matching nodes and their children 
         for p, c in pairs:
             parent = self.node_lookup(p)
             child = self.node_lookup(c)
@@ -30,16 +41,20 @@ class Nary_Tree:
             # to help find root 
             children.add(c)
 
+        # code below is to find root if one is not given in constructor
+        # the root will be the only node with no children
         roots = []
         for n in self.nodes:
             if n not in children:
                 roots.append(n)
 
+        # presence of more than one node that doesn't have children is error 
         if len(roots) != 1: 
             raise ValueError(f'Expected exactly one root, found none or {roots}')
 
         found_root = self.nodes[roots[0]]
 
+        # handle if root is given in constructor or not 
         if self.root is None:
             self.root = found_root
         elif self.root != found_root:
@@ -48,7 +63,7 @@ class Nary_Tree:
 
     def dfs_preorder(self):
         if self.root is None:
-            return []
+            return [], 0
 
         result = []
         count = 0 
@@ -56,7 +71,7 @@ class Nary_Tree:
         def traverse(node):
             nonlocal count 
 
-            result.append(node.val)
+            result.append(node)
 
             for child in node.children:
                 traverse(child)
@@ -68,7 +83,7 @@ class Nary_Tree:
 
     def dfs_postorder(self):
         if self.root is None:
-            return []
+            return [], 0
 
         result = []
         count = 0
@@ -79,7 +94,7 @@ class Nary_Tree:
             for child in node.children:
                 traverse(child)
 
-            result.append(node.val)
+            result.append(node)
             count += 1
 
         traverse(self.root)
@@ -94,7 +109,7 @@ class Nary_Tree:
 
         while queue: 
             node = queue.popleft()
-            result.append(node.val)
+            result.append(node)
 
             for child in node.children:
                 queue.append(child)
@@ -103,7 +118,7 @@ class Nary_Tree:
 
     def height(self):
         if self.root is None:
-            return 0
+            return -1
         
         height = 0
 
@@ -115,19 +130,61 @@ class Nary_Tree:
             for child in node.children:
                 dfs(child, curr_depth + 1)
 
-        dfs(self.root, 1)
-
+        dfs(self.root, 0)
         return height 
 
+    def find(self, val):
+        if self.root is None:
+            return False, -1
+        
+        found_depth = -1
+        is_found = False 
+
+        def dfs(node, depth):
+            nonlocal is_found, found_depth
+
+            if node.val == val:
+                is_found = True
+                found_depth = depth 
+                return 
+
+            for child in node.children:
+                dfs(child, depth + 1)
+                # return at first find! 
+                if is_found:
+                    return 
+            
+        dfs(self.root, 0)
+        return is_found, found_depth
+
+    def collect_leaves(self):
+        if self.root is None:
+            return []
+
+        leaf_nodes = []
+
+        def dfs(node):
+            if not node.children: 
+                leaf_nodes.append(node)
+                return 
+
+            for child in node.children:
+                dfs(child)
+
+        dfs(self.root)
+        return leaf_nodes 
+
+
+
 if __name__ == "__main__":
-    """   
+    r"""   
                  A
               /     \
             B        C
          /  |  \    /  \ 
         D   E  F    G   H
-        |           |
-        I           J
+        |   |       |
+        I   J       K
 
     """ 
 
@@ -136,11 +193,12 @@ if __name__ == "__main__":
         ('B', 'D'), ('B', 'E'), ('B', 'F'),
         ('C','G'), ('C', 'H') ,
         ('D','I'),
-        ('G', 'J')    
+        ('E','J'),
+        ('G', 'K')    
     ]
 
 
-    nary_tree = Nary_Tree()
+    nary_tree = Nry_Tree()
 
     nary_tree.make_tree(parent_child)
 
@@ -151,3 +209,14 @@ if __name__ == "__main__":
     print(f'bfs: {nary_tree.bfs()}')
     print()
     print(f'height: {nary_tree.height()}')
+    print()
+
+    val1, depth1 = nary_tree.find('H')
+    print(f'Find "H": {val1}, depth: {depth1}')
+    print()
+
+    val2, depth2 = nary_tree.find('R')
+    print(f'Find "R": {val2}, depth: {depth2}')
+    print()
+
+    print(f'leaf nodes: {nary_tree.collect_leaves()} ')
