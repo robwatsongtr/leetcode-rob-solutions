@@ -9,7 +9,6 @@ class NryNode:
         return f"Node('{self.val}')"
 
     
-
 class Nry_Tree:
     def __init__(self, root_val=None):
         self.root = None
@@ -19,7 +18,6 @@ class Nry_Tree:
 
 
     def node_lookup(self, val):
-        # necessary to store nodes in a dictionary to dedup 
         if val not in self.nodes:
             self.nodes[val] = NryNode(val)
 
@@ -32,7 +30,7 @@ class Nry_Tree:
         # to help find root 
         children = set()
 
-        # loop for matching nodes and their children 
+        # matching nodes and their children 
         for p, c in pairs:
             parent = self.node_lookup(p)
             child = self.node_lookup(c)
@@ -80,6 +78,7 @@ class Nry_Tree:
 
         traverse(self.root)
         return result, count 
+    
 
     def dfs_postorder(self):
         if self.root is None:
@@ -99,8 +98,9 @@ class Nry_Tree:
 
         traverse(self.root)
         return result, count  
+    
 
-    def bfs(self):
+    def bfs_levels(self):
         queue = deque()
         result = []
 
@@ -108,13 +108,21 @@ class Nry_Tree:
             queue.append(self.root)
 
         while queue: 
-            node = queue.popleft()
-            result.append(node)
+            # always get level size here: 
+            level_size = len(queue)
+            level_list = []
 
-            for child in node.children:
-                queue.append(child)
+            for _ in range(level_size):
+                node = queue.popleft()
+                level_list.append(node)
 
+                for child in node.children:
+                    queue.append(child)
+
+            result.append(level_list)
+        
         return result 
+    
 
     def height(self):
         if self.root is None:
@@ -132,6 +140,7 @@ class Nry_Tree:
 
         dfs(self.root, 0)
         return height 
+    
 
     def find(self, val):
         if self.root is None:
@@ -156,6 +165,7 @@ class Nry_Tree:
             
         dfs(self.root, 0)
         return is_found, found_depth
+    
 
     def collect_leaves(self):
         if self.root is None:
@@ -174,6 +184,39 @@ class Nry_Tree:
         dfs(self.root)
         return leaf_nodes 
 
+    # finding path: backtracking with a stack 
+    def find_path(self, val):
+        if self.root is None:
+            return False 
+
+        path_stack = []
+        is_found = False 
+
+        def dfs(node):
+            nonlocal is_found 
+
+            # push on stack (preorder)
+            path_stack.append(node)
+
+            # return before the pop. keep the stack intact 
+            # this current node is the target hence everthying on the stack is valid
+            if node.val == val:
+                is_found = True 
+                return 
+
+            # recurse 
+            for child in node.children:
+                dfs(child)
+                # if we are on the correct path, pass that back up 
+                if is_found:
+                    return 
+
+            # remove from stack (postorder). no child led to target
+            # this current node is a dead end. 
+            path_stack.pop()
+
+        dfs(self.root)
+        return path_stack if is_found else False 
 
 
 if __name__ == "__main__":
@@ -185,7 +228,8 @@ if __name__ == "__main__":
         D   E  F    G   H
         |   |       |
         I   J       K
-
+                  /  \
+                 L    M
     """ 
 
     parent_child = [ 
@@ -194,7 +238,9 @@ if __name__ == "__main__":
         ('C','G'), ('C', 'H') ,
         ('D','I'),
         ('E','J'),
-        ('G', 'K')    
+        ('G', 'K'),
+        ('K', 'L'),
+        ('K','M')    
     ]
 
 
@@ -206,8 +252,10 @@ if __name__ == "__main__":
     print()
     print(f'dfs postorder: {nary_tree.dfs_postorder()}')
     print()
-    print(f'bfs: {nary_tree.bfs()}')
-    print()
+
+    for i, nodes in enumerate(nary_tree.bfs_levels()):
+        print(f'level: {i}, nodes: {nodes}')
+
     print(f'height: {nary_tree.height()}')
     print()
 
@@ -220,3 +268,9 @@ if __name__ == "__main__":
     print()
 
     print(f'leaf nodes: {nary_tree.collect_leaves()} ')
+    print()
+
+    print(f'Find path to M: {nary_tree.find_path('M')}')
+    print()
+    print(f'Find path to F: {nary_tree.find_path('F')}')
+    print 
