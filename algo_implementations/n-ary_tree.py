@@ -34,7 +34,7 @@ class Nry_Tree:
         for p, c in pairs:
             parent = self.node_lookup(p)
             child = self.node_lookup(c)
-            
+
             parent.children.append(child)
 
             # to help find root 
@@ -42,7 +42,7 @@ class Nry_Tree:
 
         # code below is to find root if one is not given in constructor
         # the root will be the only node with no parent 
-        roots = [n for n in self.nodes if n not in has_parent]
+        roots = [ n for n in self.nodes if n not in has_parent ]
         
         # presence of more than one node that doesn't have a parent is error 
         if len(roots) != 1: 

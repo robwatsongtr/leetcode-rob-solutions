@@ -27,7 +27,7 @@ class Trie:
             char_val = ord(char.lower()) - ord('a')
 
             # if there's no node in the slot of the current letter 
-            # make one and put it there 
+            # make one and put it there. This is the branching. 
             if curr_node.children[char_val] == None:
                 new_node = TrieNode()
                 curr_node.children[char_val] = new_node
