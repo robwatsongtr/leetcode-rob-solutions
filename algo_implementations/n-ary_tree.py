@@ -10,14 +10,14 @@ class NryNode:
 
     
 class Nry_Tree:
-    def __init__(self, root_val=None):
+    def __init__(self, root_val=None) -> None:
         self.root = None
         self.nodes = {}
         if root_val is not None:
             self.root = self.node_lookup(root_val)
 
 
-    def node_lookup(self, val):
+    def node_lookup(self, val) -> NryNode:
         if val not in self.nodes:
             self.nodes[val] = NryNode(val)
 
@@ -26,27 +26,25 @@ class Nry_Tree:
     """
     This tree loader expects parent child pairs in an array as tuples 
     """
-    def make_tree(self, pairs):
+    def make_tree(self, pairs) -> None:
         # to help find root 
-        children = set()
+        has_parent = set()
 
         # matching nodes and their children 
         for p, c in pairs:
             parent = self.node_lookup(p)
             child = self.node_lookup(c)
+            
             parent.children.append(child)
 
             # to help find root 
-            children.add(c)
+            has_parent.add(c)
 
         # code below is to find root if one is not given in constructor
-        # the root will be the only node with no children
-        roots = []
-        for n in self.nodes:
-            if n not in children:
-                roots.append(n)
-
-        # presence of more than one node that doesn't have children is error 
+        # the root will be the only node with no parent 
+        roots = [n for n in self.nodes if n not in has_parent]
+        
+        # presence of more than one node that doesn't have a parent is error 
         if len(roots) != 1: 
             raise ValueError(f'Expected exactly one root, found none or {roots}')
 
@@ -59,7 +57,7 @@ class Nry_Tree:
             raise ValueError("Derived root does not match given root.")
         
 
-    def dfs_preorder(self):
+    def dfs_preorder(self) -> tuple[list[NryNode], int]:
         if self.root is None:
             return [], 0
 
@@ -80,7 +78,7 @@ class Nry_Tree:
         return result, count 
     
 
-    def dfs_postorder(self):
+    def dfs_postorder(self) -> tuple[list[NryNode], int]:
         if self.root is None:
             return [], 0
 
@@ -100,7 +98,8 @@ class Nry_Tree:
         return result, count  
     
 
-    def bfs_levels(self):
+    # each list in the list is a complete level 
+    def bfs_levels(self) -> list[list[NryNode]]:
         queue = deque()
         result = []
 
@@ -124,7 +123,7 @@ class Nry_Tree:
         return result 
     
 
-    def height(self):
+    def height(self) -> int:
         if self.root is None:
             return -1
         
@@ -142,7 +141,7 @@ class Nry_Tree:
         return height 
     
 
-    def find(self, val):
+    def find(self, val) -> tuple[bool, int]:
         if self.root is None:
             return False, -1
         
@@ -167,7 +166,7 @@ class Nry_Tree:
         return is_found, found_depth
     
 
-    def collect_leaves(self):
+    def collect_leaves(self) -> list[NryNode]:
         if self.root is None:
             return []
 
@@ -185,18 +184,18 @@ class Nry_Tree:
         return leaf_nodes 
 
     # finding path: backtracking with a stack 
-    def find_path(self, val):
+    def find_path(self, val) -> list[NryNode] | None:
         if self.root is None:
             return False 
 
-        path_stack = []
+        path = []
         is_found = False 
 
         def dfs(node):
             nonlocal is_found 
 
             # push on stack (preorder)
-            path_stack.append(node)
+            path.append(node)
 
             # return before the pop. keep the stack intact 
             # this current node is the target hence everthying on the stack is valid
@@ -211,12 +210,12 @@ class Nry_Tree:
                 if is_found:
                     return 
 
-            # remove from stack (postorder). no child led to target
-            # this current node is a dead end. 
-            path_stack.pop()
+            # remove from stack (postorder).
+            # No child led to target, this current node is a dead end. 
+            path.pop()
 
         dfs(self.root)
-        return path_stack if is_found else False 
+        return path if is_found else False 
 
 
 if __name__ == "__main__":
@@ -273,4 +272,4 @@ if __name__ == "__main__":
     print(f'Find path to M: {nary_tree.find_path('M')}')
     print()
     print(f'Find path to F: {nary_tree.find_path('F')}')
-    print 
+    print()
